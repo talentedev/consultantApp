@@ -1,0 +1,59 @@
+﻿<ion-view>
+    <ion-nav-title>
+        企业网盘
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button btn-back" ng-click="go_back()">
+            <i class="icon ion-chevron-left"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="news-dynamic">
+        <div id="search-bar" class="full">
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper" id="search-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input id="search-input" type="text" placeholder="输入文件搜索" ng-model="query" ng-change="search()">
+                </label>
+            </div>
+        </div>
+        <div class="list-header">共 7 个文件分类</div>
+        <div class="list">
+            <div class="item item-thumbnail-left" ng-click="go_detail()">
+                <img class="img-thumb" src="img/imgplaceholder.png" style="width:35px; height:35px" />
+                <p class="list-title"><span>月沟通文件</span><span>（全员可查看，仅管理员可编辑）</span></p>
+                <p class="list-description"><span>2016-07-30  17:54</span><span class="list-date">100MB</span></p>
+            </div>
+            <div class="item item-thumbnail-left" ng-click="go_detail()">
+                <img class="img-thumb" src="img/imgplaceholder.png" style="width:35px; height:35px" />
+                <p class="list-title"><span>月度工作重点</span><span>（全员可查看，仅管理员可编辑）</span></p>
+                <p class="list-description"><span>2016-07-30  17:54</span><span class="list-date">100MB</span></p>
+            </div>
+            <div class="item item-thumbnail-left" ng-click="go_detail()">
+                <img class="img-thumb" src="img/imgplaceholder.png" style="width:35px; height:35px" />
+                <p class="list-title"><span>促销信息</span><span>（全员可查看，仅管理员可编辑）</span></p>
+                <p class="list-description"><span>2016-07-30  17:54</span><span class="list-date">100MB</span></p>
+            </div>
+            <div class="item item-thumbnail-left" ng-click="go_detail()">
+                <img class="img-thumb" src="img/imgplaceholder.png" style="width:35px; height:35px" />
+                <p class="list-title"><span>年度政策</span><span>（全员可查看，仅管理员可编辑）</span></p>
+                <p class="list-description"><span>2016-07-30  17:54</span><span class="list-date">100MB</span></p>
+            </div>
+            <div class="item item-thumbnail-left" ng-click="go_detail()">
+                <img class="img-thumb" src="img/imgplaceholder.png" style="width:35px; height:35px" />
+                <p class="list-title"><span>优秀案例</span><span>（全员可查看，仅管理员可编辑）</span></p>
+                <p class="list-description"><span>2016-07-30  17:54</span><span class="list-date">100MB</span></p>
+            </div>
+            <div class="item item-thumbnail-left" ng-click="go_detail()">
+                <img class="img-thumb" src="img/imgplaceholder.png" style="width:35px; height:35px" />
+                <p class="list-title"><span>KPI报表</span><span>（全员可查看，仅管理员可编辑）</span></p>
+                <p class="list-description"><span>2016-07-30  17:54</span><span class="list-date">100MB</span></p>
+            </div>
+            <div class="item item-thumbnail-left" ng-click="go_detail()">
+                <img class="img-thumb" src="img/imgplaceholder.png" style="width:35px; height:35px" />
+                <p class="list-title"><span>培训支持文件</span><span>（全员可查看，仅管理员可编辑）</span></p>
+                <p class="list-description"><span>2016-07-30  17:54</span><span class="list-date">100MB</span></p>
+            </div>
+        </div>
+        <div class="list-footer">仅支持.ppt、.pptx、.xls、.xlsx、.doc、.docx、.pdf类型文件的查看，其它如.7z、.zip、.rar等类型文件请在电脑下载查看！</div>
+    </ion-content>
+</ion-view>

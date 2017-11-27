@@ -1,0 +1,684 @@
+﻿<ion-view>
+    <ion-nav-title>
+        添加/修改门店
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="go_save()">
+            保存
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="store-detail">
+        <div id="store-header" class="item item-thumbnail-left item-icon-right">
+            <img class="img-thumb" src="img/image.jpeg" style="width:75px; height:75px" />
+            <p class="list-title">113395</p>
+            <p class="list-description">淮安神达</p>
+            <p class="list-description">淮安市神达商贸发展有限公司</p>
+            <i class="icon ion-android-person" ng-click="go_manager()"></i>
+        </div>
+        <div class="store-section">
+            基本信息
+        </div>
+        <div class="list">
+            <div class="item row">
+                <div class="col-40 item-title">
+                    店面编号
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="113395" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    店面简称
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="淮安神达" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    店面全称
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="淮安市神达商贸发展有限公司" />
+                </div>
+            </div>
+            <div class="item row">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        店面类型
+                    </div>
+                    <select><option>1、T+</option><option>2、其它渠道</option><option>3、外部投资者</option></select>
+                </label>
+            </div>
+            <div class="item row">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        店面状态
+                    </div>
+                    <select><option>1、正常</option><option>2、加入流程中</option><option>3、休眠</option></select>
+                </label>
+            </div>
+            <div class="item row">
+                <div class="col-50 item-title">
+                    开业时间
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="2010-01-01" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-50 item-title">
+                    特许经营起始日期
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="2010-01-01" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-50 item-title">
+                    装修完成时间
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="2013-01-21" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-50 item-title">
+                    DMS上线时间
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="2013-01-21" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    省份
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="江苏" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    城市
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="淮安市" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    地址
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="淮安市健康西路148号" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    传真
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="0517-83650996" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    邮编
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    AM
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="王蓓蕾" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    经营者
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="张红梅" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    手机
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="13605237976" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-40 item-title">
+                    电话
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="0517-83650996" />
+                </div>
+            </div>
+        </div>
+        <div class="store-section">
+            店面描述
+        </div>
+        <div class="list">
+            <div class="item row">
+                <div class="col-60 item-title">
+                    总面积
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="180" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    操作区面积
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="60" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    休息区面积
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="60" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    工位数
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="2" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    举升机数
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="2" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    洗车机数
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <label class="item item-input item-select">
+                    <div class="input-label right-side">
+                        独立卫生间
+                    </div>
+                    <select><option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;有</option><option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;无</option></select>
+                </label>
+            </div>
+        </div>
+        <div class="store-section">
+            2公里范围内店面数量
+        </div>
+        <div class="list">
+            <div class="item row">
+                <div class="col-60 item-title">
+                    汽车美容装饰店  数量
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="6" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    汽车快修店  数量
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="6" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    4S店  数量
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="0" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    汽车修理厂  数量
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="3" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    加油站  数量
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="2" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    大型日用品超市  数量
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="2" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    传统轮胎店  数量
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="4" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    会员俱乐部（收费）  数量
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    其它  数量
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+        </div>
+        <div class="store-section">
+            初始投资额
+        </div>
+        <div class="list">
+            <div class="item row">
+                <div class="col-60 item-title">
+                    初始投资额
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    装修
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    设备
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    加盟费
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    备货
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    预交房租
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    银行流动资金
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    其它投资
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="非必填项" />
+                </div>
+            </div>
+        </div>
+        <div class="store-section">
+            业务描述
+        </div>
+        <div class="list">
+            <div class="item row">
+                <div class="col-60 item-title">
+                    机油
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    制动
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    电瓶
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    火花塞
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    灯泡
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    滤清器
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    洗车卡
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    手工洗车
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    内饰清洁
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    自动洗车
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    打蜡
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    抛光
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    贴膜
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    座椅套
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    补胎
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    四轮定位
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    气门嘴
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    动平衡
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    保险
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    玻璃
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    发动机
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    雨刮
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-60 item-title">
+                    其他
+                </div>
+                <div class="col">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+</ion-content>
+</ion-view>

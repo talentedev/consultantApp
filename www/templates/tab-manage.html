@@ -1,0 +1,31 @@
+﻿<ion-view>
+    <ion-nav-title>
+        自我管理
+    </ion-nav-title>
+    <ion-content id="tab-manage" class="padding has-header">
+        <div class="chart-area">
+            <div class="row">
+                <div class="col">
+                    驰加店面拜访数量
+                </div>
+                <div class="col" style="text-align:right;">
+                    <i class="fa fa-filter">2016</i>
+                </div>
+            </div>
+            <div fusioncharts width="99%" height="150px" type="column2d" datasource="{{myDataSource1}}">
+            </div>
+        </div>
+        <div class="chart-area">
+            <div class="row">
+                <div class="col">
+                    工作小时数
+                </div>
+                <div class="col" style="text-align:right;">
+                    <i class="fa fa-filter">2016</i>
+                </div>
+            </div>
+            <div fusioncharts width="99%" height="150px" type="column2d" datasource="{{myDataSource2}}">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

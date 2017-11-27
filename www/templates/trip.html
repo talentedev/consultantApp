@@ -1,0 +1,73 @@
+﻿<ion-view>
+    <ion-nav-title>
+        添加行程
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            取消
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="go_back()">
+            保存
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="trip">
+        <div class="list">
+            <div class="item row item-icon-right" ng-click="go_type()">
+                <div class="col col-25 item-title">
+                    行程类型
+                </div>
+                <div class="col col-50">
+                    驰加拜访
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item row item-icon-right">
+                <div class="col col-25 item-title">
+                    开始时间
+                </div>
+                <div class="col col-50">
+                    2016-04-21
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item row item-icon-right">
+                <div class="col col-25 item-title">
+                    结束时间
+                </div>
+                <div class="col col-50">
+                    2016-04-21
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item row item-icon-right" ng-click="go_select()">
+                <div class="col col-25 item-title">
+                    负责员工
+                </div>
+                <div class="col col-50">
+                    周东
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item row item-icon-right" ng-click="go_select()">
+                <div class="col col-25 item-title">
+                    参与员工
+                </div>
+                <div class="col col-50">
+                    康又坑
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item row item-icon-right" style="margin-top:30px;"  ng-click="go_store()">
+                <div class="col col-25 item-title">
+                    相关门店
+                </div>
+                <div class="col col-50">
+                    沈阳市于洪区洪通骏驰汽车修理厂
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>    
+    </ion-content>
+</ion-view>

@@ -1,0 +1,43 @@
+﻿<ion-view>
+    <ion-nav-title>
+        执行非巡店类行程
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            取消
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="go_back()">
+            提交
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="perform-analysis" class="padding-without">
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    开始时间
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="2016-01-01 09:00" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    结束时间
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="2016-01-01 18:00" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <textarea placeholder="备注"></textarea>
+        <div class="store-section mark" style="margin-top:300px;">
+            <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
+        </div>
+    </ion-content>
+</ion-view>
