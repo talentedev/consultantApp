@@ -1,0 +1,60 @@
+﻿<ion-view ng-controller="dateCtrl">       
+    <ion-nav-title>
+        <i class="icon ion-chevron-left" style="margin-right:10px;" ng-click="pre_calendar()"></i>{{year}}年{{month}}月<i class="icon ion-chevron-right" style="margin-left:10px;" ng-click="next_calendar()"></i>
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button btn-back" ng-click="go_back()">
+            <i class="icon ion-chevron-left"></i>  
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button id="today" class="button button-positive">
+            今
+        </button>
+        <button class="button btn-back" ng-click="go_trip()">
+            <i class="icon ion-plus"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="tab-date">
+        <div id="calendar-area">
+            <form name="CLD" class="content">
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="datetable">
+                    <tbody>
+                        <tr style="background:#eee;">
+                            <td width="54">日</td>
+                            <td width="54">一</td>
+                            <td width="54">二</td>
+                            <td width="54">三</td>
+                            <td width="54">四</td>
+                            <td width="54">五</td>
+                            <td width="54">六</td>
+                        </tr>
+                        <tr align="center" ng-repeat="i in [0, 1, 2, 3, 4, 5]">
+                            <td id='{{"GD"+(i*7+j)}}' ng-repeat="j in [0, 1, 2, 3, 4, 5, 6]">
+                                <span id='{{"SD"+(i*7+j)}}' face="Arial Black"></span><br />
+                                <span id='{{"LD"+(i*7+j)}}' style="font-size:9pt"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="list">
+            <div class="item item-icon-right" ng-click="go_perform()">
+                <i class="icon ion-chevron-right"></i>
+                09:00 拜访 客户米其林（中国）投资....
+            </div>
+            <div class="item item-icon-right" ng-click="go_perform()">
+                <i class="icon ion-chevron-right"></i>
+                12:00 拜访 潜在客户
+            </div>
+            <div class="item item-icon-right" ng-click="go_road()">
+                <i class="icon ion-chevron-right"></i>
+                15:00 路途
+            </div>
+        </div>
+        <div id="description">
+            假期类行程，如过期，且行程未被删除，系统将自动默认提交！
+        </div>
+    </ion-content>
+</ion-view>

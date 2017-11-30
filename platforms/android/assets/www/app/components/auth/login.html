@@ -1,0 +1,41 @@
+﻿<ion-view ng-controller="authCtrl">
+    <ion-nav-title>
+        登录
+    </ion-nav-title>  
+    <ion-content id="login-content" class="padding has-header">
+        <div id="logo-content">
+            <img id="logo-img" src="assets/img/logo.png" />
+        </div>
+        <div id="input-list" class="list">
+            <label id="business-account" class="item item-input item-stable">
+                <span>企业账户：</span>
+                <input type="text" placeholder="Michelin" disabled>
+            </label>
+            <dir class="line"></dir>
+            <label id="user-account" class="item item-input item-stable">
+                <span>用户账号：</span>
+                <input type="text" placeholder="请输入用户账号" required ng-minlength="3">
+            </label>
+            <dir class="line"></dir>
+            <label id="password" class="item item-input item-stable">
+                <span>用户密码：</span>
+                <input type="text" placeholder="请输入登录密码" required ng-minlength="3">
+            </label>
+        </div>
+        <div id="toggle-content" class="row">
+            <div class="col col-50">
+                <label class="toggle-title">自动登录</label>
+                <label class="toggle">
+                    <input type="checkbox" checked="checked">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </div>
+            <div class="col">
+                <div id="search">找回密码</div>
+            </div>
+        </div>
+        <button id="submit" class="button button-block button-balanced" ng-click="login('user')">登录</button>
+    </ion-content>
+</ion-view>

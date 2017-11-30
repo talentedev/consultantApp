@@ -1,0 +1,47 @@
+﻿<ion-view ng-controller="newsCtrl">
+    <ion-nav-title>
+        消息
+    </ion-nav-title>  
+  <ion-content id="tab-news">
+      <!--<div id="search-bar" class="full">
+          <div class="item item-input-inset">
+              <label class="item-input-wrapper" id="search-input">
+                  <i class="icon ion-search placeholder-icon"></i>
+                  <input id="search-input" type="text" placeholder="搜索" ng-model="query" ng-change="search()">
+              </label>
+          </div>
+      </div>-->
+      <div class="list">
+          <div class="item item-thumbnail-left" ng-click="go_announcement()">
+              <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:55px; height:50px"/>
+              <p><span class="list-title">公告</span><span class="list-date">7月2日</span></p>
+              <p class="list-description">2016年第26周沟通文件已上传，请各位自行下载</p>
+          </div>
+          <div class="item item-thumbnail-left" ng-click="go_dynamic()">
+              <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:55px; height:50px" />
+              <p><span class="list-title">文件动态</span><span class="list-date">4月15日</span></p>
+              <p class="list-description">徐志礼上传了文件Weekly communication Week</p>
+          </div>
+          <div class="item item-thumbnail-left" ng-click="go_tabdate()">
+              <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:55px; height:50px" />
+              <p><span class="list-title">明日计划</span><span class="list-date">4月15日</span></p>
+              <p class="list-description">明日拜访沈阳市于洪区洪通骏驰汽车修理厂</p>
+          </div>
+          <div class="item item-thumbnail-left" ng-click="go_perform()">
+              <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:55px; height:50px" />
+              <p><span class="list-title">昨日日报</span><span class="list-date">4月15日</span></p>
+              <p class="list-description">昨日的行程：拜访沈阳信成商贸未“Done”！</p>
+          </div>
+          <div class="item item-thumbnail-left" ng-click="go_tracking()">
+              <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:55px; height:50px" />
+              <p><span class="list-title">跟踪提醒（2）</span><span class="list-date">4月15日</span></p>
+              <p class="list-description">122988速威特陈列不标准、支付宝账号申请困难</p>
+          </div>
+          <div class="item item-thumbnail-left" ng-click="go_customer()">
+              <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:55px; height:50px" />
+              <p><span class="list-title">雷瑞客服</span><span class="list-date">4月15日</span></p>
+              <p class="list-description">您提交的问题已通过筛选，稍后会有相关客服联系</p>
+          </div>
+      </div>  
+    </ion-content>
+</ion-view>
