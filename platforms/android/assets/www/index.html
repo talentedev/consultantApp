@@ -25,7 +25,7 @@
     <script src="lib/fusioncharts/fusioncharts.js"></script>
     <script src="assets/js/angular-fusioncharts.min.js"></script>
 
-    <!-- your app's js -->
+    <!-- controllers -->
     <script src="app/app.js"></script>
     <script src="app/app.route.js"></script>
     <script src="app/components/auth/authCtrl.js"></script>
@@ -42,8 +42,29 @@
     <script src="app/components/news-dynamic/dynamic-pptx/news-dynamic-detail-pptxCtrl.js"></script>
     <script src="app/components/news-tracking/news-trackingCtrl.js"></script>
     <script src="app/components/news-customer/news-customerCtrl.js"></script>
+
+    <!-- table store api--->
+    <script src="app/shared/table-store-api/constants.module.js"></script>
+    <script src="app/shared/table-store-api/convertor.js"></script>
+    <script src="app/shared/table-store-api/handlers/handler.module.js"></script>
+    <script src="app/shared/table-store-api/proto-buffer/protoBufferEncode.js"></script>
+    <script src="app/shared/table-store-api/proto-buffer/protoBufferDecode.js"></script>
+    <script src="app/shared/table-store-api/proto-buffer/pb_message.js"></script>
+    <script src="app/shared/table-store-api/proto-buffer/pb_proto.js"></script>
+    <script src="app/shared/table-store-api/proto-buffer/preprocessEncode.js"></script>
+    <script src="app/shared/table-store-api/proto-buffer/type/pb_types.js"></script>
+    <script src="app/shared/table-store-api/proto-buffer/encoding/pb_base128.js"></script>
+    <script src="app/shared/table-store-api/proto-buffer/reader/pb_reader.js"></script>
+
+    <!-- middleware for table store api--->
+    <script src="app/shared/db_service/db_service.js"></script>
+
+    <!-- 3th party modules--->
+    <script src="lib/angular-md5/angular-md5.min.js"></script>
+    <script src="lib/angular-base64/angular-base64.min.js"></script>
+    
   </head>
-  <body ng-app="ctpApp">
+  <body ng-app="ctpApp" class="platform-android platform-cordova platform-webview">
 
       <ion-nav-bar class="bar-stable" align-title="center">
       </ion-nav-bar>
