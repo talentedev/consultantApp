@@ -1,4 +1,4 @@
-# Ionic Blank Template
+# The Ionic Application for consultant company
 
 An application using Apache Cordova, Ionic Framework, and Typescript. Currently supporting iOS, Android and Windows 10.
 
