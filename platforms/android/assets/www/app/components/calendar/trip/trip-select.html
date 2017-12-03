@@ -1,0 +1,49 @@
+﻿<ion-view ng-controller="trip-selectCtrl">
+    <ion-nav-title>
+        选择成员
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            取消
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="go_back()">
+            确认
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="trip-select" style="padding-top:0px;">
+        <div id="search-bar" class="full">
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper" id="search-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input id="search-input" type="text" placeholder="输入个人名称" ng-model="query" ng-change="search()">
+                </label>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item item-thumbnail-left item-icon-right">
+                <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
+                <p><span class="list-title">周东（我自己）</span></p>
+                <p class="list-description">驰加部 L1区 区域顾问</p>
+                <i class="icon fa fa-check-square-o" style="font-size:25px;"></i>
+            </div>
+            <div class="item item-thumbnail-left item-icon-right">
+                <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
+                <p><span class="list-title">张磊（我的直属上级）</span></p>
+                <p class="list-description">驰加部 L1区 顾问经理</p>
+                <i class="icon fa fa-check-square-o" style="font-size:25px; color:#48b52d;"></i>
+            </div>
+            <div class="item item-thumbnail-left item-icon-right">
+                <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
+                <p><span class="list-title">徐志礼</span></p>
+                <p class="list-description">驰加部 顾问导师</p>
+                <i class="icon fa fa-check-square-o" style="font-size:25px; color:#48b52d;"></i>
+            </div>
+            <div class="item item-icon-right">
+                <p class="list-description">L1区（我的部门）</p>
+                <i class="icon fa fa-chevron-down" style="font-size:25px;"></i>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

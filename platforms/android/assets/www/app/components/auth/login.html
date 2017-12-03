@@ -14,28 +14,28 @@
             <dir class="line"></dir>
             <label id="user-account" class="item item-input item-stable">
                 <span>用户账号：</span>
-                <input type="text" placeholder="请输入用户账号" required ng-minlength="3">
+                <input type="text" placeholder="请输入用户账号" required ng-minlength="3" ng-model="user.username">
             </label>
             <dir class="line"></dir>
             <label id="password" class="item item-input item-stable">
                 <span>用户密码：</span>
-                <input type="text" placeholder="请输入登录密码" required ng-minlength="3">
+                <input type="password" placeholder="请输入登录密码" required ng-minlength="3" ng-model="user.password">
             </label>
         </div>
         <div id="toggle-content" class="row">
             <div class="col col-50">
                 <label class="toggle-title">自动登录</label>
                 <label class="toggle">
-                    <input type="checkbox" checked="checked">
+                    <input type="checkbox" checked="checked" ng-model="user.remember">
                     <div class="track">
                         <div class="handle"></div>
                     </div>
                 </label>
             </div>
             <div class="col">
-                <div id="search">找回密码</div>
+                <div id="search" ng-click="go_customer()">找回密码</div>
             </div>
         </div>
-        <button id="submit" class="button button-block button-balanced" ng-click="login('user')">登录</button>
+        <button id="submit" class="button button-block button-balanced" ng-click="login(user)">登录</button>
     </ion-content>
 </ion-view>

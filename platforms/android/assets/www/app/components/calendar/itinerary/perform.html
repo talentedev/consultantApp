@@ -1,0 +1,218 @@
+﻿<ion-view ng-controller="performCtrl">
+    <ion-nav-title>
+        执行巡店类行程
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="go_back()">
+            提交
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="perform">
+        <div class="button-area row">
+            <div class="col col-50">
+                <button class="button"  ng-click="go_field()"><i class="fa fa-arrow-right" style="font-size:14px;display:inline-block;"></i>到店签到</button>
+            </div>
+            <div class="col col-50">
+                <button class="button" style="float:right;" ng-click="go_field()"><i class="fa fa-arrow-right" style="font-size:14px;display:inline-block;"></i>离店签退</button>
+            </div>
+        </div>
+        <div class="row text-area">
+            <div class="col col-40">
+                本次拜访目标
+            </div>
+            <div class="col col-60">
+                <input type="text" placeholder="请点击输入" />
+            </div>
+        </div>
+        <div class="row text-area">
+            <div class="col col-40">
+                本次拜访计划
+            </div>
+            <div class="col col-60">
+                <input type="text" placeholder="请点击输入" />
+            </div>
+        </div>
+        <div class="store-section">
+            准备
+        </div>
+        <div class="list">
+            <div class="item item-icon-left item-icon-right" ng-click="go_analysis()">
+                <i class="icon fa fa-star star" style="background-color:#ff9f00;"></i>
+                <p class="list-title"><span>SWOT分析</span></p>
+                <p class="list-description"><span>自身优势、自我弱点、外部机遇、外部威胁</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_storefront()">
+                <i class="icon fa fa-star star" style="background-color:#ff6600;"></i>
+                <p class="list-title"><span>店面年度工作计划</span></p>
+                <p class="list-description"><span>店面年度工作计划，精确到每个月</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_store()">
+                <i class="icon fa fa-star star" style="background-color:#83cf10;"></i>
+                <p class="list-title"><span>单店基本信息</span></p>
+                <p class="list-description"><span>基本信息、店面描述、2公里范围内店面数量等</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="">
+                <i class="icon fa fa-star star" style="background-color:#00cd47;"></i>
+                <p class="list-title"><span>BI Report</span></p>
+                <p class="list-description"><span>销量综合指标、营业额综合指标、毛利综合指标</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="">
+                <i class="icon fa fa-star star" style="background-color:#00aaff;"></i>
+                <p class="list-title"><span>评估记录</span></p>
+                <p class="list-description"><span>评估列表、评分趋势图、级别趋势图</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_develop()">
+                <i class="icon fa fa-star star" style="background-color:#00cd47;"></i>
+                <p class="list-title"><span>行动计划及草案制定</span></p>
+                <p class="list-description"><span>评估列表、评分趋势图、级别趋势图</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_audit()">
+                <i class="icon fa fa-star star" style="background-color:#fb7b7b;"></i>
+                <p class="list-title"><span>驰加审计结果回顾</span></p>
+                <p class="list-description"><span>SOP、CSI、DMS</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            观察
+        </div>
+        <div class="list">
+            <div class="item item-icon-left item-icon-right" ng-click="go_upload()">
+                <i class="icon fa fa-star star" style="background-color:#00aaff;"></i>
+                <p class="list-title"><span>拍照上传</span></p>
+                <p class="list-description"><span>环境、人员、操作与运营、体验</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_trip()">
+                <i class="icon fa fa-star star" style="background-color:#83cf10;"></i>
+                <p class="list-title"><span>观察</span></p>
+                <p class="list-description"><span>环境、人员、操作与运营、体验</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            数据上报
+        </div>
+        <div class="list">
+            <div class="item item-icon-left item-icon-right" ng-click="go_inventory()">
+                <i class="icon fa fa-star star" style="background-color:#00aaff;"></i>
+                <p class="list-title"><span>库存上报</span></p>
+                <p class="list-description"><span>门店编号、轮胎产品名称、库存数量</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_sales()">
+                <i class="icon fa fa-star star" style="background-color:#ff9f00;"></i>
+                <p class="list-title"><span>销量上报</span></p>
+                <p class="list-description"><span>门店编号、轮胎产品名称、库存数量</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_orders()">
+                <i class="icon fa fa-star star" style="background-color:#157efb;"></i>
+                <p class="list-title"><span>订单上报</span></p>
+                <p class="list-description"><span>门店编号、轮胎产品名称、订单数量、金额</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_competing()">
+                <i class="icon fa fa-star star" style="background-color:#fb7b7b;"></i>
+                <p class="list-title"><span>竞品上报</span></p>
+                <p class="list-description"><span>门店编号、轮胎产品名称、数量</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            回顾
+        </div>
+        <div class="list">
+            <div class="item item-icon-left item-icon-right" ng-click="">
+                <i class="icon fa fa-star star" style="background-color:#00aaff;"></i>
+                <p class="list-title"><span>BI Report</span></p>
+                <p class="list-description"><span>销量综合指标、营业额综合指标、毛利综合指标</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="">
+                <i class="icon fa fa-star star" style="background-color:#00cd47;"></i>
+                <p class="list-title"><span>评估记录</span></p>
+                <p class="list-description"><span>评估列表、评分趋势图、级别趋势图</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_action()">
+                <i class="icon fa fa-star star" style="background-color:#83cf10;"></i>
+                <p class="list-title"><span>行动计划回顾</span></p>
+                <p class="list-description"><span>问题、行动目标、行动方案</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            沟通
+        </div>
+        <div class="list">
+            <div class="item item-icon-left item-icon-right" ng-click="go_communication()">
+                <i class="icon fa fa-star star" style="background-color:#ff9f00;"></i>
+                <p class="list-title"><span>沟通</span></p>
+                <p class="list-description"><span>人员、内容、结果</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            行动计划
+        </div>
+        <div class="list">
+            <div class="item item-icon-left item-icon-right" ng-click="go_action()">
+                <i class="icon fa fa-star star" style="background-color:#157efb;"></i>
+                <p class="list-title"><span>行动计划</span></p>
+                <p class="list-description"><span>问题、目标、行动方案</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            培训辅导
+        </div>
+        <div class="list">
+            <div class="item item-icon-left item-icon-right" ng-click="go_training()">
+                <i class="icon fa fa-star star" style="background-color:#fb7b7b;"></i>
+                <p class="list-title"><span>培训辅导</span></p>
+                <p class="list-description"><span>问题、目标、行动方案</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            总结
+        </div>
+        <div class="list">
+            <div class="item item-icon-left item-icon-right" ng-click="go_action()">
+                <i class="icon fa fa-star star" style="background-color:#00aaff;"></i>
+                <p class="list-title"><span>行动计划总结</span></p>
+                <p class="list-description"><span>问题、行动目标、行动方案</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+            <div class="item item-icon-left item-icon-right" ng-click="go_action()">
+                <i class="icon fa fa-star star" style="background-color:#00cd47;"></i>
+                <p class="list-title"><span>添加总结项</span></p>
+                <p class="list-description"><span>目的、主题、参会人员、效果</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            跟踪提醒
+        </div>
+        <div class="list">
+            <div class="item item-icon-left item-icon-right" ng-click="go_customer()">
+                <i class="icon fa fa-star star" style="background-color:#83cf10;"></i>
+                <p class="list-title"><span>跟踪提醒</span></p>
+                <p class="list-description"><span>店面、行动目标、内容、执行人、是否完全</span></p>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

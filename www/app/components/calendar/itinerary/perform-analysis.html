@@ -1,0 +1,90 @@
+﻿<ion-view ng-controller="perform-analysisCtrl">
+    <ion-nav-title>
+        SWOT分析
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="perform-analysis">
+        <div class="list">
+            <div class="item row">
+                <div class="col col-25 item-title">
+                    门店编号
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="168158" />
+                </div>
+            </div>
+            <div class="item row" style="border:none;">
+                <div class="col col-25 item-title">
+                    门店名称
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="驰加(上海)汽车用品贸易有限公司" />
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    自身优势
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="请点击输入或选择备选" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            添加其它自身优势+
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    自我弱点
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="请点击输入或选择备选" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            添加其它自我弱点+
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    外部机遇
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="请点击输入或选择备选" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            添加其它外部机遇+
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    外部威胁
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="请点击输入或选择备选" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="store-section">
+            添加其它外部威胁+
+        </div>
+        <textarea placeholder="备注"></textarea>
+        <div class="button-area">
+            <button class="button" ng-click="go_back()">保存</button>
+        </div>
+    </ion-content>
+</ion-view>

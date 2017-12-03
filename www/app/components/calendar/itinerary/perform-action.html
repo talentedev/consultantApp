@@ -1,0 +1,99 @@
+﻿<ion-view ng-controller="perform-actionCtrl">
+    <ion-nav-title>
+        添加/查看/修改行动计划
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="go_back()">
+            统计
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="perform-analysis" class="padding-without">
+        <div class="list">
+            <div class="item row" style="border:none;">
+                <div class="col col-25 item-title">
+                    问题
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="请点击输入" />
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row" style="border:none;">
+                <div class="col col-25 item-title">
+                    行动目标
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="请点击输入" />
+                </div>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    行动方案
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="请点击输入或选择备选" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    执行人
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="常淳、勾宇" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    制定时间
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="2016-01-01" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    预计完成
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="2016-01-02" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <textarea placeholder="备注"></textarea>
+        <div class="store-section">
+            添加其它行动计划+
+        </div>
+        <div class="row">
+            <div class="col col-25">
+                <i class="icon fa fa-camera big" ng-click="go_camera()"></i>
+            </div>
+            <div class="col col-25">
+                <i class="icon fa fa-plus big" ng-click="go_camera()"></i>
+            </div>
+        </div>
+        <div class="store-section mark">
+            <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
+        </div>
+        <div class="button-area">
+            <button class="button" ng-click="go_back()">保存</button>
+        </div>
+    </ion-content>
+</ion-view>

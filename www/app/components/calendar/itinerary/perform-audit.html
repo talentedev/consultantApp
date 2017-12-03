@@ -1,0 +1,52 @@
+﻿<ion-view ng-controller="perform-auditCtrl">
+    <ion-nav-title>
+        驰加审计结果
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="perform-analysis" class="padding-without">
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    审计类型
+                </div>
+                <div class="col col-50">
+                    <select id="audit-select"><option>SOP</option><option>CSI</option><option>DMS</option></select>
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    审计年份
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="2016" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row item-icon-right" style="border:none;">
+                <div class="col col-25 item-title">
+                    审计月份
+                </div>
+                <div class="col col-50">
+                    <input type="text" placeholder="1" />
+                </div>
+                <i class="icon ion-ios-arrow-right"></i>
+            </div>
+        </div>
+        <textarea placeholder="审计结果"></textarea>
+        <div class="store-section">
+            继续添加其它驰加审计结果
+        </div>
+        <div class="button-area">
+            <button class="button" ng-click="go_back()">保存</button>
+        </div>
+    </ion-content>
+</ion-view>

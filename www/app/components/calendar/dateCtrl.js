@@ -1,5 +1,5 @@
 ﻿/*
- * the controller that manage date
+ * 日历
  */
 
 app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar) {

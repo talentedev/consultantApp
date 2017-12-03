@@ -1,40 +1,31 @@
 ﻿/*
- * the controller that manage for user authentication.
+ * the controller to manage for user authentication.
 */
-app.controller('authCtrl', function ($scope, $state, DBService) {
+app.controller('authCtrl', function ($scope, $state, $http, BASE_URL) {
 
     $scope.login = function (user) {
-        //console.log('Log-In', user);
-        // Go to date tab if authentication is successed.
-        //$state.go('tab.date');       
-
-        // create table operation
-        //var response = DBService.createTable();
-
-        // delete table operation
-        //var response = DBService.deleteTable();
-
-        // list table operation
-        //var response = DBService.listTable();
-
-        // put row operation
-        var response = DBService.putRow();
-
-        // get row operation
-        //var response = DBService.getRow();
-
-        // delete row operation
-        //var response = DBService.deleteRow();
-
-        // update row operation
-        //var response = DBService.updateRow();
         
-        // batch get row operation
-        //var response = DBService.batchGetRow();
+        // Go to date tab if authentication is successed.
+        var url = BASE_URL + '/auth/login';        
+       /* var data = {
+            username: user.username,
+            password: user.password,
+            //remember: user.remember
+        };               
+       
+       /* $http.post(url, data).then(function (res) {
+            //console.log(res);
+            if (res.data.success == true) {                
+                $state.go('tab.date');
+            }
+        }).then(function (err) {
+            console.log(err)
+        });*/
 
-        response.then(function (res) {
-            console.log(res);
-        });
-        //console.log(response);
+        $state.go('tab.date');
+    };
+
+    $scope.go_customer = function () {
+        $state.go('news-customer');
     };
 });

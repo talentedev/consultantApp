@@ -1,0 +1,40 @@
+﻿<ion-view>
+    <ion-nav-title>
+        外勤签到
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="go_back()">
+            统计
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="perform-field">
+        <img src="img/map.png" />
+        <div class="row">
+            <div class="col col-50">
+                <i class="fa fa-calendar" style="font-size:18px;"></i>
+                <span style="font-size:12px; margin-left:10px;">星期二：2016.04.19</span>
+            </div>
+            <div class="col col-50">
+                <i class="fa fa-clock-o" style="font-size:18px;"></i>
+                <span style="font-size:12px; margin-left:10px;">当前时间：17：02</span>
+            </div>
+        </div>
+        <div class="row white-area">
+            <div class="col col-75">
+                <P>龙旗广场E座</P>
+                <P>北京市北京市昌平区黄平路19号院4号楼</P>
+            </div>
+            <div class="col col-25">
+                位置微调
+            </div>
+        </div>
+        <div class="button-area">
+            <button class="button" ng-click="go_back()"><i class="fa fa-map-marker" style="font-size:14px;display:inline-block;"></i><span>提交</span></button>
+        </div>
+    </ion-content>
+</ion-view>
