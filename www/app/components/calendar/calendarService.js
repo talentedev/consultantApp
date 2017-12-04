@@ -216,11 +216,12 @@ app.factory('Calendar', function () {
             sObj = document.getElementById('SD' + i);
             lObj = document.getElementById('LD' + i);
             sObj.className = '';
+            sObj.parentElement.style.backgroundColor = '';
             sD = i - cld.firstWeek;
             if (sD > -1 && sD < cld.length) { //日期内
                 sObj.innerHTML = sD + 1;
-                if (cld[sD].isToday) { sObj.style.color = '#9900FF'; } //今日颜色
-                else { sObj.style.color = ''; }
+                if (cld[sD].isToday) { sObj.parentElement.style.backgroundColor = '#387ef5'; } //今日颜色
+                else { sObj.parentElement.style.backgroundColor = ''; }
                 if (cld[sD].lDay == 1) { //显示农历月
                     lObj.innerHTML = '<b>' + (cld[sD].isLeap ? '闰' : '') + cld[sD].lMonth + '月' + (monthDays(cld[sD].lYear, cld[sD].lMonth) == 29 ? '小' : '大') + '</b>';
                 }
@@ -287,7 +288,7 @@ app.factory('Calendar', function () {
     
     return {
         //打开页时,在下拉列表中显示当前年月,并调用自定义函数drawCld(),显示公历和农历的相关信息
-        initial: function () {
+        initial: function () {            
             drawCld(tY, tM);
         },
         getyear: function () {

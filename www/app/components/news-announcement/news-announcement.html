@@ -1,4 +1,4 @@
-﻿<ion-view ng-controller="news-announcementCtrl">
+﻿<ion-view ng-controller="news-announcementCtrl" ng-init="announcement_init()">
     <ion-nav-title>
         公告
     </ion-nav-title>
@@ -9,55 +9,18 @@
     </ion-nav-buttons>
     <ion-content id="news-announcement">
         <div class="list">
-            <div class="item">
+            <div class="item" ng-repeat="data in announcements">
                 <div class="row">
                     <div class="col-22">
                         <div class="thumb">志礼</div>
                     </div>
                     <div class="col">
-                        <div class="detail"><span class="list-title">徐志礼</span><span class="list-date">7月2日</span></div>
-                        <p class="list-description">2016年第26周沟通文件已上传，请各位自行下载查看，如有问题，请与我沟通！</p>
+                        <div class="detail"><span class="list-title">{{data.reporter_name}}</span><span class="list-date">{{data.report_date.getMonth()+1}}月{{data.report_date.getDate()}}日</span></div>
+                        <p class="list-description">{{data.report_content}}</p>
                     </div>
                 </div>
                 <div class="item-footer">点击确认收到</div>
-            </div>
-            <div class="item">
-                <div class="row">
-                    <div class="col-22">
-                        <div class="thumb">志礼</div>
-                    </div>
-                    <div class="col">
-                        <div class="detail"><span class="list-title">徐志礼</span><span class="list-date">7月2日</span></div>
-                        <p class="list-description">2016年第26周沟通文件已上传，请各位自行下载查看，如有问题，请与我沟通！</p>
-                    </div>
-                </div>
-                <div class="item-footer">已确认收到</div>
-            </div>
-            <div class="item">
-                <div class="row">
-                    <div class="col-22">
-                        <div class="thumb">志礼</div>
-                    </div>
-                    <div class="col">
-                        <div class="detail"><span class="list-title">徐志礼</span><span class="list-date">7月2日</span></div>
-                        <p class="list-description">2016年第26周沟通文件已上传，请各位自行下载查看，如有问题，请与我沟通！</p>
-                    </div>
-                </div>
-                <div class="item-footer">已确认收到</div>
-            </div>
-            <div class="item">
-                <div class="row">
-                    <div class="col-22">
-                        <div class="thumb">志礼</div>
-                    </div>
-                    <div class="col">
-                        <div class="detail"><span class="list-title">徐志礼</span><span class="list-date">7月2日</span></div>
-                        <p class="list-description">2016年第26周沟通文件已上传，请各位自行下载查看，如有问题，请与我沟通！</p>
-                    </div>
-                </div>
-                <div class="item-footer">已确认收到</div>
-            </div>
-            
+            </div>                                               
         </div>
     </ion-content>
 </ion-view>

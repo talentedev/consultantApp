@@ -1,4 +1,4 @@
-﻿<ion-view ng-controller="trip-selectCtrl">
+﻿<ion-view ng-controller="trip-dutyCtrl">
     <ion-nav-title>
         选择成员
     </ion-nav-title>
@@ -12,7 +12,7 @@
             确认
         </button>
     </ion-nav-buttons>
-    <ion-content id="trip-select" style="padding-top:0px;">
+    <ion-content id="trip-select-duty" style="padding-top:0px;">
         <div id="search-bar" class="full">
             <div class="item item-input-inset">
                 <label class="item-input-wrapper" id="search-input">
@@ -26,19 +26,19 @@
                 <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
                 <p><span class="list-title">{{member.name}}（我自己）</span></p>
                 <p class="list-description">{{member.department}} {{member.region}} {{member.position}}</p>
-                <i class="icon fa fa-check-square-o" style="font-size:25px;"></i>
+                <i class="icon fa fa-check-square-o" style="font-size:25px;" id="duty0" ng-click="duty_check(0)"></i>
             </div>
             <div class="item item-thumbnail-left item-icon-right">
                 <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
                 <p><span class="list-title">张磊（我的直属上级）</span></p>
                 <p class="list-description">驰加部 L1区 顾问经理</p>
-                <i class="icon fa fa-check-square-o" style="font-size:25px; color:#48b52d;"></i>
+                <i class="icon fa fa-check-square-o" style="font-size:25px;" id="duty1" ng-click="duty_check(1)"></i>
             </div>
             <div class="item item-thumbnail-left item-icon-right">
                 <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
                 <p><span class="list-title">徐志礼</span></p>
                 <p class="list-description">驰加部 顾问导师</p>
-                <i class="icon fa fa-check-square-o" style="font-size:25px; color:#48b52d;"></i>
+                <i class="icon fa fa-check-square-o" style="font-size:25px;" id="duty2" ng-click="duty_check(2)"></i>
             </div>
             <div class="item item-icon-right">
                 <p class="list-description">L1区（我的部门）</p>

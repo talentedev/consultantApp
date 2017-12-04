@@ -1,33 +1,40 @@
 ﻿/*
- * 选择门店
+ * 选择成员
 */
-app.controller('trip-storeCtrl', function ($scope, $state, $ionicHistory, BASE_URL, $http, TripService) {
+app.controller('trip-dutyCtrl', function ($scope, $state, $ionicHistory, BASE_URL, $http) {
+    $scope.$on('$ionicView.enter', function (event) {
+        var url = BASE_URL + '/auth/me';
+        $http.get(url).then(function (res) {
+            $scope.member = res.data;
+        });
+    })
 
-    // search a store by name
+    // search a member by name
     $scope.search = function (query) {
-        var url = BASE_URL + '/store/search';
+        var url = BASE_URL + '/itineray/search';
         var data = {
-            store_name: query
+            search_name : query
         }
+        console.log(data);
         $http.post(url, data).then(function (res) {
             console.log(res.data);
-            $scope.stores = res.data;
+            $scope.member = res.data;
         });
     }
 
-    var store = {};
+    var duty = null;
     var checked = [];
 
     // event when press check icon in store list
-    $scope.store_check = function (i) {
+    $scope.duty_check = function (i) {
         if (typeof checked[i] == 'undefined') checked[i] = false;
-        var id = 'store' + i.toString();
+        var id = 'duty' + i.toString();
         if (checked[i] == false) {
             document.getElementById(id).style.color = '#48b52d';
-            store = $scope.stores[i];
+            //duty = $scope.stores[i];
             for (key in checked) {
                 if (key != i) {
-                    document.getElementById('store' + key.toString()).style.color = '#444';
+                    document.getElementById('duty' + key.toString()).style.color = '#444';
                     checked[key] = false;
                 }
             }
@@ -36,13 +43,6 @@ app.controller('trip-storeCtrl', function ($scope, $state, $ionicHistory, BASE_U
             document.getElementById(id).style.color = '#444';
             checked[i] = false;
         }
-    }
-
-    // return current data to previous view.
-    $scope.save = function () {
-        TripService.set_store_id(store.store_id);
-        TripService.set_store_name(store.store_name);
-        $ionicHistory.goBack();   
     }
 
     $scope.go_back = function () {

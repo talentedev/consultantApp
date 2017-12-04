@@ -113,11 +113,18 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         controller: 'trip-typeCtrl'
     })
 
-    // 选择成员
-    .state('trip-select', {
-        url: '/trip-select',
-        templateUrl: 'app/components/calendar/trip/trip-select.html',
-        controller: 'trip-selectCtrl'
+    // 选择成员(only)
+    .state('trip-duty', {
+        url: '/trip-duty',
+        templateUrl: 'app/components/calendar/trip/trip-duty.html',
+        controller: 'trip-dutyCtrl'
+    })
+
+    // 选择成员(multi)
+    .state('trip-participator', {
+        url: '/trip-participator',
+        templateUrl: 'app/components/calendar/trip/trip-participator.html',
+        controller: 'trip-participatorCtrl'
     })
 
     // 选择门店

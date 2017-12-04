@@ -1,6 +1,6 @@
 ﻿<ion-view ng-controller="dateCtrl">       
     <ion-nav-title>
-        <i class="icon ion-chevron-left" style="margin-right:10px;" ng-click="pre_calendar()"></i>{{year}}年{{month}}月<i class="icon ion-chevron-right" style="margin-left:10px;" ng-click="next_calendar()"></i>
+        <i class="icon ion-chevron-left" style="margin-right:10px;" ng-click="pre_calendar()"></i>{{year}}年{{month+1}}月<i class="icon ion-chevron-right" style="margin-left:10px;" ng-click="next_calendar()"></i>
     </ion-nav-title>
     <ion-nav-buttons side="left">
         <button class="button btn-back" ng-click="go_back()">
@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button id="today" class="button button-positive">
+        <button id="today" class="button button-positive" ng-click="today()">
             今
         </button>
         <button class="button btn-back" ng-click="go_trip()">
@@ -40,17 +40,13 @@
             </form>
         </div>
         <div class="list">
-            <div class="item item-icon-right" ng-click="go_perform()">
+            <div class="item item-icon-right" ng-repeat="item in visit" ng-click="go_perform()">
                 <i class="icon ion-chevron-right"></i>
-                09:00 拜访 客户米其林（中国）投资....
-            </div>
-            <div class="item item-icon-right" ng-click="go_perform()">
+                {{item.start_time}}{{item.itinerary_type}}{{item.store_name}}
+            </div>            
+            <div class="item item-icon-right" ng-repeat="item in non_visit" ng-click="go_road()">
                 <i class="icon ion-chevron-right"></i>
-                12:00 拜访 潜在客户
-            </div>
-            <div class="item item-icon-right" ng-click="go_road()">
-                <i class="icon ion-chevron-right"></i>
-                15:00 路途
+                {{item.start_time}}{{item.itinerary_type}}
             </div>
         </div>
         <div id="description">

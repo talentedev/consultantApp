@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="save()">
             保存
         </button>
     </ion-nav-buttons>
@@ -17,74 +17,20 @@
             <div class="item item-input-inset">
                 <label class="item-input-wrapper" id="search-input">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input id="search-input" type="text" placeholder="搜索" ng-model="query" ng-change="search()">
+                    <input id="search-input" type="text" placeholder="搜索" ng-model="query" ng-change="search(query)">
                 </label>
             </div>
         </div>
         <div class="list">
-            <div class="item row item-icon-right">
+            <div class="item row item-icon-right" ng-repeat="store in stores">
                 <div class="col col-20 item-title">
-                    123269
+                    {{store.store_id}}
                 </div>
                 <div class="col col-50 item-title" style="color:#aaa; overflow:hidden; text-overflow: ellipsis;">
-                    沈阳市于洪区洪通骏驰汽车修理厂
+                    {{store.store_name}}
                 </div>
-                <i class="icon fa fa-check-square-o" style="font-size:20px;"></i>
-            </div>
-            <div class="item row item-icon-right">
-                <div class="col col-20 item-title">
-                    124222
-                </div>
-                <div class="col col-50 item-title" style="color:#aaa; overflow:hidden; text-overflow: ellipsis;">
-                    沈阳市铁西区酷轮时代轮胎商行
-                </div>
-                <i class="icon fa fa-check-square-o" style="font-size:20px;"></i>
-            </div>
-            <div class="item row item-icon-right">
-                <div class="col col-20 item-title">
-                    111279
-                </div>
-                <div class="col col-50 item-title" style="color:#aaa; overflow:hidden; text-overflow: ellipsis;">
-                    沈阳市皇姑区安驰汽车美容服务部
-                </div>
-                <i class="icon fa fa-check-square-o" style="font-size:20px;"></i>
-            </div>
-            <div class="item row item-icon-right">
-                <div class="col col-20 item-title">
-                    119100
-                </div>
-                <div class="col col-50 item-title" style="color:#aaa; overflow:hidden; text-overflow: ellipsis;">
-                    沈阳信成商贸有限公司
-                </div>
-                <i class="icon fa fa-check-square-o" style="font-size:20px;"></i>
-            </div>
-            <div class="item row item-icon-right">
-                <div class="col col-20 item-title">
-                    110814
-                </div>
-                <div class="col col-50 item-title" style="color:#aaa; overflow:hidden; text-overflow: ellipsis;">
-                    开原市新奉物资轮胎有限公司
-                </div>
-                <i class="icon fa fa-check-square-o" style="font-size:20px;"></i>
-            </div>
-            <div class="item row item-icon-right">
-                <div class="col col-20 item-title">
-                    124832
-                </div>
-                <div class="col col-50 item-title" style="color:#aaa; overflow:hidden; text-overflow: ellipsis;">
-                    沈阳市皇姑区安途轮胎经销中心
-                </div>
-                <i class="icon fa fa-check-square-o" style="font-size:20px;"></i>
-            </div>
-            <div class="item row item-icon-right">
-                <div class="col col-20 item-title">
-                    116247
-                </div>
-                <div class="col col-50 item-title" style="color:#aaa; overflow:hidden; text-overflow: ellipsis;">
-                    抚顺市兴盛达汽车服务有限公司
-                </div>
-                <i class="icon fa fa-check-square-o" style="font-size:20px;"></i>
-            </div>
+                <i class="icon fa fa-check-square-o" style="font-size:20px;" id="store{{$index}}" ng-click="store_check($index)"></i>
+            </div>                                   
         </div>    
     </ion-content>
 </ion-view>

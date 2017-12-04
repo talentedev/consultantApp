@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="save()">
             保存
         </button>
     </ion-nav-buttons>
@@ -19,7 +19,7 @@
                     行程类型
                 </div>
                 <div class="col col-50">
-                    驰加拜访
+                    {{trip_type}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -28,7 +28,7 @@
                     开始时间
                 </div>
                 <div class="col col-50">
-                    2016-04-21
+                    {{start_time}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -37,25 +37,25 @@
                     结束时间
                 </div>
                 <div class="col col-50">
-                    2016-04-21
+                    {{end_time}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
-            <div class="item row item-icon-right" ng-click="go_select()">
+            <div class="item row item-icon-right" ng-click="go_select_duty()">
                 <div class="col col-25 item-title">
                     负责员工
                 </div>
                 <div class="col col-50">
-                    周东
+                    {{duty}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
-            <div class="item row item-icon-right" ng-click="go_select()">
+            <div class="item row item-icon-right" ng-click="go_select_participator()">
                 <div class="col col-25 item-title">
                     参与员工
                 </div>
                 <div class="col col-50">
-                    康又坑
+                    {{participator}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -64,7 +64,7 @@
                     相关门店
                 </div>
                 <div class="col col-50">
-                    沈阳市于洪区洪通骏驰汽车修理厂
+                    {{store}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
