@@ -11,7 +11,7 @@ app.controller('trip-dutyCtrl', function ($scope, $state, $ionicHistory, BASE_UR
 
     // search a member by name
     $scope.search = function (query) {
-        var url = BASE_URL + '/itineray/search';
+        var url = BASE_URL + '/itinerary/search';
         var data = {
             search_name : query
         }

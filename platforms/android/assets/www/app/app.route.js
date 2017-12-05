@@ -259,6 +259,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
     })
 
+    // 添加/修改门店
+    .state('store-detail', {
+        url: '/store-detail',
+        templateUrl: 'app/components/stores/store-detail.html',
+        controller: 'store-detailCtrl'
+    })
+
+    // 查看店面人员信息
+    .state('store-manager', {
+        url: '/store-manager',
+        templateUrl: 'app/components/stores/store-manager.html',
+        controller: 'store-managerCtrl'
+    })
+
     /*********************************/
     /*  我的                         */
     /*********************************/

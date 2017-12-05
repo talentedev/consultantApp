@@ -19,7 +19,7 @@
                     门店编号
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="168158" />
+                    <input type="text" placeholder="{{store_id}}">
                 </div>
             </div>
             <div class="item row" style="border:none;">
@@ -27,7 +27,7 @@
                     门店名称
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="驰加(上海)汽车用品贸易有限公司" />
+                    <input type="text" placeholder="{{store_name}}">
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                     一月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.jan">
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                     二月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.feb">
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                     三月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.mar">
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
                     四月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.apr">
                 </div>
             </div>
         </div>
@@ -77,7 +77,7 @@
                     五月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.may">
                 </div>
             </div>
         </div>
@@ -87,7 +87,7 @@
                     六月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.jun">
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
                     七月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.jul">
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                     八月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.aug">
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@
                     九月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.sep">
                 </div>
             </div>
         </div>
@@ -127,7 +127,7 @@
                     十月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.oct">
                 </div>
             </div>
         </div>
@@ -137,7 +137,7 @@
                     十一月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.nov">
                 </div>
             </div>
         </div>
@@ -147,16 +147,16 @@
                     十二月
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="plan.dec">
                 </div>
             </div>
         </div>
         <div class="store-section">
             添加其它工作计划+
         </div>
-        <textarea placeholder="备注"></textarea>
+        <textarea placeholder="备注" ng-model="plan.remark"></textarea>
         <div class="button-area">
-            <button class="button" ng-click="go_back()">保存</button>
+            <button class="button" ng-click="save(plan)">保存</button>
         </div>
     </ion-content>
 </ion-view>

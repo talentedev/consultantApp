@@ -2,7 +2,7 @@
  * 日历
  */
 
-app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $http, BASE_URL) {
+app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $http, BASE_URL, ItineraryService) {
     $scope.$on('$ionicView.enter', function(event){
         calendar_init();
     })
@@ -63,7 +63,9 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
     $scope.go_back = function () {
         $ionicHistory.goBack();
     }
-    $scope.go_perform = function () {
+    $scope.go_perform = function (index) {
+        ItineraryService.set_store_name($scope.visit[index].store_name);
+        ItineraryService.set_store_id($scope.visit[index].store_id);
         $state.go('perform');
     }
     $scope.go_road = function () {
