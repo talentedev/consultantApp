@@ -1,5 +1,16 @@
 ﻿<ion-view ng-controller="perform-cameraCtrl">
     <ion-content id="perform-camera">
-        <img src="assets/img/image.jpeg" style="width:100%;" ng-click="go_back()"/>
+        <img ng-src="{{imgURI}}" onerror="this.onerror = null; this.src = 'http://placehold.it/300x300';">
+        <div class="btn-bar">
+            <button id="cancel" ng-click="go_back()">
+                取消
+            </button>
+            <button id="take" ng-click="takePicture()">
+                <i class="fa fa-circle-thin" aria-hidden="true"></i>
+            </button>
+            <button id="use" ng-click="go_back()">
+                使用照片
+            </button>            
+        </div>
     </ion-content>
 </ion-view>

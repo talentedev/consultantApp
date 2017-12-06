@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!-- No Baidu Siteapp-->   
+
     <title></title>
 
     <link href="assets/lib/ionic/css/ionic.css" rel="stylesheet">
@@ -24,6 +26,8 @@
     <script src="cordova.js"></script>
     <script src="lib/fusioncharts/fusioncharts.js"></script>
     <script src="assets/js/angular-fusioncharts.min.js"></script>
+    
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WUz95hBhxrXVETRAGp5U43IGIVS0G61h"></script>
 
     <!-- controllers -->
     <script src="app/app.js"></script>
@@ -38,6 +42,7 @@
     <script src="app/components/stores/store_detailCtrl.js"></script>
     <script src="app/components/stores/store_managerCtrl.js"></script>
     <script src="app/components/mine/selfCtrl.js"></script>
+    <script src="app/components/mine/self-personalCtrl.js"></script>
     <script src="app/components/news-announcement/news-announcementCtrl.js"></script>
     <script src="app/components/news-dynamic/news-dynamicCtrl.js"></script>
     <script src="app/components/news-dynamic/dynamic-detail/news-dynamic-detailCtrl.js"></script>
@@ -55,6 +60,8 @@
     <script src="app/components/calendar/itinerary/perform-analysisCtrl.js"></script>
     <script src="app/components/calendar/itinerary/perform-storefrontCtrl.js"></script>
     <script src="app/components/calendar/itinerary/perform-developCtrl.js"></script>
+    <script src="app/components/calendar/itinerary/action_executorCtrl.js"></script>
+    <script src="app/components/calendar/itinerary/bi-reportCtrl.js"></script>
     <script src="app/components/calendar/itinerary/perform-auditCtrl.js"></script>
     <script src="app/components/calendar/itinerary/perform-uploadCtrl.js"></script>
     <script src="app/components/calendar/itinerary/perform-cameraCtrl.js"></script>
@@ -69,7 +76,6 @@
     <script src="app/components/calendar/itineraryService.js"></script>
     <script src="app/shared/constants.js"></script>
 
-    <!-- database api--->
     
   </head>
   <body ng-app="ctpApp">

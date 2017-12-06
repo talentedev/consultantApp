@@ -1,7 +1,12 @@
 ﻿/*
  * the controller to manage for user authentication.
 */
-app.controller('authCtrl', function ($scope, $state, $http, BASE_URL) {
+app.controller('authCtrl', function ($scope, $state, $http, BASE_URL) {     
+
+    $scope.user = {
+        username: '',
+        password: ''
+    }
 
     $scope.login = function (user) {
         
@@ -10,16 +15,17 @@ app.controller('authCtrl', function ($scope, $state, $http, BASE_URL) {
         var data = {
             name: user.username,
             password: user.password,
-            //remember: user.remember
+            remember: user.remember
         };               
        
-        $http.post(url, data).then(function (res) {
-            //console.log(res);
-            if (res.data.success == true) {                
+        $http.post(url, data).then(function (res) {            
+            if (res.data.success == true) {
                 $state.go('tab.date');
+            } else {
+                console.log('Incorrect password or username');
             }
         }, function (err) {
-            alert('Connection failed!');    
+            console.log('connection faild!');
         });
                 
     };

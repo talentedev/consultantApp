@@ -64,7 +64,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('news-tracking', {
         url: '/news-tracking',
         templateUrl: 'app/components/news-tracking/news-tracking.html',
-        controller: 'news-trackingCtrl'
+        controller: 'news-trackingCtrl',
+        params: {
+            mem_id: null
+        }
     })
     // 客服
     .state('news-customer', {
@@ -138,35 +141,77 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('perform', {
         url: '/perform',
         templateUrl: 'app/components/calendar/itinerary/perform.html',
-        controller: 'performCtrl'
+        controller: 'performCtrl',
+        params: {
+            store_id: null,
+            store_name: '',
+            store_shortname: '',
+            itinerary_id: null
+        }
     })
 
     // 外勤签到
     .state('perform-field', {
         url: '/perform-field',
         templateUrl: 'app/components/calendar/itinerary/perform-map.html',
-        controller: 'perform-mapCtrl'
+        controller: 'perform-mapCtrl',
+        params: {
+            store_id: null,
+            store_name: ''           
+        }
     })
 
     // SWOT分析
     .state('perform-analysis', {
         url: '/perform-analysis',
         templateUrl: 'app/components/calendar/itinerary/perform-analysis.html',
-        controller: 'perform-analysisCtrl'
+        controller: 'perform-analysisCtrl',
+        params: {
+            store_id: null,
+            store_name: ''
+        }
     })
 
     // 店面年度工作计划
     .state('perform-storefront', {
         url: '/perform-storefront',
         templateUrl: 'app/components/calendar/itinerary/perform-storefront.html',
-        controller: 'perform-storefrontCtrl'
+        controller: 'perform-storefrontCtrl',
+        params: {
+            store_id: null,
+            store_name: ''
+        }
     })
 
     // 添加行动计划及草案制定
     .state('perform-develop', {
         url: '/perform-develop',
         templateUrl: 'app/components/calendar/itinerary/perform-develop.html',
-        controller: 'perform-developCtrl'
+        controller: 'perform-developCtrl',
+        params: {
+            store_id: null,
+            itinerary_id: null
+        }
+    })
+
+    // 选择店面人员
+    .state('action-executor', {
+        url: '/action-executor',
+        templateUrl: 'app/components/calendar/itinerary/action-executor.html',
+        controller: 'action-executorCtrl',
+        params: {
+            store_id: null
+        }
+    })
+
+    // BI Report
+    .state('bi-report', {
+        url: '/bi-report',
+        templateUrl: 'app/components/calendar/itinerary/bi-report.html',
+        controller: 'bi-reportCtrl',
+        params: {
+            store_id: null
+        }
     })
 
     // 驰加审计结果
@@ -201,35 +246,54 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('perform-inventory', {
         url: '/perform-inventory',
         templateUrl: 'app/components/calendar/itinerary/data/perform-inventory.html',
-        controller: 'perform-inventoryCtrl'
+        controller: 'perform-inventoryCtrl',
+        params: {
+            store_id: null,
+            store_name: ''
+        }
     })
 
     // 销量上报
     .state('perform-sales', {
         url: '/perform-sales',
         templateUrl: 'app/components/calendar/itinerary/data/perform-sales.html',
-        controller: 'perform-salesCtrl'
+        controller: 'perform-salesCtrl',
+        params: {
+            store_id: null,
+            store_name: ''
+        }
     })
 
     // 订单上报
     .state('perform-orders', {
         url: '/perform-orders',
         templateUrl: 'app/components/calendar/itinerary/data/perform-orders.html',
-        controller: 'perform-ordersCtrl'
+        controller: 'perform-ordersCtrl',
+        params: {
+            store_id: null,
+            store_name: ''
+        }
     })
 
     // 竞品上报
     .state('perform-competing', {
         url: '/perform-competing',
         templateUrl: 'app/components/calendar/itinerary/data/perform-competing.html',
-        controller: 'perform-competingCtrl'
+        controller: 'perform-competingCtrl',
+        params: {
+            store_id: null,
+            store_name: ''
+        }
     })
 
     // 添加/查看/修改行动计划
     .state('perform-action', {
         url: '/perform-action',
         templateUrl: 'app/components/calendar/itinerary/perform-action.html',
-        controller: 'perform-actionCtrl'
+        controller: 'perform-actionCtrl',
+        params: {
+            itinerary_id: null
+        }
     })
 
     // 添加沟通
@@ -263,7 +327,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('store-detail', {
         url: '/store-detail',
         templateUrl: 'app/components/stores/store-detail.html',
-        controller: 'store-detailCtrl'
+        controller: 'store-detailCtrl',
+        params: {
+            store_id: null,
+            store_name: '',
+            store_shortname: ''
+        }
     })
 
     // 查看店面人员信息
@@ -284,8 +353,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 controller: 'selfCtrl'
             }
         }
-    });
-        
+    })
+
+     // 个人信息
+    .state('self-personal', {
+        url: '/self-personal',
+        templateUrl: 'app/components/mine/self-personal.html',
+        controller: 'self-personalCtrl'
+    });   
+
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
 });

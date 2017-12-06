@@ -1,10 +1,10 @@
 ﻿/*
  * 店面年度工作计划
  */
-app.controller('perform-storefrontCtrl', function ($scope, $state, $ionicHistory, ItineraryService, BASE_URL, $http) {
+app.controller('perform-storefrontCtrl', function ($scope, $state, $stateParams, $ionicHistory, BASE_URL, $http) {
     $scope.$on('$ionicView.enter', function (event) {
-        $scope.store_id = ItineraryService.store_id();
-        $scope.store_name = ItineraryService.store_name();
+        $scope.store_id = $stateParams.store_id;
+        $scope.store_name = $stateParams.store_name;
     })
 
 
@@ -26,12 +26,10 @@ app.controller('perform-storefrontCtrl', function ($scope, $state, $ionicHistory
             dec: plan.dec,
             remark: plan.remark
         };
-
+        
         $http.post(url, data).then(function (res) {
-            console.log(res);
-        });
-
-        $ionicHistory.goBack();
+            $ionicHistory.goBack();
+        });        
     }
 
     $scope.go_back = function () {

@@ -1,0 +1,35 @@
+﻿<ion-view ng-controller="bi-reportCtrl">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
+            筛选
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="bi_report">
+        <div class="row header">
+            <div class="col">类别</div>
+            <div class="col">去年同月销量</div>
+            <div class="col">去年目标销量</div>
+            <div class="col">本月截止销量</div>
+            <div class="col">销量同比</div>
+            <div class="col">目标完成率</div>
+            <div class="col">交叉交易比</div>
+            <div class="col">目标交叉</div>
+        </div>
+        <div class="row" ng-repeat="data in datas">
+            <div class="col">{{data.type}}</div>
+            <div class="col">{{data.last_year_sales}}</div>
+            <div class="col">LK {{data.month_target}}</div>
+            <div class="col">{{data.month_sales}}</div>
+            <div class="col">{{data.rate}}</div>
+            <div class="col">{{data.completed_rate}}</div>
+            <div class="col">{{data.cross_rate}}</div>
+            <div class="col">{{data.trode_rate}}</div>
+        </div>
+    </ion-content>
+</ion-view>

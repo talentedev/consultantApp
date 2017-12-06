@@ -1,4 +1,4 @@
-﻿<ion-view>
+﻿<ion-view ng-controller="store-detailCtrl">
     <ion-nav-title>
         添加/修改门店
     </ion-nav-title>
@@ -8,16 +8,16 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_save()">
+        <button class="button button-clear" ng-click="go_save(store)">
             保存
         </button>
     </ion-nav-buttons>
     <ion-content id="store-detail">
         <div id="store-header" class="item item-thumbnail-left item-icon-right">
             <img class="img-thumb" src="assets/img/image.jpeg" style="width:75px; height:75px" />
-            <p class="list-title">113395</p>
-            <p class="list-description">淮安神达</p>
-            <p class="list-description">淮安市神达商贸发展有限公司</p>
+            <p class="list-title">{{store_id}}</p>
+            <p class="list-description">{{store_shortname}}</p>
+            <p class="list-description">{{store_name}}</p>
             <i class="icon ion-android-person" ng-click="go_manager()"></i>
         </div>
         <div class="store-section">
@@ -29,7 +29,7 @@
                     店面编号
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="113395" />
+                    <input type="text" placeholder="{{store_id}}" ng-model="store.st_id">
                 </div>
             </div>
             <div class="item row">
@@ -37,7 +37,7 @@
                     店面简称
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="淮安神达" />
+                    <input type="text" placeholder="{{store_shortname}}" ng-model="store.st_shortname">
                 </div>
             </div>
             <div class="item row">
@@ -45,7 +45,7 @@
                     店面全称
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="淮安市神达商贸发展有限公司" />
+                    <input type="text" placeholder="{{store_name}}" ng-model="store.st_name">
                 </div>
             </div>
             <div class="item row">
@@ -53,7 +53,11 @@
                     <div class="input-label">
                         店面类型
                     </div>
-                    <select><option>1、T+</option><option>2、其它渠道</option><option>3、外部投资者</option></select>
+                    <select ng-model="store.st_type">
+                        <option selected>1、T+</option>
+                        <option>2、其它渠道</option>
+                        <option>3、外部投资者</option>
+                    </select>
                 </label>
             </div>
             <div class="item row">
@@ -61,7 +65,7 @@
                     <div class="input-label">
                         店面状态
                     </div>
-                    <select><option>1、正常</option><option>2、加入流程中</option><option>3、休眠</option></select>
+                    <select ng-model="store.st_status"><option>1、正常</option><option>2、加入流程中</option><option>3、休眠</option></select>
                 </label>
             </div>
             <div class="item row">
@@ -69,7 +73,7 @@
                     开业时间
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="2010-01-01" />
+                    <input type="date" ng-model="store.st_starttime">
                 </div>
             </div>
             <div class="item row">
@@ -77,7 +81,7 @@
                     特许经营起始日期
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="2010-01-01" />
+                    <input type="date"  ng-model="store.startallow_time">
                 </div>
             </div>
             <div class="item row">
@@ -85,7 +89,7 @@
                     装修完成时间
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="2013-01-21" />
+                    <input type="date" ng-model="store.equip_time">
                 </div>
             </div>
             <div class="item row">
@@ -93,7 +97,7 @@
                     DMS上线时间
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="2013-01-21" />
+                    <input type="date" ng-model="store.dms_time">
                 </div>
             </div>
             <div class="item row">
@@ -101,7 +105,7 @@
                     省份
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="江苏" />
+                    <input type="text" placeholder="江苏" ng-model="store.st_province">
                 </div>
             </div>
             <div class="item row">
@@ -109,7 +113,7 @@
                     城市
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="淮安市" />
+                    <input type="text" placeholder="淮安市" ng-model="store.st_city">
                 </div>
             </div>
             <div class="item row">
@@ -117,7 +121,7 @@
                     地址
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="淮安市健康西路148号" />
+                    <input type="text" placeholder="淮安市健康西路148号" ng-model="store.st_address">
                 </div>
             </div>
             <div class="item row">
@@ -125,7 +129,7 @@
                     传真
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="0517-83650996" />
+                    <input type="text" placeholder="0517-83650996" ng-model="store.photo_url">
                 </div>
             </div>
             <div class="item row">
@@ -133,7 +137,7 @@
                     邮编
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.email">
                 </div>
             </div>
             <div class="item row">
@@ -141,7 +145,7 @@
                     AM
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="王蓓蕾" />
+                    <input type="text" placeholder="王蓓蕾" ng-model="store.AM">
                 </div>
             </div>
             <div class="item row">
@@ -149,7 +153,7 @@
                     经营者
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="张红梅" />
+                    <input type="text" placeholder="张红梅" ng-model="store.manager">
                 </div>
             </div>
             <div class="item row">
@@ -157,7 +161,7 @@
                     手机
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="13605237976" />
+                    <input type="text" placeholder="13605237976" ng-model="store.hand_phone">
                 </div>
             </div>
             <div class="item row">
@@ -165,7 +169,7 @@
                     电话
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="0517-83650996" />
+                    <input type="text" placeholder="0517-83650996" ng-model="store.telephone">
                 </div>
             </div>
         </div>
@@ -178,7 +182,7 @@
                     总面积
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="180" />
+                    <input type="text" placeholder="180" ng-model="store.total_area">
                 </div>
             </div>
             <div class="item row">
@@ -186,7 +190,7 @@
                     操作区面积
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="60" />
+                    <input type="text" placeholder="60" ng-model="store.work_area">
                 </div>
             </div>
             <div class="item row">
@@ -194,7 +198,7 @@
                     休息区面积
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="60" />
+                    <input type="text" placeholder="60" ng-model="store.rest_area">
                 </div>
             </div>
             <div class="item row">
@@ -202,7 +206,7 @@
                     工位数
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="2" />
+                    <input type="text" placeholder="2" ng-model="store.member_num">
                 </div>
             </div>
             <div class="item row">
@@ -210,7 +214,7 @@
                     举升机数
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="2" />
+                    <input type="text" placeholder="2" ng-model="store.lift_num">
                 </div>
             </div>
             <div class="item row">
@@ -218,7 +222,7 @@
                     洗车机数
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.carcleanroom_num">
                 </div>
             </div>
             <div class="item row">
@@ -226,7 +230,7 @@
                     <div class="input-label right-side">
                         独立卫生间
                     </div>
-                    <select><option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;有</option><option>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;无</option></select>
+                    <select ng-model="store.toilet"><option value="1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;有</option><option value="0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;无</option></select>
                 </label>
             </div>
         </div>
@@ -239,7 +243,7 @@
                     汽车美容装饰店  数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="6" />
+                    <input type="text" placeholder="6" ng-model="store.cardecorationshop">
                 </div>
             </div>
             <div class="item row">
@@ -247,7 +251,7 @@
                     汽车快修店  数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="6" />
+                    <input type="text" placeholder="6" ng-model="store.carquickfixshop">
                 </div>
             </div>
             <div class="item row">
@@ -255,7 +259,7 @@
                     4S店  数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="0" />
+                    <input type="text" placeholder="0" ng-model="store.fourshop">
                 </div>
             </div>
             <div class="item row">
@@ -263,7 +267,7 @@
                     汽车修理厂  数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="3" />
+                    <input type="text" placeholder="3" ng-model="store.carfixshop">
                 </div>
             </div>
             <div class="item row">
@@ -271,7 +275,7 @@
                     加油站  数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="2" />
+                    <input type="text" placeholder="2" ng-model="store.addpetrolshop">
                 </div>
             </div>
             <div class="item row">
@@ -279,7 +283,7 @@
                     大型日用品超市  数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="2" />
+                    <input type="text" placeholder="2" ng-model="store.largescaleshop">
                 </div>
             </div>
             <div class="item row">
@@ -287,7 +291,7 @@
                     传统轮胎店  数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="4" />
+                    <input type="text" placeholder="4" ng-model="store.traditionaltireshop">
                 </div>
             </div>
             <div class="item row">
@@ -295,7 +299,7 @@
                     会员俱乐部（收费）  数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.memberclub">
                 </div>
             </div>
             <div class="item row">
@@ -303,7 +307,7 @@
                     其它  数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.othershop">
                 </div>
             </div>
         </div>
@@ -316,7 +320,7 @@
                     初始投资额
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.init_amount">
                 </div>
             </div>
             <div class="item row">
@@ -324,7 +328,7 @@
                     装修
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.decoration">
                 </div>
             </div>
             <div class="item row">
@@ -332,7 +336,7 @@
                     设备
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.equipment">
                 </div>
             </div>
             <div class="item row">
@@ -340,7 +344,7 @@
                     加盟费
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.initialcost">
                 </div>
             </div>
             <div class="item row">
@@ -348,7 +352,7 @@
                     备货
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.stocking">
                 </div>
             </div>
             <div class="item row">
@@ -356,7 +360,7 @@
                     预交房租
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.prepaid_rent">
                 </div>
             </div>
             <div class="item row">
@@ -364,7 +368,7 @@
                     银行流动资金
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.bank_liquidity">
                 </div>
             </div>
             <div class="item row">
@@ -372,7 +376,7 @@
                     其它投资
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="store.others">
                 </div>
             </div>
         </div>
@@ -386,7 +390,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.oil">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -399,7 +403,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.brake">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -412,7 +416,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.battery">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -425,7 +429,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.sparkplug">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -438,7 +442,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.lightbulb">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -451,7 +455,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.filter">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -464,7 +468,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.carcleancard">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -477,7 +481,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.manualcarclean">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -490,7 +494,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.service_decoration">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -503,7 +507,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.autoclean">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -516,7 +520,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.waxing">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -529,7 +533,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.polishing">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -542,7 +546,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.protectionfilm">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -555,7 +559,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.seatcover">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -568,7 +572,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.tire">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -581,7 +585,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.wheelalign">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -594,7 +598,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.valve">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -607,7 +611,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.ballence">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -620,7 +624,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.insurance">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -633,7 +637,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.glass">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -646,7 +650,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.motor">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -659,7 +663,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.wiper">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -672,7 +676,7 @@
                 </div>
                 <div class="col">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="store.other">
                         <div class="track">
                             <div class="handle"></div>
                         </div>

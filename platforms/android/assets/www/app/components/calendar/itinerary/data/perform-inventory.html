@@ -19,7 +19,7 @@
                     门店编号
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="168158" />
+                    <input type="text" placeholder="{{store_id}}" />
                 </div>
             </div>
             <div class="item row" style="border:none;">
@@ -27,9 +27,10 @@
                     门店名称
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="驰加(上海)汽车用品贸易有限公司" />
+                    <input type="text" placeholder="{{store_name}}" />
                 </div>
             </div>
+
         </div>
         <div class="list">
             <div class="item row item-icon-right">
@@ -37,7 +38,7 @@
                     轮胎编号
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="6921317905014" />
+                    <input type="text" placeholder="6921317905014" ng-model="inventory.tire_id">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -46,7 +47,7 @@
                     轮胎名称
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="米其林 Energy XM 2 韧悦" />
+                    <input type="text" placeholder="米其林 Energy XM 2 韧悦" ng-model="inventory.tire_name">
                 </div>
                 <i class="icon fa fa-refresh" style="font-size:24px;"></i>
             </div>
@@ -55,7 +56,7 @@
                     库存数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="请点击输入" />
+                    <input type="text" placeholder="请点击输入" ng-model="inventory.amount">
                 </div>
             </div>
         </div>
@@ -65,7 +66,7 @@
                     轮胎编号
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="6921317905014" />
+                    <input type="text" placeholder="6921317905014" >
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -96,7 +97,7 @@
                     上报人
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="周东" />
+                    <input type="text" placeholder="周东" ng-model="inventory.reporter">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -107,12 +108,12 @@
                     上报时间
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="2016-04-21 10:12" />
+                    <input type="date" placeholder="2016-04-21 10:12" ng-model="inventory.time">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
         </div>
-        <textarea placeholder="备注"></textarea>
+        <textarea placeholder="备注" ng-model="inventory.remark"></textarea>
         <div class="row">
             <div class="col col-25">
                 <i class="icon fa fa-camera big" ng-click="go_camera()"></i>
@@ -125,7 +126,7 @@
             <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
         </div>
         <div class="button-area">
-            <button class="button" ng-click="go_back()">保存</button>
+            <button class="button" ng-click="save(inventory)">保存</button>
         </div>
     </ion-content>
 </ion-view>

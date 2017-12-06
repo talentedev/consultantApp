@@ -1,17 +1,18 @@
 ﻿/*
  * 日历
  */
-
 app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $http, BASE_URL, ItineraryService) {
+
     $scope.$on('$ionicView.enter', function(event){
         calendar_init();
     })
 
-    // go to today in calendar
+    // back to today in calendar
     $scope.today = function () {
         calendar_init();
     }
-
+    
+    // initialize calendar tab.
     var calendar_init = function () {
         Calendar.initial();
         $scope.year = Calendar.getyear();
@@ -20,19 +21,27 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
         $scope.visit = [];
         $scope.non_visit = [];
 
-        var url = BASE_URL + '/tomorrow';
-        var data = {
-            current_date: new Date()
-        };
+        var today = new Date();
 
+        var url = BASE_URL + '/tomorrow';       
+        var data = {
+            current_date: today.toISOString()
+        };        
         $http.post(url, data).then(function (res) {
-            //console.log(res.data);
+            var count = res.data.length;
             for (index in res.data) {
-                if (res.data[index].itinerary_type == 1 || res.data[index].itinerary_type == 2) {
-                    res.data[index].itinerary_type = ' 拜访 ';
+                if (res.data[index].itinerary_type == '签约店面拜访' || res.data[index].itinerary_type == '潜在客户拜访' || res.data[index].itinerary_type == '店面拜访') {
+                    res.data[index].itinerary_type = '拜访 ';
+                    // change from php date to javascript date format : 09 : 30
+                    var start_time = new Date(res.data[index].start_time);
+                    res.data[index].start_time = (9 + 2 * index).toString()  + ' : ' + '00';
+
                     $scope.visit.push(res.data[index]);
                 } else {
-                    res.data[index].itinerary_type = ' 路途 ';
+                    // change from php date to javascript date format : 09 : 30
+                    var start_time = new Date(res.data[index].start_time);
+                    res.data[index].start_time = (9 + 2 * index).toString() + ' : ' + '00';
+
                     $scope.non_visit.push(res.data[index]);
                 }
             }           
@@ -49,6 +58,7 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
         }        
         Calendar.changeCal($scope.year,$scope.month)
     }
+
     // next button in calendar
     $scope.next_calendar = function () {
         if ($scope.month == 11) {
@@ -63,14 +73,22 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
     $scope.go_back = function () {
         $ionicHistory.goBack();
     }
+
     $scope.go_perform = function (index) {
         ItineraryService.set_store_name($scope.visit[index].store_name);
         ItineraryService.set_store_id($scope.visit[index].store_id);
-        $state.go('perform');
+        $state.go('perform', {
+            store_id: $scope.visit[index].store_id,
+            store_name: $scope.visit[index].store_name,
+            store_shortname: $scope.visit[index].store_shortname,
+            itinerary_id: $scope.visit[index].itinerary_id
+        });
     }
+
     $scope.go_road = function () {
         $state.go('road');
     }
+
     $scope.go_trip = function () {
         $state.go('trip');
     }

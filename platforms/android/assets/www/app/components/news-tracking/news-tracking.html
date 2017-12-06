@@ -8,51 +8,29 @@
         </button>
     </ion-nav-buttons>
     <ion-content id="news-tracking">
-        <div class="list">
-            <div class="item">
+        <div class="list" ng-hide="{{hide}}">
+            <div class="item" ng-repeat="tracking in trackings" >
                 <div class="main">
                     <div class="row">
                         <div class="col-22">
                             <div class="thumb"></div>
                         </div>
                         <div class="col">
-                            <div class="detail"><span class="list-title">111588</span></div>
-                            <div class="detail">三明市新德车业有限公司</div>
+                            <div class="detail"><span class="list-title">{{tracking.store_id}}</span></div>
+                            <div class="detail">{{tracking.store_name}}</div>
                         </div>
                     </div>
                     <div class="list-description">
-                        <p>问题：SOP整改</p>
-                        <p>行动目标：提升SOP</p>
+                        <p>问题：{{tracking.problem}}</p>
+                        <p>行动目标：{{tracking.action_target}}</p>
                         <p>内容：1、取下门店工位上方吊旗，不再悬挂；<span style="background-color: transparent;">2、增加门店驰加有道卡陈列宣传（机油货架、海报等）；</span></p>
-                        <p>执行人：姜志寿、李仰金、黄宏贵、李厚辉、黄桂、林珍、江国强、温正建、黄军、庄华年、姜金钰</p>
-                        <p>预计完成时间：2016-08-01</p>
+                        <p>执行人：{{tracking.executor}}</p>
+                        <p>预计完成时间：{{tracking.set_time}}</p>
                         <p>超时提醒：已超时1天</p>
                     </div>
                 </div>
-                <div class="item-footer">点击确认收到</div>
-            </div>
-            <div class="item">
-                <div class="main">
-                    <div class="row">
-                        <div class="col-22">
-                            <div class="thumb"></div>
-                        </div>
-                        <div class="col">
-                            <div class="detail"><span class="list-title">111588</span></div>
-                            <div class="detail">三明市新德车业有限公司</div>
-                        </div>
-                    </div>
-                    <div class="list-description">
-                        <p>问题：SOP整改</p>
-                        <p>行动目标：提升SOP</p>
-                        <p>内容：1、取下门店工位上方吊旗，不再悬挂；<span style="background-color: transparent;">2、增加门店驰加有道卡陈列宣传（机油货架、海报等）；</span></p>
-                        <p>执行人：姜志寿、李仰金、黄宏贵、李厚辉、黄桂、林珍、江国强、温正建、黄军、庄华年、姜金钰</p>
-                        <p>预计完成时间：2016-08-01</p>
-                        <p>超时提醒：已超时1天</p>
-                    </div>
-                </div>
-                <div class="item-footer">点击确认收到</div>
-            </div>
+                <div class="item-footer" ng-click="perform(tracking.itinerary_id)">点击确认收到</div>
+            </div>         
         </div>
     </ion-content>
 </ion-view>

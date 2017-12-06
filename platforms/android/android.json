@@ -27,6 +27,114 @@
                         {
                             "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"ADALProxy\"><param name=\"android-package\" value=\"com.microsoft.aad.adal.CordovaAdalPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Geolocation\"><param name=\"android-package\" value=\"org.apache.cordova.geolocation.Geolocation\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"BaiduLocation\"><param name=\"android-package\" value=\"com.hewz.plugins.baidu.BaiduLocation\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"CDVOrientation\"><param name=\"android-package\" value=\"cordova.plugins.screenorientation.CDVOrientation\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.MANAGE_ACCOUNTS\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.USE_CREDENTIALS\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<activity android:configChanges=\"orientation|keyboardHidden|screenSize\" android:name=\"com.microsoft.aad.adal.AuthenticationActivity\"></activity>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<service android:enabled=\"true\" android:name=\"com.baidu.location.f\" android:process=\":remote\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<meta-data android:name=\"com.baidu.lbsapi.API_KEY\" android:value=\"12vEbbuCMRnFKmodxIK4M1bRGMYFDXYT\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.location.gps\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\" />",
+                            "count": 1
+                        }
+                    ],
+                    "application": [
+                        {
+                            "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"android.support.v4.content.FileProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/provider_paths\" /></provider>",
+                            "count": 1
                         }
                     ]
                 }
@@ -50,6 +158,28 @@
             "PACKAGE_NAME": "io.cordova.myapp74d0c8"
         },
         "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "cordova-plugin-ms-adal": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "com.hewz.plugins.baidu.location": {
+            "API_KEY": "12vEbbuCMRnFKmodxIK4M1bRGMYFDXYT",
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "io.cordova.myapp74d0c8"
         }
     },
@@ -83,6 +213,104 @@
                 "cordova.plugins.Keyboard"
             ],
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-ms-adal/www/utility.js",
+            "id": "cordova-plugin-ms-adal.utility",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-ms-adal/www/AuthenticationContext.js",
+            "id": "cordova-plugin-ms-adal.AuthenticationContext",
+            "clobbers": [
+                "Microsoft.ADAL.AuthenticationContext"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-ms-adal/www/CordovaBridge.js",
+            "id": "cordova-plugin-ms-adal.CordovaBridge"
+        },
+        {
+            "file": "plugins/cordova-plugin-ms-adal/www/AuthenticationResult.js",
+            "id": "cordova-plugin-ms-adal.AuthenticationResult"
+        },
+        {
+            "file": "plugins/cordova-plugin-ms-adal/www/TokenCache.js",
+            "id": "cordova-plugin-ms-adal.TokenCache"
+        },
+        {
+            "file": "plugins/cordova-plugin-ms-adal/www/TokenCacheItem.js",
+            "id": "cordova-plugin-ms-adal.TokenCacheItem"
+        },
+        {
+            "file": "plugins/cordova-plugin-ms-adal/www/UserInfo.js",
+            "id": "cordova-plugin-ms-adal.UserInfo"
+        },
+        {
+            "file": "plugins/cordova-plugin-ms-adal/www/AuthenticationSettings.js",
+            "id": "cordova-plugin-ms-adal.AuthenticationSettings",
+            "clobbers": [
+                "Microsoft.ADAL.AuthenticationSettings"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+            "id": "cordova-plugin-geolocation.geolocation",
+            "clobbers": [
+                "navigator.geolocation"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+            "id": "cordova-plugin-geolocation.PositionError",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
+            "id": "cordova-plugin-camera.Camera",
+            "clobbers": [
+                "Camera"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
+            "id": "cordova-plugin-camera.CameraPopoverOptions",
+            "clobbers": [
+                "CameraPopoverOptions"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-camera/www/Camera.js",
+            "id": "cordova-plugin-camera.camera",
+            "clobbers": [
+                "navigator.camera"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-camera/www/CameraPopoverHandle.js",
+            "id": "cordova-plugin-camera.CameraPopoverHandle",
+            "clobbers": [
+                "CameraPopoverHandle"
+            ]
+        },
+        {
+            "file": "plugins/com.hewz.plugins.baidu.location/www/baidu_location.js",
+            "id": "com.hewz.plugins.baidu.location.baidu_location",
+            "clobbers": [
+                "baidu_location"
+            ]
+        },
+        {
+            "file": "plugins/es6-promise-plugin/www/promise.js",
+            "id": "es6-promise-plugin.Promise",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+            "id": "cordova-plugin-screen-orientation.screenorientation",
+            "clobbers": [
+                "cordova.plugins.screenorientation"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -91,6 +319,13 @@
         "cordova-plugin-whitelist": "1.2.2",
         "cordova-plugin-splashscreen": "3.2.2",
         "cordova-plugin-statusbar": "2.1.3",
-        "ionic-plugin-keyboard": "2.2.1"
+        "ionic-plugin-keyboard": "2.2.1",
+        "cordova-plugin-compat": "1.1.0",
+        "cordova-plugin-ms-adal": "0.9.0",
+        "cordova-plugin-geolocation": "2.4.3-dev",
+        "cordova-plugin-camera": "2.4.1-dev",
+        "com.hewz.plugins.baidu.location": "1.0.0",
+        "es6-promise-plugin": "3.0.2",
+        "cordova-plugin-screen-orientation": "2.0.0"
     }
 }

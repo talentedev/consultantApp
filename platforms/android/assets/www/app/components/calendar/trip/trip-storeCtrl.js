@@ -3,8 +3,16 @@
 */
 app.controller('trip-storeCtrl', function ($scope, $state, $ionicHistory, BASE_URL, $http, TripService) {
 
+    $scope.$on('$ionicView.enter', function (event) {
+        var url = BASE_URL + '/store/list';        
+        $http.get(url).then(function (res) {
+            $scope.stores = res.data;
+        });
+    })
+
     // search a store by name
     $scope.search = function (query) {
+        $scope.stores = [];
         var url = BASE_URL + '/store/search';
         var data = {
             store_name: query

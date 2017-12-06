@@ -16,42 +16,42 @@ app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService,
         set_participator();
         set_store();
     }
+
     // set trip type
     var set_trip_type = function () {
         if (TripService.trip_type() == null) {
-            $scope.trip_type = '驰加拜访';
+            $scope.trip_type = '';
         } else {
             $scope.trip_type = TripService.trip_type();
         }
     }
-    // set date to start
+
+    // set date to start. the default value is tomorrow.
     var set_start_date = function () {
         var today = new Date();
+        today.setDate(today.getDate() + 1); 
         var joinString = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
         $scope.start_time = joinString.join('-');
     }
-    // set date to finish
+
+    // set date to finish. the default value is tomorrow.
     var set_end_date = function () {
         var today = new Date();
+        today.setDate(today.getDate() + 1); 
         var joinString = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
         $scope.end_time = joinString.join('-');
     }
+
     // set duty
     var set_duty = function () {
-        var url = BASE_URL + '/auth/me';
-        if (typeof $scope.duty == 'undefined') {
-            $http.get(url).then(function (res) {
-                $scope.duty = res.data.name;
-            }, function (err) {
-                alert('Connection faild!');
-            });
-        }
-               
+        $scope.duty = TripService.duty_name();
     }
+
     // set participator
     var set_participator = function () {
-        $scope.participator = '康又坑, 张磊';
+        $scope.participator = TripService.participator_name().join();
     }
+
     // set a store
     var set_store = function () {
         $scope.store = TripService.store_name();
@@ -59,32 +59,39 @@ app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService,
 
     // save current data to database.
     $scope.save = function () {
+        var today = new Date();
+        today.setDate(today.getDate() + 1); // tomorrow
+
+        var url = BASE_URL + '/itinerary/add';
         var data = {
             itinerary_type: $scope.trip_type,
-            start_time: $scope.start_time,
-            end_time: $scope.end_time,
-            duty: $scope.duty,
-            participator: $scope.participator,
-            store_id: TripService.store_id()
+            start_time: today.toISOString(),// "2017-12-15T19:42:27.100Z",//$scope.start_time,
+            end_time: today.toISOString(),//"2017-12-15T19:42:27.100Z",//$scope.end_time,
+            duty: TripService.duty_id(),
+            paticipator: TripService.participator_id().join(','),
+            store_id: TripService.store_id() 
         }
-        var url = BASE_URL + '/itinerary/add';
         $http.post(url, data).then(function (res) {
-            console.log(res);
-        });
+            $ionicHistory.goBack();
+        });        
     }
 
     $scope.go_back = function () {
         $ionicHistory.goBack();
     }
+
     $scope.go_type = function () {
         $state.go('trip-type');
     }
+
     $scope.go_select_duty = function () {
         $state.go('trip-duty');
     }
+
     $scope.go_select_participator = function () {
         $state.go('trip-participator');
     }
+
     $scope.go_store = function () {
         $state.go('trip-store');
     }

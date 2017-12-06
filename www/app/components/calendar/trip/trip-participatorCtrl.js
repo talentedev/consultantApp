@@ -1,12 +1,24 @@
 ﻿/*
  * 选择成员
 */
-app.controller('trip-participatorCtrl', function ($scope, $state, $ionicHistory, BASE_URL, $http) {
+app.controller('trip-participatorCtrl', function ($scope, $state, $ionicHistory, BASE_URL, $http, TripService) {
+
+    var participator = [];
+
     $scope.$on('$ionicView.enter', function (event) {
-        var url = BASE_URL + '/auth/me';
+        // get the information of logged user.
+        /*var url = BASE_URL + '/auth/me';
         $http.get(url).then(function (res) {
-            $scope.member = res.data;
+            $scope.me = res.data;
+        });*/
+
+        // get list of all consulting members.
+        var url = BASE_URL + '/member/list';
+        $http.get(url).then(function (res) {
+            $scope.members = res.data;
+            participator = res.data;
         });
+
     })
 
     // search a member by name
@@ -23,6 +35,7 @@ app.controller('trip-participatorCtrl', function ($scope, $state, $ionicHistory,
     }
 
     var checked = [];
+    var temp = [];
 
     // event when press check icon in store list
     $scope.participator_check = function (i) {
@@ -30,12 +43,17 @@ app.controller('trip-participatorCtrl', function ($scope, $state, $ionicHistory,
         var id = 'participator' + i.toString();
         if (checked[i] == false) {
             document.getElementById(id).style.color = '#48b52d';
-            //store = $scope.stores[i];            
             checked[i] = true;
+            temp.push(participator[i-1]);
         } else {
             document.getElementById(id).style.color = '#444';
             checked[i] = false;
         }
+    }
+
+    $scope.confirm = function () {
+        TripService.set_participator(temp);
+        $ionicHistory.goBack();
     }
 
     $scope.go_back = function () {

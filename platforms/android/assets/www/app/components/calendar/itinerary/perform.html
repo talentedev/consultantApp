@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="submit(itinerary)">
             提交
         </button>
     </ion-nav-buttons>
@@ -26,7 +26,7 @@
                 本次拜访目标
             </div>
             <div class="col col-60">
-                <input type="text" placeholder="请点击输入" />
+                <input type="text" placeholder="请点击输入" ng-model="itinerary.goal">
             </div>
         </div>
         <div class="row text-area">
@@ -34,7 +34,7 @@
                 本次拜访计划
             </div>
             <div class="col col-60">
-                <input type="text" placeholder="请点击输入" />
+                <input type="text" placeholder="请点击输入" ng-model="itinerary.plan">
             </div>
         </div>
         <div class="store-section">
@@ -59,7 +59,7 @@
                 <p class="list-description"><span>基本信息、店面描述、2公里范围内店面数量等</span></p>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
-            <div class="item item-icon-left item-icon-right" ng-click="">
+            <div class="item item-icon-left item-icon-right" ng-click="go_bireport()">
                 <i class="icon fa fa-star star" style="background-color:#00cd47;"></i>
                 <p class="list-title"><span>BI Report</span></p>
                 <p class="list-description"><span>销量综合指标、营业额综合指标、毛利综合指标</span></p>

@@ -777,3 +777,49 @@ button.btn-back i{
     max-width: 65%;
     font-size:12px;
 }
+
+.scroll {
+    height: 100%;
+}
+ 
+#map {
+    width: 100%;
+    height: 70%;
+}
+
+/*perform-camera*/ 
+#perform-camera {
+    background-color: black;
+}
+
+#perform-camera img {
+    width: 100%;
+    height: 90%;
+    background-color: white;
+}
+
+#perform-camera .btn-bar {
+   text-align: center;   
+}
+
+#perform-camera button {
+    border: none;
+    height: 10%;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+}
+
+#perform-camera #cancel{
+    float: left;    
+}
+
+#perform-camera #use{
+    float: right;
+}
+
+/*BI Report*/
+#bi_report {
+     font-size: 10px;
+} 

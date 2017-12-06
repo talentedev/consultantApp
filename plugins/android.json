@@ -24,7 +24,30 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "cordova-plugin-ms-adal": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "com.hewz.plugins.baidu.location": {
+            "API_KEY": "12vEbbuCMRnFKmodxIK4M1bRGMYFDXYT",
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        },
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "io.cordova.myapp74d0c8"
+        }
+    }
 }

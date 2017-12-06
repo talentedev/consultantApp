@@ -7,4 +7,4 @@
 
 angular.module('ctpApp.constants', [])
 // constants for access to table store
-.constant('BASE_URL', 'http://192.168.1.56');
+.constant('BASE_URL', 'http://123.56.46.201');

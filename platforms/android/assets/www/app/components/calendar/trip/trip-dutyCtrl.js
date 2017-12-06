@@ -1,11 +1,22 @@
 ﻿/*
  * 选择成员
 */
-app.controller('trip-dutyCtrl', function ($scope, $state, $ionicHistory, BASE_URL, $http) {
+app.controller('trip-dutyCtrl', function ($scope, $state, $ionicHistory, BASE_URL, $http, TripService) {
+
+    var duty = [];
+
     $scope.$on('$ionicView.enter', function (event) {
-        var url = BASE_URL + '/auth/me';
+        // get the information of logged user.
+        /*var url = BASE_URL + '/auth/me';
         $http.get(url).then(function (res) {
-            $scope.member = res.data;
+            $scope.me = res.data;
+        });*/
+
+        // get list of all consulting members.
+        var url = BASE_URL + '/member/list';
+        $http.get(url).then(function (res) {
+            $scope.members = res.data;
+            duty = res.data;
         });
     })
 
@@ -15,9 +26,7 @@ app.controller('trip-dutyCtrl', function ($scope, $state, $ionicHistory, BASE_UR
         var data = {
             search_name : query
         }
-        console.log(data);
         $http.post(url, data).then(function (res) {
-            console.log(res.data);
             $scope.member = res.data;
         });
     }
@@ -31,18 +40,22 @@ app.controller('trip-dutyCtrl', function ($scope, $state, $ionicHistory, BASE_UR
         var id = 'duty' + i.toString();
         if (checked[i] == false) {
             document.getElementById(id).style.color = '#48b52d';
-            //duty = $scope.stores[i];
             for (key in checked) {
                 if (key != i) {
                     document.getElementById('duty' + key.toString()).style.color = '#444';
                     checked[key] = false;
                 }
             }
+            TripService.set_duty(duty[i-1]);
             checked[i] = true;
         } else {
             document.getElementById(id).style.color = '#444';
             checked[i] = false;
         }
+    }
+
+    $scope.confirm = function () {
+        $ionicHistory.goBack();
     }
 
     $scope.go_back = function () {
