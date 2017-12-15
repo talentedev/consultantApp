@@ -32,14 +32,20 @@
             -->
             <div class="item item-thumbnail-left item-icon-right" ng-repeat="member in members">
                 <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
-                <p><span class="list-title">{{member.name}}</span></p>
-                <p class="list-description">{{member.department}} {{member.region}} {{member.position}}</p>
-                <i class="icon fa fa-check-square-o" style="font-size:25px;" id="participator{{$index+1}}" ng-click="participator_check($index+1)"></i>
+                <p><span class="list-title">{{member.real_name}}</span></p>
+                <p class="list-description">{{member.department}} {{member.area}} {{member.position}}</p>
+                <i class="icon fa fa-check-square-o" style="font-size:25px;" ng-click="onItem($event, $index, member)"></i>
             </div>              
             <div class="item item-icon-right">
                 <p class="list-description">L1区（我的部门）</p>
-                <i class="icon fa fa-chevron-down" style="font-size:25px;"></i>
+                <i class="icon fa fa-chevron-down" style="font-size:25px;" ng-click="onDetail()"></i>
             </div>
+            <div class="item item-thumbnail-left item-icon-right" ng-repeat="friend in friends" ng-show="friends_list">
+                <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
+                <p><span class="list-title">{{friend.real_name}}</span></p>
+                <p class="list-description">{{friend.department}} {{friend.area}} {{friend.position}}</p>
+                <i class="icon fa fa-check-square-o" style="font-size:25px;" ng-click="onItem($event, friend)"></i>
+            </div>    
         </div>
     </ion-content>
 </ion-view>

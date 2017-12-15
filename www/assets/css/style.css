@@ -197,6 +197,18 @@ button.btn-back i{
 .store-name {
     display:inline;
 }
+/*store-staff.html stylesheet*/
+.staff-name {
+    width:25%;
+    display:inline-block;
+}
+.staff-position {
+    width:30%;
+    display:inline;
+}
+.staff-phone {
+    display:inline;
+}
 /*tab-self.html stylesheet*/
 #tab-self{
     background-color:#eee;
@@ -764,6 +776,10 @@ button.btn-back i{
     color:#aaa;
     overflow:hidden;
 }
+#trip .list .col-50{
+    padding: 0;
+}
+
 /*trip-select.html stylesheet*/
 #trip-select{
     background-color:#eee;
@@ -822,4 +838,9 @@ button.btn-back i{
 /*BI Report*/
 #bi_report {
      font-size: 10px;
+} 
+/* plan */
+#perform .button {    
+    width: 90%;
+    margin-left: 5%;
 } 

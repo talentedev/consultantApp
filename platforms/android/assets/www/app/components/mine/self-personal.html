@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_save()">
+        <button class="button button-clear" ng-click="go_save(info)">
             保存
         </button>
     </ion-nav-buttons>
@@ -28,7 +28,7 @@
                     姓名
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="周东" ng-model="info.name">
+                    <input type="text" ng-model="info.real_name">
                 </div>
             </div>
             <div class="item row">
@@ -36,7 +36,7 @@
                     <div class="input-label">
                         性别
                     </div>
-                    <select id="member-gender" style="width:70%; padding-left: 0px;"><option>男</option><option>女</option></select>
+                    <select id="member-gender" style="width:70%; padding-left: 0px;" ng-model="info.gender" ng-options="option.name for option in gender"></select>
                 </label>
             </div>
         </div>
@@ -70,7 +70,7 @@
                     工号
                 </div>
                 <div class="col">
-                    <input type="text" ng-model="info.job_num">
+                    <input type="text" ng-model="info.u_name">
                 </div>
             </div>
             <div class="item row">
@@ -78,7 +78,7 @@
                     联系电话
                 </div>
                 <div class="col">
-                    <input type="text" ng-model="info.tele_num">
+                    <input type="text" ng-model="info.telephone">
                 </div>
             </div>
             <div class="item row">
@@ -94,7 +94,7 @@
                     现居地址
                 </div>
                 <div class="col">
-                    <input type="text" ng-model="info.region">
+                    <input type="text" ng-model="info.area">
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@
                     生日
                 </div>
                 <div class="col">
-                    <input type="text" ng-model="info.birthday">
+                    <input type="date" ng-model="info.birthdate">
                 </div>
             </div>
             <div class="item row">
@@ -115,7 +115,7 @@
                     籍贯
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="info.birthplace">
                 </div>
             </div>
             <div class="item row">
@@ -123,7 +123,7 @@
                     民族
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="info.nation">
                 </div>
             </div>
             <div class="item row">
@@ -131,7 +131,7 @@
                     身份证号
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="info.id_card">
                 </div>
             </div>
             <div class="item row">
@@ -139,7 +139,7 @@
                     <div class="input-label">
                         婚姻状况
                     </div>
-                    <select style="width: 70%; padding-left: 0px;"><option>保密</option><option>已婚</option><option>未婚</option></select>
+                    <select style="width: 70%; padding-left: 0px;" ng-model="info.ismarry" ng-options="option.name for option in ismarry"></select>
                 </label>
             </div>
             <div class="item row">
@@ -147,7 +147,7 @@
                     <div class="input-label">
                         子女
                     </div>
-                    <select style="width: 70%; padding-left: 0px;"><option>保密</option><option>有</option><option>无</option></select>
+                    <select style="width: 70%; padding-left: 0px;" ng-model="info.child" ng-options="option.name for option in child"></select>
                 </label>
             </div>
             <div class="item row">
@@ -155,7 +155,7 @@
                     家庭住址
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="info.address">
                 </div>
             </div>
             <div class="item row">
@@ -163,7 +163,7 @@
                     紧急联系
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="text" placeholder="非必填项" ng-model="info.emergent_phone">
                 </div>
             </div>
             <div class="item row">
@@ -171,7 +171,7 @@
                     入职日期
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="date" placeholder="非必填项" ng-model="info.entry_date">
                 </div>
             </div>
             <div class="item row">
@@ -179,7 +179,7 @@
                     毕业日期
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="非必填项" />
+                    <input type="date" placeholder="非必填项" ng-model="info.graduate_date">
                 </div>
             </div>
         </div>

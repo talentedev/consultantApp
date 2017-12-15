@@ -8,12 +8,34 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="save()">
             保存
         </button>
     </ion-nav-buttons>
     <ion-content id="trip-type">
         <div class="list">
+            <div class="item row item-icon-right" ng-repeat="type in plantypes">
+                <div class="col col-75" style="color:#aaa; padding-left:70px;">
+                    {{type.plantype_name}}
+                </div>
+                <i class="icon fa fa-check-square-o" style="font-size:20px;" ng-click="onItem($event, type)"></i>
+            </div> 
+            <!--<div ng-repeat="(key, data) in categories">
+                <div class="item row item-icon-right">
+                    <div class="col col-25 item-title">
+                        {{key}}
+                    </div>
+                    <i class="icon fa fa-check-square-o" style="font-size:20px;" ng-click="onCategory($event, $index ,key)"></i>
+                </div>
+                <div class="item row item-icon-right" ng-repeat="type in data" >
+                    <div class="col col-75" style="color:#aaa; padding-left:70px;" ng-if="type.plantype_name != null">
+                        {{type.plantype_name}}
+                    </div>
+                    <i class="icon fa fa-check-square-o" style="font-size:20px;" ng-if="type.plantype_name != null" ng-click="onItem($event, $index, type, key)"></i>
+                </div>                
+            </div>-->
+
+            <!--
             <div class="item row item-icon-right">
                 <div class="col col-25 item-title">
                     店面拜访
@@ -169,7 +191,7 @@
                     旅游奖励
                 </div>
                 <i class="icon fa fa-check-square-o" style="font-size:20px;" id="type_26" ng-click="trip_type_check(26)"></i>
-            </div>
+            </div>-->
         </div>
     </ion-content>
 </ion-view>

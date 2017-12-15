@@ -7,27 +7,27 @@
             返回
         </button>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+    <!--<ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
             编辑
         </button>
-    </ion-nav-buttons>
+    </ion-nav-buttons>-->
     <ion-content id="store-manager">
-        <div id="search-bar" class="full">
+        <!--<div id="search-bar" class="full">
             <div class="item item-input-inset">
                 <label class="item-input-wrapper" id="search-input">
                     <i class="icon ion-search placeholder-icon"></i>
                     <input id="search-input" type="text" placeholder="搜索" ng-model="query" ng-change="search()">
                 </label>
             </div>
-        </div>
+        </div>-->
         <div class="list">
             <div class="item row">
                 <div class="col-30">
                     <img src="assets/img/manager.jpeg" />
                 </div>
                 <div class="col-70 padding-area">
-                    <span style="color:black;">郝海山&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>店主</span>
+                    <span style="color:black;">{{staff_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{{identity}}</span>
                 </div>
             </div>
             <div class="item row">
@@ -35,23 +35,23 @@
                     姓名
                 </div>
                 <div class="col-70">
-                    <input type="text" placeholder="郝海山" />
+                    <input type="text" placeholder="{{staff_name}}" ng-model="staff.staff_name" />
                 </div>
             </div>
-            <div class="item row">
-                <div class="col-30">
-                    性别
-                </div>
-                <div class="col-70">
-                    <input type="text" placeholder="男" />
-                </div>
+            <div class="item">                
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        性别
+                    </div>
+                    <select style="width:70%; padding-left: 0px; color:#999" ng-model="staff.sex" ng-options="option.name for option in sex"></select>
+                </label>
             </div>
             <div class="item row">
                 <div class="col-30">
                     身份证号
                 </div>
                 <div class="col-70">
-                    <input type="text" placeholder="32080197624378****" />
+                    <input type="text" ng-model="staff.card_id" />
                 </div>
             </div>
             <div class="item">
@@ -59,7 +59,7 @@
                     <div class="input-label">
                         E-learning<br />登录身份
                     </div>
-                    <select style="width:70%; padding-left: 0px; color:#999"><option>1、普通员工</option><option>2、DMS操作员</option><option>3、关键员工</option><option>4、店主</option></select>
+                    <select style="width:70%; padding-left: 0px; color:#999" ng-model="staff.learn_identity" ng-options="option.name for option in learn_identity"></select>
                 </label>
             </div>
             <div class="item">
@@ -67,14 +67,14 @@
                     <div class="input-label">
                         人员职级
                     </div>
-                    <select style="width:70%; padding-left: 0px; color:#999"><option>1、见习员工</option><option>2、普通员工</option><option>3、训练员</option><option>4、员工组长</option><option>5、助理经理</option><option>6、中心经理</option><option>7、经营者</option></select>
+                    <select style="width:70%; padding-left: 0px; color:#999" ng-model="staff.position" ng-options="option.name for option in position"></select>
                 </label></div>
             <div class="item row">
                 <div class="col-30">
                     手机
                 </div>
                 <div class="col-70">
-                    <input type="text" placeholder="136****7976" />
+                    <input type="text" ng-model="staff.telephone" />
                 </div>
             </div>
             <div class="item row">
@@ -82,7 +82,7 @@
                     入职时间
                 </div>
                 <div class="col-70">
-                    <input type="text" placeholder="2010-01-01" />
+                    <input type="date" ng-model="staff.entry_date"/>
                 </div>
             </div>
             <div class="item row">
@@ -90,7 +90,7 @@
                     学历
                 </div>
                 <div class="col-70">
-                    <input type="text" placeholder="本科" />
+                    <input type="text" ng-model="staff.education"/>
                 </div>
             </div>
             <div class="item row">
@@ -99,7 +99,7 @@
                 </div>
                 <div class="col col-25">
                     <label class="toggle">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" checked ng-model="staff.employ_state">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
@@ -114,11 +114,11 @@
                     其它
                 </div>
                 <div class="col-70" style="border:none;">
-                    <textarea placeholder="其它备注"></textarea>
+                    <textarea placeholder="其它备注" ng-model="staff.description"></textarea>
                 </div>
             </div>
             <div class="button-area">
-                <button class="button" ng-click="go_back()">保存</button>
+                <button class="button" ng-click="save()">保存</button>
             </div>
         </div>
     </ion-content>

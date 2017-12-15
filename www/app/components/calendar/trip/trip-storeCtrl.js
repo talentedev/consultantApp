@@ -48,8 +48,7 @@ app.controller('trip-storeCtrl', function ($scope, $state, $ionicHistory, BASE_U
 
     // return current data to previous view.
     $scope.save = function () {
-        TripService.set_store_id(store.store_id);
-        TripService.set_store_name(store.store_name);
+        TripService.setShop(store);
         $ionicHistory.goBack();   
     }
 

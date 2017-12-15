@@ -20,5 +20,14 @@ var app = angular.module('ctpApp', ['ionic', 'ng-fusioncharts', 'ctpApp.constant
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    /*document.addEventListener("deviceready", function() {
+        if(window.localstorage.getItem("username") != null && window.localstorage.getItem("password") != null) {
+            state.go('tab.date');
+        } else {
+            state.go('/login');
+        }                                               
+    }, false);*/
+
   });
 })

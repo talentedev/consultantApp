@@ -8,72 +8,83 @@ app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService,
     })
 
     // initialize current view
-    var init = function () {
-        set_trip_type();
-        set_start_date();
-        set_end_date();
-        set_duty();
-        set_participator();
-        set_store();
+    var init = function () {        
+        setPlanType();
+        setStartTime();
+        setEndTime();
+        setDuty();
+        setParticipator();
+        setShop();
     }
 
-    // set trip type
-    var set_trip_type = function () {
-        if (TripService.trip_type() == null) {
+    // set plan type
+    var setPlanType = function () {
+        var plan_type = TripService.getPlanType();
+        if (plan_type == null) {
             $scope.trip_type = '';
         } else {
-            $scope.trip_type = TripService.trip_type();
+            $scope.plan_type = plan_type;
         }
     }
 
-    // set date to start. the default value is tomorrow.
-    var set_start_date = function () {
-        var today = new Date();
-        today.setDate(today.getDate() + 1); 
+    // set start time
+    var setStartTime = function () {
+        /*var today = new Date();
+        today.setDate(today.getDate()); 
         var joinString = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
-        $scope.start_time = joinString.join('-');
+        $scope.start_time = joinString.join('-');*/
     }
 
     // set date to finish. the default value is tomorrow.
-    var set_end_date = function () {
-        var today = new Date();
-        today.setDate(today.getDate() + 1); 
+    var setEndTime = function () {
+        /*var today = new Date();
+        today.setDate(today.getDate()); 
         var joinString = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
-        $scope.end_time = joinString.join('-');
+        $scope.end_time = joinString.join('-');*/
     }
 
     // set duty
-    var set_duty = function () {
-        $scope.duty = TripService.duty_name();
+    var setDuty = function () {
+        $scope.duty = TripService.getDuty();
     }
 
     // set participator
-    var set_participator = function () {
-        $scope.participator = TripService.participator_name().join();
+    var setParticipator = function () {
+        var participators = [];
+        participators = TripService.getParticipators();
+        var temp = [];
+        for (key in participators) {
+            temp.push(participators[key].real_name);
+        }
+        $scope.participators = temp.join();
     }
 
     // set a store
-    var set_store = function () {
-        $scope.store = TripService.store_name();
+    var setShop = function () {
+        $scope.shop = TripService.getShop();
     }
 
     // save current data to database.
-    $scope.save = function () {
+    $scope.save = function (time) {
         var today = new Date();
-        today.setDate(today.getDate() + 1); // tomorrow
 
-        var url = BASE_URL + '/itinerary/add';
+        var url = BASE_URL + '/plan/create';
         var data = {
-            itinerary_type: $scope.trip_type,
-            start_time: today.toISOString(),// "2017-12-15T19:42:27.100Z",//$scope.start_time,
-            end_time: today.toISOString(),//"2017-12-15T19:42:27.100Z",//$scope.end_time,
-            duty: TripService.duty_id(),
-            paticipator: TripService.participator_id().join(','),
-            store_id: TripService.store_id() 
+            sid: TripService.getShop().sid,
+            plantype_id: $scope.plan_type.plantype_id,
+            start_date: document.getElementById('start_time').value,//today.toISOString(),// "2017-12-15T19:42:27.100Z",//$scope.start_time,
+            end_date: document.getElementById('end_time').value//today.toISOString(),//"2017-12-15T19:42:27.100Z",//$scope.end_time,
+            //start_time: document.getElementById('start_time').value,
+            //end_time: document.getElementById('end_time').value           
         }
-        $http.post(url, data).then(function (res) {
-            $ionicHistory.goBack();
-        });        
+        // validate
+        if (typeof data.sid == 'undefined' || typeof data.plantype_id == 'undefined') {
+            alert('Please enter all items.');
+        } else {
+            $http.post(url, data).then(function (res) {
+                $ionicHistory.goBack();
+            }); 
+        }               
     }
 
     $scope.go_back = function () {

@@ -13,52 +13,55 @@
         </button>
     </ion-nav-buttons>
     <ion-content id="perform-analysis" class="padding-without">
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    沟通人员
+        <div ng-repeat="com in coms track by $index">
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;" ng-click="go_people()">
+                    <div class="col col-25 item-title">
+                        沟通人员
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" ng-model="commn.people" disabled>
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="常淳、勾宇" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    沟通时间
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        沟通时间
+                    </div>
+                    <div class="col col-50">
+                        <input type="datetime">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="2016-04-21 15:00" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    沟通内容
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        沟通内容
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入或选择备选">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    沟通结果
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        沟通结果
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入或选择备选" />
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <textarea placeholder="备注"></textarea>
-        <div class="store-section">
+            <textarea placeholder="备注"></textarea><br />
+        </div>        
+
+        <div class="store-section" ng-click="addCom()">
             添加其它行动计划+
         </div>
         <div class="row">
@@ -69,9 +72,10 @@
                 <i class="icon fa fa-plus big" ng-click="go_camera()"></i>
             </div>
         </div>
+        <!--
         <div class="store-section mark">
             <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
-        </div>
+        </div>-->
         <div class="button-area">
             <button class="button" ng-click="go_back()">保存</button>
         </div>

@@ -3,63 +3,43 @@
  */
 app.service('TripService', function () {
 
-    // trip type
-    var trip_type = null;
-    this.set_trip_type = function (data) {
-        trip_type = data;
+    // plan type
+    var plan_type = {};
+    this.setPlanType = function (data) {
+        plan_type = data;
     };
-    this.trip_type = function () {
-        return trip_type;
+    this.getPlanType = function () {
+        return plan_type;
     };
 
     // store
-    var store_name = null,
-        store_id = 1;
-    this.set_store_name = function (name) {
-        store_name = name;
+    var shop = {}
+    this.setShop = function (data) {
+        shop = data;
     }
-    this.store_name = function () {
-        return store_name;
-    };
-    this.set_store_id = function (id) {
-        store_id = id;
+    this.getShop = function () {
+        return shop;
     }
-    this.store_id = function () {
-        return store_id;
-    };
 
     // duty
-    var duty_name = null,
-        duty_id = null;
-    this.set_duty = function (duty) {
-        duty_id = duty.mem_id;
-        duty_name = duty.name;
+    var duty = {};
+    this.setDuty = function (data) {
+        duty = data;
     };
-    this.duty_id = function () {
-        return duty_id;
-    };
-    this.duty_name = function () {
-        return duty_name;
+    this.getDuty = function () {
+        return duty;
     };
 
     // participator
-    var participator_name = [],
-        participator_id = [];
-    this.set_participator = function (participator) {
-        participator_name = [];
-        participator_id = [];
-        for (index in participator) {
-            participator_name.push(participator[index].name);
-            participator_id.push(participator[index].mem_id);
-        }
+    var participators = [];
+    this.setParticipators = function (data) {
+        participators = [];
+        participators = data;       
     };
-    this.participator_id = function () {
-        return participator_id;
+    this.getParticipators = function () {
+        return participators;
     };
-    this.participator_name = function () {
-        return participator_name;
-    };
-
+    
     // employee    
     var employee_name = [],
         employee_id = [];

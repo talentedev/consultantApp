@@ -19,7 +19,7 @@
                     行程类型
                 </div>
                 <div class="col col-50">
-                    {{trip_type}}
+                    {{plan_type.plantype_name}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -28,7 +28,7 @@
                     开始时间
                 </div>
                 <div class="col col-50">
-                    {{start_time}}
+                    <input type="datetime-local" id="start_time" ng-model="start_time">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -37,16 +37,16 @@
                     结束时间
                 </div>
                 <div class="col col-50">
-                    {{end_time}}
+                    <input type="datetime-local" id="end_time" ng-model="end_time">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
-            </div>
+            </div>            
             <div class="item row item-icon-right" ng-click="go_select_duty()">
                 <div class="col col-25 item-title">
                     负责员工
                 </div>
                 <div class="col col-50">
-                    {{duty}}
+                    {{duty.real_name}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -55,16 +55,16 @@
                     参与员工
                 </div>
                 <div class="col col-50">
-                    {{participator}}
+                    {{participators}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
-            </div>
+            </div>            
             <div class="item row item-icon-right" style="margin-top:30px;"  ng-click="go_store()">
                 <div class="col col-25 item-title">
                     相关门店
                 </div>
                 <div class="col col-50">
-                    {{store}}
+                    {{shop.shop_name}}
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>

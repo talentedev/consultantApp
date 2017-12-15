@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="io.cordova.myapp74d0c8" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" defaultLocale="en-US">
-  <name>CTPApp</name>
+  <name>ConsultantTools</name>
   <description>An Ionic Framework and Cordova project for Visual Studio</description>
   <author email="vscordovatools@microsoft.com" href="http://taco.visualstudio.com">Visual Studio JS Mobile Tooling</author>
   <content src="index.html" />
@@ -87,4 +87,5 @@
     <variable name="API_KEY" value="WUz95hBhxrXVETRAGp5U43IGIVS0G61h" />
   </plugin>
   <plugin name="cordova-plugin-screen-orientation" version="2.0.0" />
+  <plugin name="es6-promise-plugin" version="3.0.2" />
 </widget>

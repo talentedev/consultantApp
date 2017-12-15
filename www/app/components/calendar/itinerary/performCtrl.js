@@ -1,15 +1,29 @@
 ﻿/*
  * 执行巡店类行程
  */
-app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHistory) {
+app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHistory, BASE_URL, $http) {
+
+    $scope.visit = {};
+    var received_flag = false;
 
     $scope.$on('$ionicView.enter', function (event) {
-        $scope.itinerary = {};
+        var url = BASE_URL + '/visit/get';
+        var data = {
+            plan_id: $stateParams.plan_id
+        };
+        $http.post(url, data).then(function (res) {
+            $scope.visit = res.data;
+            received_flag = true
+        });
     })
 
     // submit form data.
-    $scope.submit = function (itinerary) {
-        console.log(itinerary);
+    $scope.submit = function () {        
+        var url = BASE_URL + '/visit/create';
+        var data = $scope.visit;
+        data.plan_id = $stateParams.plan_id;
+        $http.post(url, data).then(function (res) {            
+        });
     }
 
     $scope.go_back = function () {
@@ -25,37 +39,39 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
 
     $scope.go_analysis = function () {
         $state.go('perform-analysis', {
-            store_id: $stateParams.store_id,
-            store_name: $stateParams.store_name
+            sid       : $stateParams.sid,
+            shop_code : $stateParams.shop_code,
+            shop_name : $stateParams.shop_name
         });
     }
 
     $scope.go_storefront = function () {
         $state.go('perform-storefront', {
-            store_id: $stateParams.store_id,
-            store_name: $stateParams.store_name
+            sid: $stateParams.sid,
+            shop_code: $stateParams.shop_code,
+            shop_name: $stateParams.shop_name
         });
     }
 
     $scope.go_store = function () {
         $state.go('store-detail', {
-            store_id: $stateParams.store_id,
-            store_name: $stateParams.store_name,
-            store_shortname: $stateParams.store_shortname
+            sid: $stateParams.sid,
+            shop_code: $stateParams.shop_code
         });
     }
 
     $scope.go_develop = function () {
-        $state.go('perform-develop', {
-            store_id: $stateParams.store_id,
-            itinerary_id: $stateParams.itinerary_id
-        });
+        if(received_flag == true) {
+            $state.go('perform-develop', {
+                visit_id: $scope.visit.visit_id
+            });
+        }        
     }
     // BI Report
     $scope.go_bireport = function () {
-        $state.go('bi-report', {
+        /*$state.go('bi-report', {
             store_id: $stateParams.store_id
-        });
+        });*/
     }
 
     $scope.go_audit = function () {
@@ -72,8 +88,8 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
 
     $scope.go_inventory = function () {
         $state.go('perform-inventory', {
-            store_id: $stateParams.store_id,
-            store_name: $stateParams.store_name,
+            shop_code: $stateParams.shop_code,
+            shop_name: $stateParams.shop_name
         });
     }
 
@@ -105,7 +121,9 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
     }
 
     $scope.go_communication = function () {
-        $state.go('perform-communication');
+        $state.go('perform-communication', {
+            sid: $scope.visit.sid
+        });
     }
 
     $scope.go_training = function () {

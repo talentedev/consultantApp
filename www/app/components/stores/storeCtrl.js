@@ -19,7 +19,6 @@ app.controller('storeCtrl', function ($scope, $state, $http, $ionicHistory, BASE
             store_name: query
         }
         $http.post(url, data).then(function (res) {
-            console.log(res.data);
             $scope.stores = res.data;
         });
     }
@@ -27,9 +26,10 @@ app.controller('storeCtrl', function ($scope, $state, $http, $ionicHistory, BASE
     $scope.go_back = function () {
         $ionicHistory.goBack();
     }
-    $scope.go_detail = function (store_id) {
+    $scope.go_detail = function (sid, shop_code) {
         $state.go('store-detail', {
-            store_id: store_id
+            sid: sid,
+            shop_code: shop_code
         });
     }
     $scope.go_add = function () {

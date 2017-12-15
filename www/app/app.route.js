@@ -143,10 +143,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/components/calendar/itinerary/perform.html',
         controller: 'performCtrl',
         params: {
-            store_id: null,
-            store_name: '',
-            store_shortname: '',
-            itinerary_id: null
+            sid: null,
+            plan_id: null,
+            shop_code: '',
+            shop_name: ''
         }
     })
 
@@ -167,8 +167,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/components/calendar/itinerary/perform-analysis.html',
         controller: 'perform-analysisCtrl',
         params: {
-            store_id: null,
-            store_name: ''
+            sid: null,
+            shop_code: null,
+            shop_name: ''
         }
     })
 
@@ -178,8 +179,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/components/calendar/itinerary/perform-storefront.html',
         controller: 'perform-storefrontCtrl',
         params: {
-            store_id: null,
-            store_name: ''
+            sid: null,
+            shop_code: null,
+            shop_name: ''
         }
     })
 
@@ -189,8 +191,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/components/calendar/itinerary/perform-develop.html',
         controller: 'perform-developCtrl',
         params: {
-            store_id: null,
-            itinerary_id: null
+            visit_id: null
         }
     })
 
@@ -248,8 +249,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/components/calendar/itinerary/data/perform-inventory.html',
         controller: 'perform-inventoryCtrl',
         params: {
-            store_id: null,
-            store_name: ''
+            shop_code: null,
+            shop_name: ''
         }
     })
 
@@ -300,7 +301,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('perform-communication', {
         url: '/perform-communication',
         templateUrl: 'app/components/calendar/itinerary/perform-communication.html',
-        controller: 'perform-communicationCtrl'
+        controller: 'perform-communicationCtrl',
+        params: {
+            sid: null
+        }
+    })
+
+    // 选择店面人员
+    .state('com-people', {
+        url: '/com-people',
+        templateUrl: 'app/components/calendar/itinerary/com-people.html',
+        controller: 'com-peopleCtrl',
+        params: {
+            sid: null
+        }
     })
 
     // 路途
@@ -329,9 +343,18 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/components/stores/store-detail.html',
         controller: 'store-detailCtrl',
         params: {
-            store_id: null,
-            store_name: '',
-            store_shortname: ''
+            sid: null,
+            shop_code: ''
+        }
+    })
+
+    // 店面人员信息
+    .state('store-staff', {
+        url: '/store-staff',
+        templateUrl: 'app/components/stores/store-staff.html',
+        controller: 'store-staffCtrl',
+        params: {
+            sid: null
         }
     })
 
@@ -339,7 +362,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('store-manager', {
         url: '/store-manager',
         templateUrl: 'app/components/stores/store-manager.html',
-        controller: 'store-managerCtrl'
+        controller: 'store-managerCtrl',
+        params: {
+            sid: null,
+            shopofstaff_id: null
+        }
     })
 
     /*********************************/

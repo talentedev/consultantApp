@@ -13,7 +13,7 @@ app.controller('selfCtrl', function ($scope, $state, $http, BASE_URL, $ionicHist
     }
 
     $scope.logout = function () {
-        var url = BASE_URL + 'auth/logout';
+        var url = BASE_URL + '/auth/logout';
         $http.get(url).then(function (res) {
             $state.go('login')
         });        

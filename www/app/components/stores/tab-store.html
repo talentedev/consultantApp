@@ -17,11 +17,11 @@
             </div>
         </div>
         <div class="list">
-            <div class="item item-icon-right" ng-repeat="store in stores" ng-click="go_detail(store.store_id)">
+            <div class="item item-icon-right" ng-repeat="store in stores" ng-click="go_detail(store.sid, store.shop_code)">
                 <i class="icon ion-chevron-right"></i>
                 <p>
-                    <div class="store-id">{{store.store_id}}</div>
-                    <div class="store-name">{{store.store_name}}</div>
+                    <div class="store-id">{{store.shop_code}}</div>
+                    <div class="store-name">{{store.shop_name}}</div>
                 </p>
             </div>                
         </div>

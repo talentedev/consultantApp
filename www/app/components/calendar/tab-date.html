@@ -30,7 +30,7 @@
                             <td width="54">六</td>
                         </tr>
                         <tr align="center" ng-repeat="i in [0, 1, 2, 3, 4, 5]">
-                            <td id='{{"GD"+(i*7+j)}}' ng-repeat="j in [0, 1, 2, 3, 4, 5, 6]">
+                            <td id='{{"GD"+(i*7+j)}}' ng-repeat="j in [0, 1, 2, 3, 4, 5, 6]" ng-click="pressDate(i,j)">
                                 <span id='{{"SD"+(i*7+j)}}' face="Arial Black"></span><br />
                                 <span id='{{"LD"+(i*7+j)}}' style="font-size:9pt"></span>
                             </td>
@@ -40,13 +40,13 @@
             </form>
         </div>
         <div class="list">
-            <div class="item item-icon-right" ng-repeat="item in visit" ng-click="go_perform($index)">
+            <div class="item item-icon-right" ng-repeat="item in visit" ng-click="go_perform(item)">
                 <i class="icon ion-chevron-right"></i>
-                {{item.start_time}} {{item.itinerary_type}} {{item.store_name}}
+                {{item.start_time}} {{item.plan_type}} {{item.store_name}}
             </div>            
             <div class="item item-icon-right" ng-repeat="item in non_visit" ng-click="go_road()">
                 <i class="icon ion-chevron-right"></i>
-                {{item.start_time}} {{item.itinerary_type}}
+                {{item.start_time}} {{item.plan_type}}
             </div>
         </div>
         <div id="description">

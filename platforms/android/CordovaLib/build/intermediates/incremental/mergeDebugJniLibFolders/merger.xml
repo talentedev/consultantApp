@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="F:\job\result\CTPApp\CTPApp\platforms\android\CordovaLib\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="F:\job\result\CTPApp\CTPApp\platforms\android\CordovaLib\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="F:\job\Consaltunt\result\php_backend\CTPApp\CTPApp\platforms\android\CordovaLib\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="F:\job\Consaltunt\result\php_backend\CTPApp\CTPApp\platforms\android\CordovaLib\src\debug\jniLibs"/></dataSet></merger>

@@ -4,47 +4,78 @@
 app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $http, BASE_URL, ItineraryService) {
 
     $scope.$on('$ionicView.enter', function(event){
-        calendar_init();
+        var today = new Date();
+        calendar_init(today);
     })
 
     // back to today in calendar
     $scope.today = function () {
-        calendar_init();
+        var today = new Date();
+        calendar_init(today);
     }
-    
+           
     // initialize calendar tab.
-    var calendar_init = function () {
+    var calendar_init = function (date) {
         Calendar.initial();
         $scope.year = Calendar.getyear();
         $scope.month = Calendar.getmonth();
 
+        getPlanList(new Date());
+    }
+
+    // event when press any date on calendar
+    $scope.pressDate = function (i, j) {
+        var sObj = document.getElementById('SD' + (i * 7 + j).toString());
+        var day = Calendar.getday(i, j, $scope.month, $scope.year) + 2;
+        
+        Calendar.changeCal($scope.year, $scope.month);
+
+        var today = new Date()
+        var dd = today.getDate();
+        var id_today = 'GD' + dd.toString();
+        var today_Obj = document.getElementById(id_today);
+        today_Obj.style.backgroundColor = '#FFF';
+
+        onDate(day, sObj);
+    }
+
+    // the event when press a date in calendar
+    var onDate = function (day, sObj) {
+        sObj.parentElement.style.backgroundColor = '#387ef5';
+        var date = new Date($scope.year, $scope.month, day);
+        getPlanList(date);
+    }
+
+    // get itinarary data according to selected date.
+    var getPlanList = function (date) {
+
         $scope.visit = [];
         $scope.non_visit = [];
 
-        var today = new Date();
+        //var today = new Date();
 
-        var url = BASE_URL + '/tomorrow';       
+        var url = BASE_URL + '/plan/list';
         var data = {
-            current_date: today.toISOString()
-        };        
+            date: date.toISOString()
+        };
         $http.post(url, data).then(function (res) {
-            var count = res.data.length;
-            for (index in res.data) {
-                if (res.data[index].itinerary_type == '签约店面拜访' || res.data[index].itinerary_type == '潜在客户拜访' || res.data[index].itinerary_type == '店面拜访') {
-                    res.data[index].itinerary_type = '拜访 ';
-                    // change from php date to javascript date format : 09 : 30
-                    var start_time = new Date(res.data[index].start_time);
-                    res.data[index].start_time = (9 + 2 * index).toString()  + ' : ' + '00';
+            var visit = [];
+            var non_visit = [];
 
-                    $scope.visit.push(res.data[index]);
+            var data = res.data;
+            for (key in data) {
+                if (data[key].category == 1) {
+                    data[key].plan_type = ' 拜访';
+                    visit.push(data[key]);
                 } else {
-                    // change from php date to javascript date format : 09 : 30
-                    var start_time = new Date(res.data[index].start_time);
-                    res.data[index].start_time = (9 + 2 * index).toString() + ' : ' + '00';
-
-                    $scope.non_visit.push(res.data[index]);
+                    data[key].plan_type = ' 路途';
+                    non_visit.push(data[key]);
                 }
-            }           
+                data[key].start_time = data[key].start_time.split(':', 2).join(' : ');
+            }
+
+            $scope.visit = visit;
+            $scope.non_visit = non_visit;
         });
     }
     
@@ -74,14 +105,12 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
         $ionicHistory.goBack();
     }
 
-    $scope.go_perform = function (index) {
-        ItineraryService.set_store_name($scope.visit[index].store_name);
-        ItineraryService.set_store_id($scope.visit[index].store_id);
+    $scope.go_perform = function (item) {
         $state.go('perform', {
-            store_id: $scope.visit[index].store_id,
-            store_name: $scope.visit[index].store_name,
-            store_shortname: $scope.visit[index].store_shortname,
-            itinerary_id: $scope.visit[index].itinerary_id
+            sid: item.sid,
+            plan_id: item.plan_id,
+            shop_code: item.shop_code,
+            shop_name: item.shop_name
         });
     }
 

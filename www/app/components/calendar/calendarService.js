@@ -279,7 +279,7 @@ app.factory('Calendar', function () {
         }
     }
     console.log("\u767e\u5ea6\u641c\u7d22\u3010\u7d20\u6750\u5bb6\u56ed\u3011\u4e0b\u8f7d\u66f4\u591aJS\u7279\u6548\u4ee3\u7801");
-
+       
     //用自定义变量保存当前系统中的年月日
     var Today = new Date();
     var tY = Today.getFullYear();
@@ -290,7 +290,7 @@ app.factory('Calendar', function () {
         //打开页时,在下拉列表中显示当前年月,并调用自定义函数drawCld(),显示公历和农历的相关信息
         initial: function () {            
             drawCld(tY, tM);
-        },
+        },       
         getyear: function () {
             return tY;
         },
@@ -299,6 +299,11 @@ app.factory('Calendar', function () {
         },
         changeCal: function(y, m){
             drawCld(y, m);
+        },
+        getday: function (i, j, m, y) {
+            var cld = new calendar(y, m);       
+            var sD = i * 7 + j - cld.firstWeek;
+            return sD;
         }
     }
 });

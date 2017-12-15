@@ -19,7 +19,7 @@
                     门店编号
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="{{store_id}}" />
+                    <input type="text" ng-model="shop_code" disabled>
                 </div>
             </div>
             <div class="item row" style="border:none;">
@@ -27,68 +27,42 @@
                     门店名称
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="{{store_name}}" />
-                </div>
-            </div>
-
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right">
-                <div class="col col-25 item-title">
-                    轮胎编号
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="6921317905014" ng-model="inventory.tire_id">
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item row item-icon-right">
-                <div class="col col-25 item-title">
-                    轮胎名称
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="米其林 Energy XM 2 韧悦" ng-model="inventory.tire_name">
-                </div>
-                <i class="icon fa fa-refresh" style="font-size:24px;"></i>
-            </div>
-            <div class="item row" style="border:none;">
-                <div class="col col-25 item-title">
-                    库存数量
-                </div>
-                <div class="col">
-                    <input type="text" placeholder="请点击输入" ng-model="inventory.amount">
+                    <input type="text" ng-model="shop_name" disabled>
                 </div>
             </div>
         </div>
-        <div class="list">
-            <div class="item row item-icon-right">
-                <div class="col col-25 item-title">
-                    轮胎编号
+        <div ng-repeat="invent in invents track by $index">
+            <div class="list">
+                <div class="item row item-icon-right">
+                    <div class="col col-25 item-title">
+                        轮胎编号
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" ng-model="inventory.tire_id">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="6921317905014" >
+                <div class="item row item-icon-right">
+                    <div class="col col-25 item-title">
+                        轮胎名称
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" ng-model="inventory.tire_name">
+                    </div>
+                    <i class="icon fa fa-refresh" style="font-size:24px;"></i>
                 </div>
-                <i class="icon ion-ios-arrow-right"></i>
+                <div class="item row" style="border:none;">
+                    <div class="col col-25 item-title">
+                        库存数量
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="请点击输入" ng-model="inventory.amount">
+                    </div>
+                </div>
             </div>
-            <div class="item row item-icon-right">
-                <div class="col col-25 item-title">
-                    轮胎名称
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="米其林 Energy XM 2 韧悦" />
-                </div>
-                <i class="icon fa fa-refresh" style="font-size:24px;"></i>
-            </div>
-            <div class="item row" style="border:none;">
-                <div class="col col-25 item-title">
-                    库存数量
-                </div>
-                <div class="col">
-                    <input type="text" placeholder="请点击输入" />
-                </div>
-            </div>
-        </div>
-        <div class="store-section">
+        </div>       
+    
+        <div class="store-section" ng-click="addInvent()">
             添加其它库存商品+
         </div>
         <div class="list">

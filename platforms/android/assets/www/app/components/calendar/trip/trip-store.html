@@ -24,10 +24,10 @@
         <div class="list">
             <div class="item row item-icon-right" ng-repeat="store in stores">
                 <div class="col col-20 item-title">
-                    {{store.store_id}}
+                    {{store.shop_code}}
                 </div>
                 <div class="col col-50 item-title" style="color:#aaa; overflow:hidden; text-overflow: ellipsis;">
-                    {{store.store_name}}
+                    {{store.shop_name}}
                 </div>
                 <i class="icon fa fa-check-square-o" style="font-size:20px;" id="store{{$index}}" ng-click="store_check($index)"></i>
             </div>                                   

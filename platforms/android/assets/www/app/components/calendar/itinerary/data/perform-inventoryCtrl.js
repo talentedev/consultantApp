@@ -3,11 +3,19 @@
  */
 app.controller('perform-inventoryCtrl', function ($scope, $http, $state, $stateParams, $ionicHistory, BASE_URL) {
 
+    $scope.invents = [1];
+
     $scope.$on('$ionicView.enter', function (event) {
-        $scope.store_id = $stateParams.store_id;
-        $scope.store_name = $stateParams.store_name;
+        $scope.shop_code = $stateParams.shop_code;
+        $scope.shop_name = $stateParams.shop_name;
     })
 
+    $scope.addInvent = function () {
+        var temp = [];
+        temp = $scope.invents;
+        temp.push(1);
+        $scope.invents = temp;
+    }
 
     $scope.save = function (inventory) {
         
