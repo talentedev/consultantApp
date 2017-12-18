@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Angular input dropdown demo</title>
+    <link rel='stylesheet' href='../inputDropdownStyles.css' />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 10px 0 0 40px;
+      }
+      h1, h2 {
+        font-weight: normal;
+      }
+      h2 {
+        font-size: 22px;
+        margin: 50px 0 15px 0;
+      }
+      button[type='submit'] {
+        font-size: 15px;
+        padding: 10px;
+      }
+
+      /* Custom input dropdown styles */
+      .input-dropdown {
+        margin: 0 30px 0 0;
+        width: 350px; /* set the width of the input and dropdown */
+      }
+      .input-dropdown input[type='text'] {
+        font-size: 15px;
+        padding: 5px;
+      }
+      .input-dropdown ul > li {
+        transition: background .15s;
+      }
+    </style>
+  </head>
+  <body ng-app="inputDropdownDemo">
+
+    <div class="content" ng-controller="InputDropdownController as dropdownCtrl">
+      <h1>Angular input dropdown demo</h1>
+      <p>Code on <a href="https://github.com/hannaholl/angular-input-dropdown">Github</a>.</p>
+      <h2>Select a country from a list of strings</h2>
+      <form name="demoFormStrings" ng-submit="dropdownCtrl.submitFormStrings()" novalidate>
+        <input-dropdown
+          input-placeholder="Country string"
+          input-name="country-strings"
+          allow-custom-input="true"
+          input-required="true"
+          selected-item="dropdownCtrl.countryString"
+          default-dropdown-items="dropdownCtrl.defaultDropdownStrings"
+          filter-list-method="dropdownCtrl.filterStringList(userInput)"
+          item-selected-method="dropdownCtrl.itemStringSelected(item)"
+         >
+        </input-dropdown>
+        <button type="submit" ng-disabled="demoFormStrings.$invalid">Submit</button>
+      </form>
+      <p>{{dropdownCtrl.stringMessage}}</p>
+
+      <h2>Select a country from a list of objects</h2>
+      <form name="demoFormObjects" ng-submit="dropdownCtrl.submitFormObjects()" novalidate>
+        <input-dropdown
+          input-placeholder="Country object"
+          input-name="country-object"
+          allow-custom-input="true"
+          input-required="true"
+          selected-item="dropdownCtrl.countryObject"
+          default-dropdown-items="dropdownCtrl.defaultDropdownObjects"
+          filter-list-method="dropdownCtrl.filterObjectList(userInput)"
+          item-selected-method="dropdownCtrl.itemObjectSelected(item)"
+         >
+        </input-dropdown>
+        <button type="submit" ng-disabled="demoFormObjects.$invalid">Submit</button>
+      </form>
+      <p>{{dropdownCtrl.objectMessage}}</p>
+
+   </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script src="../inputDropdown.js"></script>
+
+    <script>
+
+      // Add 'inputDropdown' as a dependency when creating angular app
+      var demoApp = angular.module('inputDropdownDemo', ['inputDropdown']);
+
+      demoApp.controller('InputDropdownController', [
+        '$scope',
+        '$q',
+        function($scope, $q) {
+          var self = this;
+
+          self.stringMessage = '';
+          self.objectMessage = '';
+
+          self.countryString = null; // Holds the selected in demoFormStrings, set with attribute 'selected-item'
+          self.countryObject = null; // Holds the selected in demoFormObjects, set with attribute 'selected-item'
+
+          // Pass strings to the dropdown for simple usage
+          self.defaultDropdownStrings = [
+            'China',
+            'Sweden',
+            'United Kingdom',
+            'United States'
+          ];
+
+          // Use objects in the dropdown list if more data than just a string is needed.
+          // Every object needs to have a property 'readableName', this is what will be displayed in the dropdown.
+          self.defaultDropdownObjects = [
+            new Country(0, 'China', 86),
+            new Country(1, 'Sweden', 46),
+            new Country(2, 'United Kingdom', 44),
+            new Country(3, 'United States', 1)
+          ];
+
+
+          // Filter method is passed with attribute 'filter-list-method="method(userInput)"'.
+          // Called on the onchange event from the input field. Should return a promise resolving with an array of items to show in the dropdown.
+          // If no filter method is passed to the the directive, the default dropdown will show constantly.
+          self.filterStringList = function(userInput) {
+            var filter = $q.defer();
+            var normalisedInput = userInput.toLowerCase();
+
+            var filteredArray = self.defaultDropdownStrings.filter(function(country) {
+              return country.toLowerCase().indexOf(normalisedInput) === 0;
+            });
+
+            filter.resolve(filteredArray);
+            return filter.promise;
+          };
+
+          self.filterObjectList = function(userInput) {
+            var filter = $q.defer();
+            var normalisedInput = userInput.toLowerCase();
+
+            var filteredArray = self.defaultDropdownObjects.filter(function(country) {
+              var matchCountryName = country.name.toLowerCase().indexOf(normalisedInput) === 0;
+              var matchCountryCode = country.code.toString().indexOf(normalisedInput) === 0;
+              return matchCountryName || matchCountryCode;
+            });
+
+            filter.resolve(filteredArray);
+            return filter.promise;
+          };
+
+
+          // Called when user selected an item from dropdown. Passed with attribute 'item-selected-method="method(item)"'.
+          self.itemStringSelected = function(item) {
+            console.log('Handle item string selected in controller:', item);
+            self.stringMessage = 'String item selected: ' + item;
+          };
+
+          self.itemObjectSelected = function(item) {
+            console.log('Handle item object selected in controller:', item);
+            self.objectMessage = 'Object item selected: ' + item;
+          };
+
+
+          self.submitFormStrings = function() {
+            if ($scope.demoFormStrings.$valid) {
+              console.log('Submit form STRINGS with country:', self.countryString);
+              self.stringMessage = 'Submit form STRINGS with country: ' + self.countryString;
+            }
+          };
+
+          self.submitFormObjects = function() {
+            if ($scope.demoFormObjects.$valid) {
+              console.log('Submit form OBJECTS with country:', self.countryObject);
+              self.objectMessage = 'Submit form OBJECT with country: ' + self.countryObject;
+            }
+          };
+
+        }
+      ]);
+
+      // Country object used in dropdown
+      var Country = function(id, countryName, countryCode) {
+        this.id = id;
+        this.name = countryName;
+        this.code = countryCode;
+        this.readableName = '(+' + countryCode + ') ' + countryName;
+      };
+
+      // toString method used to log information about object for demo purposes
+      Country.prototype.toString = function() {
+        return '{id: ' + this.id + ', readableName: ' + this.readableName + ', name: ' + this.name + ', code: ' + this.code + '}';
+      }
+
+    </script>
+  </body>
+</html>

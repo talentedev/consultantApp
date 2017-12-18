@@ -20,9 +20,11 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
     // submit form data.
     $scope.submit = function () {        
         var url = BASE_URL + '/visit/create';
-        var data = $scope.visit;
+        var data = $scope.visit;        
         data.plan_id = $stateParams.plan_id;
-        $http.post(url, data).then(function (res) {            
+        console.log('visit/creare:request', data);
+        $http.post(url, data).then(function (res) {
+            console.log('visit/creare:response', data);
         });
     }
 

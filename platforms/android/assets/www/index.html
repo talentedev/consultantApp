@@ -10,6 +10,8 @@
     <link href="assets/lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/icon.css" rel="stylesheet">
+    <!-- input dropdown -->
+    <link href="app/modules/angular-input-dropdown-master/inputDropdownStyles.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -30,6 +32,12 @@
     <!-- Common Scripts-->
     
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WUz95hBhxrXVETRAGp5U43IGIVS0G61h"></script>
+
+    <!-- Directives -->
+    <script src="app/directives/autocomplete.directive.js"></script>
+
+    <!-- input dropdown -->
+    <script src="app/modules/angular-input-dropdown-master/inputDropdown.js"></script>
 
     <!-- controllers -->
     <script src="app/app.js"></script>
@@ -79,8 +87,7 @@
     <script src="app/components/calendar/itinerary/roadCtrl.js"></script>
     <script src="app/components/calendar/itineraryService.js"></script>
     <script src="app/shared/constants.js"></script>
-
-    
+      
   </head>
   <body ng-app="ctpApp" class="platform-android platform-cordova platform-webview">
 

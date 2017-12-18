@@ -1,12 +1,85 @@
 ﻿/*
  * 添加/修改门店
  */
-app.controller('store-detailCtrl', function ($scope, $state, $stateParams, $ionicHistory, $http, BASE_URL) {
+app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $ionicHistory, $http, BASE_URL, $ionicPopover) {
 
-    var save_setting = null;    
+    var save_setting = null;
+    var areaId = null;
+    var self = this;
 
     $scope.$on('$ionicView.enter', function (event) {
 
+        /*************************************************/
+        /* Input with dropdown for province and city     */
+        /*************************************************/
+        self.countryObject = null; // Holds the selected in demoFormObjects, set with attribute 'selected-item'
+
+        // Use objects in the dropdown list if more data than just a string is needed.
+        // Every object needs to have a property 'readableName', this is what will be displayed in the dropdown.
+        self.defaultDropdownObjects = [];
+        self.cityDropdownObjects = [];
+
+        var province_url = BASE_URL + '/province';
+        $http.get(province_url).then(function (res) {
+            for (key in res.data) {
+                res.data[key].readableName = res.data[key].area_name;
+            }
+            self.defaultDropdownObjects = res.data;
+        });
+        // Filter method is passed with attribute 'filter-list-method="method(userInput)"'.
+        // Called on the onchange event from the input field. Should return a promise resolving with an array of items to show in the dropdown.
+        // If no filter method is passed to the the directive, the default dropdown will show constantly.
+        self.filterObjectList = function (userInput) {
+            var filter = $q.defer();
+            var normalisedInput = userInput.toLowerCase();
+
+            var filteredArray = self.defaultDropdownObjects.filter(function (country) {
+                var matchCountryName = country.readableName.toLowerCase().indexOf(normalisedInput) === 0;
+                //var matchCountryCode = country.code.toString().indexOf(normalisedInput) === 0;
+                return matchCountryName;// || matchCountryCode;
+            });
+
+            filter.resolve(filteredArray);
+            return filter.promise;
+        };
+
+        // Called when user selected an item from dropdown. Passed with attribute 'item-selected-method="method(item)"'.
+        self.itemObjectSelected = function (item) {
+            // get cities in the selected province
+            var cityUrl = BASE_URL + '/city';
+            var data = {
+                area_id: item.area_id
+            }
+            $http.post(cityUrl, data).then(function (res) {
+                for (key in res.data) {
+                    res.data[key].readableName = res.data[key].area_name;
+                }
+                self.cityDropdownObjects = res.data;
+            });
+        };
+
+        self.filterCityList = function () {
+            var filter = $q.defer();
+            var normalisedInput = userInput.toLowerCase();
+
+            var filteredArray = self.cityDropdownObjects.filter(function (city) {
+                var matchCountryName = city.readableName.toLowerCase().indexOf(normalisedInput) === 0;
+                //var matchCountryCode = country.code.toString().indexOf(normalisedInput) === 0;
+                return matchCountryName;// || matchCountryCode;
+            });
+
+            filter.resolve(filteredArray);
+            return filter.promise;
+        }
+
+        self.citySelected = function (item) {
+            areaId = item.area_id;
+            console.log(areaId);
+        };
+
+        /*************************************************/
+        /*     Initialize  page                          */
+        /*************************************************/
         $scope.store = {};
         $scope.business = {};
 
@@ -109,7 +182,7 @@ app.controller('store-detailCtrl', function ($scope, $state, $stateParams, $ioni
             save_setting = 'update';
         } else {
             save_setting = 'add';
-        }
+        }       
     });
 
     $scope.go_back = function () {
@@ -125,6 +198,7 @@ app.controller('store-detailCtrl', function ($scope, $state, $stateParams, $ioni
         data.toilet = store.toilet.value;
 
         data.business = $scope.business;
+        data.area_id = areaId;
 
         //console.log(data);
         // Add new store data
@@ -260,7 +334,7 @@ app.controller('store-detailCtrl', function ($scope, $state, $stateParams, $ioni
             });
 
             var image = document.getElementById('store_image');
-            var urlCreator = window.URL || window.webkitURL;
+            var urlCreator = window.URL || window.webkitURL;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
             var imageUrl = urlCreator.createObjectURL("http://storage.leirui.org/consultant/files/2017521164947.jpeg");
             image.src = imageUrl;
         }, function (err) {

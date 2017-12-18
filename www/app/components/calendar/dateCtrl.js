@@ -58,10 +58,11 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
         var data = {
             date: date.toISOString()
         };
+        console.log('plan/list:request', data);
         $http.post(url, data).then(function (res) {
             var visit = [];
             var non_visit = [];
-
+            console.log('plan/list:response', res.data);
             var data = res.data;
             for (key in data) {
                 if (data[key].category == 1) {

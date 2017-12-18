@@ -77,11 +77,13 @@ app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService,
             //start_time: document.getElementById('start_time').value,
             //end_time: document.getElementById('end_time').value           
         }
+        console.log('plan/create', data);
         // validate
         if (typeof data.sid == 'undefined' || typeof data.plantype_id == 'undefined') {
             alert('Please enter all items.');
         } else {
             $http.post(url, data).then(function (res) {
+                console.log(res.data);
                 $ionicHistory.goBack();
             }); 
         }               

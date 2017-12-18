@@ -1,4 +1,4 @@
-﻿<ion-view ng-controller="store-detailCtrl">
+﻿<ion-view ng-controller="store-detailCtrl as dropdownCtrl">
     <ion-nav-title>
         添加/修改门店
     </ion-nav-title>
@@ -101,15 +101,32 @@
                     省份
                 </div>
                 <div class="col">
-                    <input type="text" ng-model="store.st_province">
+                    <input-dropdown 
+                      input-placeholder=""
+                      input-name="country-object"
+                      allow-custom-input="true"
+                      input-required="true"
+                      selected-item="dropdownCtrl.countryObject"
+                      default-dropdown-items="dropdownCtrl.defaultDropdownObjects"
+                      filter-list-method="dropdownCtrl.filterObjectList(userInput)"
+                      item-selected-method="dropdownCtrl.itemObjectSelected(item)">
+                    </input-dropdown>
                 </div>
-            </div>
+            </div>              
             <div class="item row">
                 <div class="col-40 item-title">
                     城市
                 </div>
                 <div class="col">
-                    <input type="text" ng-model="store.st_city">
+                    <input-dropdown input-placeholder=""
+                                    input-name=""
+                                    allow-custom-input="true"
+                                    input-required="true"
+                                    selected-item=""
+                                    default-dropdown-items="dropdownCtrl.cityDropdownObjects"
+                                    filter-list-method="dropdownCtrl.filterCityList(userInput)"
+                                    item-selected-method="dropdownCtrl.citySelected(item)">
+                    </input-dropdown>
                 </div>
             </div>
             <div class="item row">
@@ -693,5 +710,16 @@
                 </div>
             </div>-->
         </div>
+        <script id="templates/selprovince.html" type="text/ng-template">
+            <ion-popover-view>
+                <ion-content>
+                    <div class="list">
+                        <a class="item" ng-repeat="item in provinces">
+                            {{item.area_name}}
+                        </a>                        
+                    </div>
+                </ion-content>
+            </ion-popover-view>
+        </script>
 </ion-content>
 </ion-view>
