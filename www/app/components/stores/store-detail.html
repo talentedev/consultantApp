@@ -14,7 +14,7 @@
     </ion-nav-buttons>
     <ion-content id="store-detail">
         <div id="store-header" class="item item-thumbnail-left item-icon-right">
-            <img id="store_image" class="img-thumb"  style="width:75px; height:75px" ng-click="camera()">
+            <img id="store_image" src="{{store.shopface_url}}" class="img-thumb"  style="width:75px; height:75px" ng-click="camera()">
             <p class="list-title">{{shop_code}}</p>
             <p class="list-description">{{short_name}}</p>
             <p class="list-description">{{shop_name}}</p>
@@ -101,7 +101,7 @@
                     省份
                 </div>
                 <div class="col">
-                    <input-dropdown 
+                    <!--<input-dropdown 
                       input-placeholder=""
                       input-name="country-object"
                       allow-custom-input="true"
@@ -110,7 +110,11 @@
                       default-dropdown-items="dropdownCtrl.defaultDropdownObjects"
                       filter-list-method="dropdownCtrl.filterObjectList(userInput)"
                       item-selected-method="dropdownCtrl.itemObjectSelected(item)">
-                    </input-dropdown>
+                    </input-dropdown>-->
+                    <input list="provinces" ng-model="selectedProvince" ng-change="selProvince(selectedProvince)">
+                    <datalist id="provinces">
+                        <option ng-repeat="item in province">{{item.area_name}}</option>                       
+                    </datalist>
                 </div>
             </div>              
             <div class="item row">
@@ -118,7 +122,7 @@
                     城市
                 </div>
                 <div class="col">
-                    <input-dropdown input-placeholder=""
+                    <!--<input-dropdown input-placeholder=""
                                     input-name=""
                                     allow-custom-input="true"
                                     input-required="true"
@@ -126,7 +130,11 @@
                                     default-dropdown-items="dropdownCtrl.cityDropdownObjects"
                                     filter-list-method="dropdownCtrl.filterCityList(userInput)"
                                     item-selected-method="dropdownCtrl.citySelected(item)">
-                    </input-dropdown>
+                    </input-dropdown>-->
+                    <input list="cities" ng-model="selectedCity" ng-change="selCity(selectedCity)">
+                    <datalist id="cities">
+                        <option ng-repeat="item in city" value="{{item.area_name}}">
+                    </datalist>
                 </div>
             </div>
             <div class="item row">

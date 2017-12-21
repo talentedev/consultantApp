@@ -1,22 +1,18 @@
 ﻿/*
- * the controller that manage self data
+ * 我的
+ * @author : kmr
+ * @modified : 2017/8/22
  */
-
-app.controller('selfCtrl', function ($scope, $state, $http, BASE_URL, $ionicHistory) {
-
-    $scope.go_back = function () {
-        $ionicHistory.goBack();
-    }
-
-    $scope.go_information = function () {
-        $state.go('self-personal')
-    }
-
+app.controller('selfCtrl', function ($scope, $state, $http, BASE_URL) {
+    // 个人信息
+    $scope.information = function () {
+        $state.go('self-personal');
+    };
+    // 退出登录
     $scope.logout = function () {
-        var url = BASE_URL + '/auth/logout';
-        $http.get(url).then(function (res) {
+        $http.get(BASE_URL + '/auth/logout').then(function (res) {
+            localStorage.clear();
             $state.go('login')
-        });        
-    }
-
+        });
+    };
 });

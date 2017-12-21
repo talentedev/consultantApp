@@ -24,7 +24,7 @@
         <div class="list">
             
             <div class="item item-thumbnail-left item-icon-right" ng-repeat="member in members">
-                <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
+                <img class="img-thumb" src="{{member.headimgurl}}" style="width:45px; height:40px" />
                 <p><span class="list-title">{{member.real_name}}<span ng-if="$index == 0">（我自己）</span><span ng-if="$index == 1">（我的直属上级）</span></span></p>
                 <p class="list-description">{{member.department}} {{member.area}} {{member.position}}</p>
                 <i class="icon fa fa-check-square-o" style="font-size:25px;" id="duty0" ng-click="onItem($event, member)"></i>

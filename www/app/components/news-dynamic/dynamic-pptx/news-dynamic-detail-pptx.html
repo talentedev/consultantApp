@@ -1,6 +1,6 @@
 ﻿<ion-view ng-controller="news-dynamic-detail-pptxCtrl">
     <ion-nav-title>
-        Weekly communication Week -30
+        {{filename}}
     </ion-nav-title>
     <ion-nav-buttons side="left">
         <button class="button btn-back" ng-click="go_back()">
@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button btn-back">
+        <button class="button btn-back" ng-click="download()">
             <i class="icon fa fa-download" style="font-size:24px;"></i>
         </button>
     </ion-nav-buttons>

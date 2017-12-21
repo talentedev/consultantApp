@@ -1,0 +1,40 @@
+﻿<ion-view ng-controller="order-listCtrl">
+    <ion-nav-title>
+        订单统计
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
+            筛选
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="audit-list">
+        <div class="row header">
+            <div class="col">店面编号</div>
+            <div class="col">轮胎编号</div>
+            <div class="col">轮胎名称</div>
+            <div class="col">数量</div>
+            <div class="col">单价</div>
+            <div class="col">金额小计</div>
+            <div class="col">上报人</div>
+            <div class="col">上报时间</div>
+        </div>
+        <div style="border:1px #000;" ng-repeat="data in orders" style="margin-top:0;border-top:1px solid #ddd;">
+            <div class="row">
+                <div class="col">{{shop_code}}</div>
+                <div class="col">{{data.brand_code}}</div>
+                <div class="col">{{data.brand_name}}</div>
+                <div class="col">{{data.ordernum}}</div>
+                <div class="col">{{data.orderprice}}</div>
+                <div class="col">{{data.order_total}}</div>
+                <div class="col">{{data.user_name}}</div>
+                <div class="col">{{data.report_date}}</div>                
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

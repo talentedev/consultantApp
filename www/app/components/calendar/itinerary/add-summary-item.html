@@ -1,0 +1,90 @@
+﻿<ion-view ng-controller="add-summary-itemCtrl">
+    <ion-nav-title>
+        添加总结
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="list()">
+            列表查看
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="perform-analysis" class="padding-without">
+        <div ng-repeat="block in summaries track by $index" style="margin-top:20px;">
+            <div class="list">
+                <div class="item row" style="border:none;">
+                    <div class="col col-25 item-title">
+                        目的
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="请点击输入" ng-model="summary.meeting_target[$index]">
+                    </div>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item row" style="border:none;">
+                    <div class="col col-25 item-title">
+                        主题
+                    </div>
+                    <div class="col">
+                        <input type="text" placeholder="请点击输入" ng-model="summary.meeting_subject[$index]">
+                    </div>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;" ng-click="selStaff($index)">
+                    <div class="col col-25 item-title">
+                        参加人员
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" ng-model="summary.meeting_people[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        时间
+                    </div>
+                    <div class="col col-50">
+                        <input type="date" ng-model="summary.meeting_time[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        效果
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入" ng-model="summary.effect[$index]">
+                    </div>
+                    <!--<i class="icon ion-ios-arrow-right"></i>-->
+                </div>
+            </div>
+            <textarea placeholder="备注" ng-model="summary.comments[$index]"></textarea>
+        </div>        
+        <div class="store-section" ng-click="addSummary()">
+            添加其它总结++
+        </div>
+        <div class="row">
+            <div class="col col-25">
+                <i class="icon fa fa-camera big" ng-click="go_camera()"></i>
+            </div>
+            <div class="col col-25">
+                <i class="icon fa fa-plus big" ng-click="go_camera()"></i>
+            </div>
+        </div>
+        <div class="store-section mark">
+            <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
+        </div>
+        <div class="button-area">
+            <button class="button" ng-click="save(summary)">保存</button>
+        </div>
+    </ion-content>
+</ion-view>

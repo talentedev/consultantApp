@@ -9,7 +9,14 @@
                     驰加店面拜访数量
                 </div>
                 <div class="col" style="text-align:right;">
-                    <i class="fa fa-filter">2016</i>
+                    <i class="fa fa-filter">
+                        <select ng-model="year" ng-change="selYear(year)">
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                        </select>
+                    </i>
                 </div>
             </div>
             <div fusioncharts width="99%" height="150px" type="column2d" datasource="{{myDataSource1}}">
@@ -20,9 +27,9 @@
                 <div class="col">
                     工作小时数
                 </div>
-                <div class="col" style="text-align:right;">
+                <!--<div class="col" style="text-align:right;">
                     <i class="fa fa-filter">2016</i>
-                </div>
+                </div>-->
             </div>
             <div fusioncharts width="99%" height="150px" type="column2d" datasource="{{myDataSource2}}">
             </div>

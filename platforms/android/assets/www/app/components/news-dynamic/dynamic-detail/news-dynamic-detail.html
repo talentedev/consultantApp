@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button btn-back">
+        <button class="button btn-back" ng-click="sort()">
             <i class="icon fa fa-sort-alpha-asc" style="font-size:24px;"></i>
         </button>
     </ion-nav-buttons>
@@ -17,72 +17,18 @@
             <div class="item item-input-inset">
                 <label class="item-input-wrapper" id="search-input">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input id="search-input" type="text" placeholder="输入文件名搜索" ng-model="query" ng-change="search()">
+                    <input id="search-input" type="text" placeholder="输入文件名搜索" ng-model="query">
                 </label>
             </div>
         </div>
-        <div class="list-header">共 10 个文件</div>
+        <div class="list-header">共 {{fileCount}} 个文件</div>
         <div class="list">
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
+            <div class="item item-thumbnail-left item-icon-right" ng-repeat="item in docs | filter:query:strict" ng-click="go_detail(item)">
                 <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
+                <p class="list-title"><span>{{item.filename}}</span></p>
+                <p class="list-description"><span>{{item.filedate}}</span><span class="list-date">{{item.filesize}}</span></p>
                 <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
-                <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
-                <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
-                <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
-                <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
-                <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
-                <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
-                <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
-                <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item item-thumbnail-left item-icon-right" ng-click="go_detail()">
-                <img class="img-thumb" src="assets/img/pptx.png" style="width:45px; height:30px" />
-                <p class="list-title"><span>Weekly communication Week -30.pptx</span></p>
-                <p class="list-description"><span>2016-08-01 12:48</span><span class="list-date">107.5KB</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
+            </div>       
         </div>
     </ion-content>
 </ion-view>

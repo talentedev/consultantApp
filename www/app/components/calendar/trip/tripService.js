@@ -58,4 +58,12 @@ app.service('TripService', function () {
     this.employee_name = function () {
         return employee_name;
     };
+    // date
+    this.date = null;
+    this.setDate = function (date) {
+        this.date = date;
+    };
+    this.getDate = function () {
+        return this.date;
+    };
 });

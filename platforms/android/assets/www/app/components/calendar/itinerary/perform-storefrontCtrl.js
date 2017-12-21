@@ -1,5 +1,7 @@
 ﻿/*
  * 店面年度工作计划
+ * @author : krm
+ * @modified : 2017/8/22
  */
 app.controller('perform-storefrontCtrl', function ($scope, $state, $stateParams, $ionicHistory, BASE_URL, $http) {
 
@@ -12,12 +14,15 @@ app.controller('perform-storefrontCtrl', function ($scope, $state, $stateParams,
         var data = {
             sid: $stateParams.sid
         };
+        console.log('visit/annualplan/get:request', data);
         $http.post(url, data).then(function (res) {
+            console.log('visit/annualplan/get:response', res.data);
             $scope.plan = res.data;
+        }, function (err) {
+            console.log('annualplan does not exist!');
         });
-    })
-
-
+    });
+    // 保存
     $scope.save = function () {
         var url = BASE_URL + '/visit/annualplan/add';
         var data = {};                
@@ -27,7 +32,7 @@ app.controller('perform-storefrontCtrl', function ($scope, $state, $stateParams,
             $ionicHistory.goBack();
         });        
     }
-
+    // 返回
     $scope.go_back = function () {
         $ionicHistory.goBack();
     }

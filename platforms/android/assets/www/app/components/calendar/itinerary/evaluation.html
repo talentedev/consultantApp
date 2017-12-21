@@ -1,0 +1,48 @@
+﻿<ion-view ng-controller="evaluationCtrl">
+    <ion-nav-title>
+        <select ng-model="type" ng-options="option.name for option in types"></select>        
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>               
+    </ion-nav-buttons>      
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
+            筛选
+        </button>
+    </ion-nav-buttons>
+    
+    <ion-content id="evaluation" style="font-size:95%;">
+        <div class="row header">
+            <div class="col-25">评估项</div>
+            <div class="col">1月</div>
+            <div class="col">2月</div>
+            <div class="col">3月</div>
+            <div class="col">4月</div>
+            <div class="col">5月</div>
+            <div class="col">6月</div>
+            <div class="col">7月</div>
+            <div class="col">8月</div>
+            <div class="col">9月</div>
+            <div class="col">10月</div>
+            <div class="col">11月</div>
+            <div class="col">12月</div>
+        </div>
+        <div class="row" ng-repeat="data in datas" style="margin-top:0;border-top:1px solid #ddd;">
+            <div class="col-25">{{data.sop_method1}}</div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+        </div>
+    </ion-content>
+</ion-view>

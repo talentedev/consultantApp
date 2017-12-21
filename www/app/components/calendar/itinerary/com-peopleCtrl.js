@@ -51,7 +51,8 @@ app.controller('com-peopleCtrl', function ($scope, $state, $stateParams, $ionicH
             checked[key] = false;
         }
         temp = [];
-        //TripService.setParticipators(participators);
+        console.log('com-people', participators);
+        TripService.setParticipators(participators);
         $ionicHistory.goBack();
     }
 

@@ -1,0 +1,126 @@
+﻿<ion-view>
+    <ion-nav-title>
+        查看店面人员信息
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <!--<ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
+            编辑
+        </button>
+    </ion-nav-buttons>-->
+    <ion-content id="store-manager">
+        <!--<div id="search-bar" class="full">
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper" id="search-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input id="search-input" type="text" placeholder="搜索" ng-model="query" ng-change="search()">
+                </label>
+            </div>
+        </div>-->
+        <div class="list">
+            <div class="item row">
+                <div class="col-30">
+                    <img src="assets/img/manager.jpeg" />
+                </div>
+                <div class="col-70 padding-area">
+                    <span style="color:black;">{{staff_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{{identity}}</span>
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-30">
+                    姓名
+                </div>
+                <div class="col-70">
+                    <input type="text" placeholder="{{staff_name}}" ng-model="staff.staff_name" />
+                </div>
+            </div>
+            <div class="item">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        性别
+                    </div>
+                    <select style="width:70%; padding-left: 0px; color:#999" ng-model="staff.sex" ng-options="option.name for option in sex"></select>
+                </label>
+            </div>
+            <div class="item row">
+                <div class="col-30">
+                    身份证号
+                </div>
+                <div class="col-70">
+                    <input type="text" ng-model="staff.card_id" />
+                </div>
+            </div>
+            <div class="item">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        E-learning<br />登录身份
+                    </div>
+                    <select style="width:70%; padding-left: 0px; color:#999" ng-model="staff.learn_identity" ng-options="option.name for option in learn_identity"></select>
+                </label>
+            </div>
+            <div class="item">
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                        人员职级
+                    </div>
+                    <select style="width:70%; padding-left: 0px; color:#999" ng-model="staff.position" ng-options="option.name for option in position"></select>
+                </label>
+            </div>
+            <div class="item row">
+                <div class="col-30">
+                    手机
+                </div>
+                <div class="col-70">
+                    <input type="text" ng-model="staff.telephone" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-30">
+                    入职时间
+                </div>
+                <div class="col-70">
+                    <input type="date" ng-model="staff.entry_date" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-30">
+                    学历
+                </div>
+                <div class="col-70">
+                    <input type="text" ng-model="staff.education" />
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-30">
+                    人员状态
+                </div>
+                <div class="col col-25">
+                    <label class="toggle">
+                        <input type="checkbox" checked ng-model="staff.employ_state">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </div>
+                <div class="col">
+                    在职
+                </div>
+            </div>
+            <div class="item row">
+                <div class="col-30" style="margin-top:5px;">
+                    其它
+                </div>
+                <div class="col-70" style="border:none;">
+                    <textarea placeholder="其它备注" ng-model="staff.description"></textarea>
+                </div>
+            </div>
+            <div class="button-area">
+                <button class="button" ng-click="save()">保存</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

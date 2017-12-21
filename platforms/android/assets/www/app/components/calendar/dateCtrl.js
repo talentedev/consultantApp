@@ -1,28 +1,38 @@
 ﻿/*
  * 日历
  */
-app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $http, BASE_URL, ItineraryService) {
+app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $http, BASE_URL, ItineraryService, TripService) {
+    var prevDate;
 
-    $scope.$on('$ionicView.enter', function(event){
-        var today = new Date();
-        calendar_init(today);
+    $scope.$on('$ionicView.enter', function (event) {
+        if (TripService.getDate() != null) {
+            console.log('*************', TripService.getDate());
+            calendar_init(TripService.getDate());            
+        } else {
+            var today = new Date();
+            calendar_init(today);
+            console.log('&&&&&&&&&&&&&', today);
+        }
+        TripService.setDate(null);
     })
-
     // back to today in calendar
     $scope.today = function () {
         var today = new Date();
         calendar_init(today);
-    }
-           
+        if (typeof prevDate != 'undefined') {
+            prevDate.style.color = '#000';
+        }
+    }           
     // initialize calendar tab.
     var calendar_init = function (date) {
         Calendar.initial();
         $scope.year = Calendar.getyear();
         $scope.month = Calendar.getmonth();
-
-        getPlanList(new Date());
+        //var today = new Date();
+        //today.setDate(today.getDate() + 1);
+        date.setDate(date.getDate());
+        getPlanList(date);
     }
-
     // event when press any date on calendar
     $scope.pressDate = function (i, j) {
         var sObj = document.getElementById('SD' + (i * 7 + j).toString());
@@ -41,7 +51,13 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
 
     // the event when press a date in calendar
     var onDate = function (day, sObj) {
-        sObj.parentElement.style.backgroundColor = '#387ef5';
+        if (typeof prevDate != 'undefined') {
+            prevDate.style.color = '#000';
+        }        
+        var dateDiv = sObj.parentElement;
+        dateDiv.style.backgroundColor = '#387ef5';
+        dateDiv.style.color = '#FFF';
+        prevDate = dateDiv;
         var date = new Date($scope.year, $scope.month, day);
         getPlanList(date);
     }
@@ -56,7 +72,7 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
 
         var url = BASE_URL + '/plan/list';
         var data = {
-            date: date.toISOString()
+            date: date//.toISOString()
         };
         console.log('plan/list:request', data);
         $http.post(url, data).then(function (res) {
@@ -66,10 +82,8 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
             var data = res.data;
             for (key in data) {
                 if (data[key].category == 1) {
-                    data[key].plan_type = ' 拜访';
                     visit.push(data[key]);
                 } else {
-                    data[key].plan_type = ' 路途';
                     non_visit.push(data[key]);
                 }
                 data[key].start_time = data[key].start_time.split(':', 2).join(' : ');
@@ -78,8 +92,7 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
             $scope.visit = visit;
             $scope.non_visit = non_visit;
         });
-    }
-    
+    }    
     // previous button in calendar
     $scope.pre_calendar = function () {
         if ($scope.month == 0) {
@@ -90,7 +103,6 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
         }        
         Calendar.changeCal($scope.year,$scope.month)
     }
-
     // next button in calendar
     $scope.next_calendar = function () {
         if ($scope.month == 11) {
@@ -115,8 +127,10 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
         });
     }
 
-    $scope.go_road = function () {
-        $state.go('road');
+    $scope.go_road = function (item) {
+        $state.go('road', {
+            plan_id: item.plan_id
+        });
     }
 
     $scope.go_trip = function () {

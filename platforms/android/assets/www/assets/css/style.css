@@ -844,3 +844,10 @@ button.btn-back i{
     width: 90%;
     margin-left: 5%;
 } 
+
+/*#tab-manage text {
+    -webkit-transform: rotate(0deg);
+}
+g .raphael-group-43-dataset-axis tspan, g .raphael-group-123-dataset-axis {
+    font-size: 10px;
+}*/

@@ -1,39 +1,33 @@
 ﻿/*
- * the controller that manage tracking reminder data
+ * 跟踪提醒
+ * @author : kmr
+ * @modified : 2017/8/25
  */
-
 app.controller('news-trackingCtrl', function ($scope, $state, $stateParams, $http, BASE_URL, $ionicHistory) {
-
+    $scope.trackings = [];
     $scope.$on('$ionicView.enter', function (event) {
-        init();
-    })
-
-    var init = function () {
-        var url = BASE_URL + '/reminder/list';
-        var data = {
-            mem_id: $stateParams.mem_id
-        };
-        $http.post(url, data).then(function (res) {
-            console.log(res.data);
-            if (res.data.status) $scope.hide = true;
+        var url = BASE_URL + '/track/list';       
+        $http.get(url).then(function (res) {
+            console.log('track/list:response', res.data);            
             for (key in res.data) {
-                res.data[key].set_time = new Date(res.data[key].set_time);
+                res.data[key].different = Math.abs(parseInt(res.data[key].different));
             }
             $scope.trackings = res.data;
         });
-    };
-
+    })
+    // 点击确认收到
     $scope.perform = function (id) {
-        var url = BASE_URL + '/reminder/check';
+        var url = BASE_URL + '/reminder/done';
         var data = {
-            itinerary_id: id
+            actionofplan_id : id
         };
+        console.log('reminder/done:request', data);
         $http.post(url, data).then(function (res) {
-            init();
+            location.reload();
         });
     }
-
+    // back
     $scope.go_back = function () {
-        $ionicHistory.goBack();
+        $state.go('tab.news');
     }
 });

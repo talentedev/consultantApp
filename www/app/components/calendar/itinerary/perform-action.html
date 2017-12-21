@@ -8,77 +8,81 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="list()">
             统计
         </button>
     </ion-nav-buttons>
     <ion-content id="perform-analysis" class="padding-without">
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-25 item-title">
-                    问题
-                </div>
-                <div class="col">
-                    <input type="text" placeholder="请点击输入" />
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-25 item-title">
-                    行动目标
-                </div>
-                <div class="col">
-                    <input type="text" placeholder="请点击输入" />
+        <div ng-repeat="actionplan in actions track by $index">
+            <div class="list">
+                <div class="item row" style="border:none;">
+                    <div class="col col-25 item-title">
+                        问题
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入" ng-model="action.issue[$index]">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    行动方案
+            <div class="list">
+                <div class="item row" style="border:none;">
+                    <div class="col col-25 item-title">
+                        行动目标
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入" ng-model="action.action_target[$index]">
+                    </div>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    执行人
+
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        行动方案
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入或选择备选" ng-model="action.action_program[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="常淳、勾宇" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    制定时间
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        执行人
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" ng-model="action.executor[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right" ng-click="go_executor($index)"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="2016-01-01" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    预计完成
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        制定时间
+                    </div>
+                    <div class="col col-50">
+                        <input type="date" placeholder="2016-01-01" ng-model="action.develop_time[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="2016-01-02" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <textarea placeholder="备注"></textarea>
-        <div class="store-section">
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        预计完成
+                    </div>
+                    <div class="col col-50">
+                        <input type="date" placeholder="2016-01-02" ng-model="action.plan_complete_time[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </div>
+            <textarea placeholder="备注" ng-model="action.comments[$index]"></textarea><br />
+        </div> 
+
+        <div class="store-section" ng-click="addAction()">
             添加其它行动计划+
         </div>
         <div class="row">
@@ -93,7 +97,7 @@
             <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
         </div>
         <div class="button-area">
-            <button class="button" ng-click="go_back()">保存</button>
+            <button class="button" ng-click="save(action)">保存</button>
         </div>
     </ion-content>
 </ion-view>

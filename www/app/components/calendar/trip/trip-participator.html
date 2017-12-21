@@ -31,7 +31,7 @@
             </div>
             -->
             <div class="item item-thumbnail-left item-icon-right" ng-repeat="member in members">
-                <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:45px; height:40px" />
+                <img class="img-thumb" src="{{member.headimgurl}}" style="width:45px; height:40px" />
                 <p><span class="list-title">{{member.real_name}}</span></p>
                 <p class="list-description">{{member.department}} {{member.area}} {{member.position}}</p>
                 <i class="icon fa fa-check-square-o" style="font-size:25px;" ng-click="onItem($event, $index, member)"></i>

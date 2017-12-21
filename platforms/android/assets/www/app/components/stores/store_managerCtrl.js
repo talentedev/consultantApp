@@ -78,7 +78,7 @@ app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ion
         }
         $http.post(url, data).then(function (res) {
             var response = res.data[0];
-            console.log(response);
+            console.log('staff/get:response', response);
             // set header
             $scope.staff_name = response.staff_name;
             $scope.identity = response.learn_identity;
@@ -107,7 +107,7 @@ app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ion
         data.position = $scope.staff.position.value;
         data.learn_identity = $scope.staff.learn_identity.name;
         data.sex = $scope.staff.sex.value;
-        
+        console.log('staff/update:request: ', data);
         $http.post(url, data).then(function (res) {
             $ionicHistory.goBack();
         });

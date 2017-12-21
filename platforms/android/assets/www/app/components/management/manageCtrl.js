@@ -1,7 +1,13 @@
 ﻿/*
- * user management chart controller
+ * 自我管理
+ * @author : kmr
+ * @modifed : 2017/8/29
  */
-app.controller('manageCtrl', function ($scope, $state) {
+app.controller('manageCtrl', function ($scope, $state, $http, BASE_URL) {
+    $scope.myDataSource1 = {};
+    $scope.myDataSource2 = {};
+    $scope.myDataSource1.data = [];
+    $scope.myDataSource2.data = [];
     $scope.myDataSource1 = {
         chart: {
             "borderColor": "#ffffff",
@@ -25,35 +31,35 @@ app.controller('manageCtrl', function ($scope, $state) {
         },
         data: [{
             label: "一月",
-            value: "9",
+            value: "",
             color: "#48b52d"
         }, {
             label: "二月",
-            value: "12",
+            value: "",
             color: "#48b52d"
         }, {
             label: "三月",
-            value: "12",
+            value: "",
             color: "#48b52d"
         }, {
             label: "四月",
-            value: "12",
+            value: "",
             color: "#48b52d"
         }, {
             label: "五月",
-            value: "12",
+            value: "",
             color: "#48b52d"
         }, {
             label: "六月",
-            value: "12",
+            value: "",
             color: "#48b52d"
         }, {
             label: "七月",
-            value: "9",
+            value: "",
             color: "#48b52d"
         }, {
             label: "八月",
-            value: "20",
+            value: "",
             color: "#48b52d"
         }, {
             label: "九月",
@@ -97,35 +103,35 @@ app.controller('manageCtrl', function ($scope, $state) {
         },
         data: [{
             label: "一月",
-            value: "190",
+            value: "",
             color: "#48b52d"
         }, {
             label: "二月",
-            value: "92",
+            value: "",
             color: "#48b52d"
         }, {
             label: "三月",
-            value: "174",
+            value: "",
             color: "#48b52d"
         }, {
             label: "四月",
-            value: "148",
+            value: "",
             color: "#48b52d"
         }, {
             label: "五月",
-            value: "179",
+            value: "",
             color: "#48b52d"
         }, {
             label: "六月",
-            value: "179",
+            value: "",
             color: "#48b52d",
         }, {
             label: "七月",
-            value: "150",
+            value: "",
             color: "#48b52d"
         }, {
             label: "八月",
-            value: "160",
+            value: "",
             color: "#48b52d"
         }, {
             label: "九月",
@@ -144,5 +150,44 @@ app.controller('manageCtrl', function ($scope, $state) {
             value: "",
             color: "#48b52d"
         }]
+    };
+    
+    $scope.$on('$ionicView.enter', function (event) {
+        var date = new Date();
+        $scope.year = date.getFullYear().toString();
+        init(date.getFullYear().toString());
+    });
+
+    $scope.selYear = function (year) {
+        init(year);
+    };
+
+    var init = function (date) {
+        var url = BASE_URL + '/chart/visitshop';
+        var data = {
+            year: date
+        };
+        console.log('chart/visitshop:request', data);
+        $http.post(url, data).then(function (res) {
+            console.log('chart/visitshop:response', res.data);
+            var data = res.data;
+            var arr = [];
+            var i = 0;
+            var length = Object.keys(data).length;
+            for (i = 0; i < length; i++) {
+                $scope.myDataSource1.data[i].value = data[Object.keys(data)[i]];
+            }
+        });
+        url = BASE_URL + '/chart/worktime';
+        $http.post(url, data).then(function (res) {
+            console.log('chart/worktime:response', res.data);
+            var data = res.data;
+            var arr = [];
+            var i = 0;
+            var length = Object.keys(data).length;
+            for (i = 0; i < length; i++) {
+                $scope.myDataSource2.data[i].value = data[Object.keys(data)[i]];
+            }
+        });
     };
 });

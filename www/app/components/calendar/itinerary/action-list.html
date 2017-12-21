@@ -1,0 +1,36 @@
+﻿<ion-view ng-controller="action-listCtrl">
+    <ion-nav-title>
+        行动计划
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
+            导出
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="audit-list">
+        <div class="row header">
+            <div class="col">问题</div>
+            <div class="col">行动目标</div>
+            <div class="col">行动方案</div>
+            <div class="col">执行人</div>
+            <div class="col">制定时间</div>
+            <div class="col">预计完成时间</div>
+        </div>
+        <div style="border:1px #000;" ng-repeat="data in actions" style="margin-top:0;border-top:1px solid #ddd;">
+            <div class="row">
+                <div class="col">{{data.issue}}</div>
+                <div class="col">{{data.action_target}}</div>
+                <div class="col">{{data.action_program}}</div>
+                <div class="col">{{data.executor}}</div>
+                <div class="col">{{data.develop_time}}</div>
+                <div class="col">{{data.plan_complete_time}}</div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

@@ -1,6 +1,6 @@
 ﻿<ion-view ng-controller="perform-tripCtrl">
     <ion-nav-title>
-        添加行程
+        店面评估
     </ion-nav-title>
     <ion-nav-buttons side="left">
         <button class="button button-clear" ng-click="go_back()">
@@ -8,178 +8,19 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="">
             统计
         </button>
     </ion-nav-buttons>
     <ion-content id="perform-analysis">
-        <div class="list">
+        <div class="list" ng-repeat="item in items">
             <div class="item row" style="border:none;">
                 <div class="col col-75 item-title">
-                    室外地面清洁/完好/没有堆放旧胎
+                    {{item.sop_method1}}
                 </div>
                 <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    是否有独立顾客休息室，并大于等于15平米
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    卫生间洁净无异味，洗手液/卫生纸充足
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    工位区所有举升机、平衡机、拆胎机、轮胎修补工具、接油机、四轮定位工作情况正常
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star-o" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    工位区工具车完好/工具存放整齐有序，并有机油更换，刹车更换工具。
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    陈列的轮胎正确（标签方向一致方便顾客查阅)、数量充足，并随时补齐（没有竞品轮胎）
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    展示轮胎堆头清洁、轮胎展示方式正确（至少一个堆头、三平一立）
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    店面有充足的轮胎库存（建议大于RP的1.5个月）
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    是否有至少一位以上懂得机油更换，刹车片等快修知识和操作人员
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    驰加招牌、外挂品牌灯箱清洁/完好
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    室外地面清洁/完好/没有堆放旧胎
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    室外地面清洁/完好/没有堆放旧胎
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    室外地面清洁/完好/没有堆放旧胎
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    室外地面清洁/完好/没有堆放旧胎
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    室外地面清洁/完好/没有堆放旧胎
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    室外地面清洁/完好/没有堆放旧胎
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
-                </div>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row" style="border:none;">
-                <div class="col col-75 item-title">
-                    室外地面清洁/完好/没有堆放旧胎
-                </div>
-                <div class="col col-25">
-                    <i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>
+                    <!--<i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>-->
+                    <select ng-model="score" ng-options="option.name for option in scores"></select>
                 </div>
             </div>
         </div>

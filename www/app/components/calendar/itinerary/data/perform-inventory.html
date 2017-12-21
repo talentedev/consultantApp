@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="list()">
             统计
         </button>
     </ion-nav-buttons>
@@ -38,7 +38,7 @@
                         轮胎编号
                     </div>
                     <div class="col col-50">
-                        <input type="text" ng-model="inventory.tire_id">
+                        <input type="text" ng-model="inventory.brand_code[$index]">
                     </div>
                     <i class="icon ion-ios-arrow-right"></i>
                 </div>
@@ -47,7 +47,7 @@
                         轮胎名称
                     </div>
                     <div class="col col-50">
-                        <input type="text" ng-model="inventory.tire_name">
+                        <input type="text" ng-model="inventory.brand_name[$index]">
                     </div>
                     <i class="icon fa fa-refresh" style="font-size:24px;"></i>
                 </div>
@@ -56,7 +56,7 @@
                         库存数量
                     </div>
                     <div class="col">
-                        <input type="text" placeholder="请点击输入" ng-model="inventory.amount">
+                        <input type="text" placeholder="请点击输入" ng-model="inventory.storenum[$index]">
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
         <div class="store-section" ng-click="addInvent()">
             添加其它库存商品+
         </div>
-        <div class="list">
+        <!--<div class="list">
             <div class="item row item-icon-right" style="border:none;">
                 <div class="col col-25 item-title">
                     上报人
@@ -86,9 +86,9 @@
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <textarea placeholder="备注" ng-model="inventory.remark"></textarea>
-        <div class="row">
+        </div>-->
+        <textarea placeholder="备注" ng-model="comments"></textarea>
+        <!--<div class="row">
             <div class="col col-25">
                 <i class="icon fa fa-camera big" ng-click="go_camera()"></i>
             </div>
@@ -98,9 +98,9 @@
         </div>
         <div class="store-section mark">
             <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
-        </div>
+        </div>-->
         <div class="button-area">
-            <button class="button" ng-click="save(inventory)">保存</button>
+            <button class="button" ng-click="save(inventory, comments)">保存</button>
         </div>
     </ion-content>
 </ion-view>

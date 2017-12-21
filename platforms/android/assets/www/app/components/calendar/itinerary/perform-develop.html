@@ -15,7 +15,7 @@
                         问题
                     </div>
                     <div class="col col-50">
-                        <input type="text" placeholder="请点击输入" ng-model="action[$index].issue">
+                        <input type="text" placeholder="请点击输入" ng-model="action.issue[$index]">
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                         行动目标
                     </div>
                     <div class="col col-50">
-                        <input type="text" placeholder="请点击输入" ng-model="action[$index].action_target">
+                        <input type="text" placeholder="请点击输入" ng-model="action.action_target[$index]">
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                         行动方案
                     </div>
                     <div class="col col-50">
-                        <input type="text" placeholder="请点击输入或选择备选" ng-model="action[$index].action_program">
+                        <input type="text" placeholder="请点击输入或选择备选" ng-model="action.action_program[$index]">
                     </div>
                     <i class="icon ion-ios-arrow-right"></i>
                 </div>
@@ -47,9 +47,9 @@
                         执行人
                     </div>
                     <div class="col col-50">
-                        <input type="text" placeholder="常淳、勾宇" ng-model="action[$index].executor">
+                        <input type="text" ng-model="action.executor[$index]">
                     </div>
-                    <i class="icon ion-ios-arrow-right" ng-click="go_executor()"></i>
+                    <i class="icon ion-ios-arrow-right" ng-click="go_executor($index)"></i>
                 </div>
             </div>
             <div class="list">
@@ -58,7 +58,7 @@
                         制定时间
                     </div>
                     <div class="col col-50">
-                        <input type="date" placeholder="2016-01-01" ng-model="action[$index].develop_time">
+                        <input type="date" placeholder="2016-01-01" ng-model="action.develop_time[$index]">
                     </div>
                     <i class="icon ion-ios-arrow-right"></i>
                 </div>
@@ -69,19 +69,19 @@
                         预计完成
                     </div>
                     <div class="col col-50">
-                        <input type="date" placeholder="2016-01-02" ng-model="action[$index].plan_complete_time">
+                        <input type="date" placeholder="2016-01-02" ng-model="action.plan_complete_time[$index]">
                     </div>
                     <i class="icon ion-ios-arrow-right"></i>
                 </div>
             </div>
-            <textarea placeholder="备注" ng-model="action[$index].comments"></textarea><br />
+            <textarea placeholder="备注" ng-model="action.comments[$index]"></textarea><br />
         </div>        
         
         <div class="store-section" ng-click="addAction()">
             添加其它行动计划及草案+
         </div>
         <div class="button-area">
-            <button class="button" ng-click="save()">保存</button>
+            <button class="button" ng-click="save(action)">保存</button>
         </div>
     </ion-content>
 </ion-view>

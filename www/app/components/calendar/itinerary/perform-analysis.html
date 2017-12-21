@@ -26,63 +26,63 @@
                 </div>
             </div>
         </div>
-        <div class="list" ng-repeat="strong in strongths track by $index">
+        <div class="list">
             <div class="item row item-icon-right" style="border:none;">
                 <div class="col col-25 item-title">
                     自身优势
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" ng-model="swot.strengths[$index]">
+                    <input type="text" placeholder="请点击输入或选择备选" ng-model="swot.strengths[0]">
                 </div>
-                <i class="icon ion-ios-arrow-right"></i>
+                <!--<i class="icon ion-ios-arrow-right"></i>-->
             </div>
         </div>
-        <div class="store-section" ng-click="addStrong()">
+        <!--<div class="store-section" ng-click="addStrong()">
             添加其它自身优势+
-        </div>
-        <div class="list" ng-repeat="weak in weaks track by $index">
+        </div>-->
+        <div class="list">
             <div class="item row item-icon-right" style="border:none;">
                 <div class="col col-25 item-title">
                     自我弱点
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" ng-model="swot.weakness[$index]">
+                    <input type="text" placeholder="请点击输入或选择备选" ng-model="swot.weakness[0]">
                 </div>
-                <i class="icon ion-ios-arrow-right"></i>
+                <!--<i class="icon ion-ios-arrow-right"></i>-->
             </div>
         </div>
-        <div class="store-section" ng-click="addWeak()">
+        <!--<div class="store-section" ng-click="addWeak()">
             添加其它自我弱点+
-        </div>
-        <div class="list" ng-repeat="opportunity in opportunities track by $index">
+        </div>-->
+        <div class="list">
             <div class="item row item-icon-right" style="border:none;">
                 <div class="col col-25 item-title">
                     外部机遇
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" ng-model="swot.opportunity[$index]">
+                    <input type="text" placeholder="请点击输入或选择备选" ng-model="swot.opportunity[0]">
                 </div>
-                <i class="icon ion-ios-arrow-right"></i>
+                <!--<i class="icon ion-ios-arrow-right"></i>-->
             </div>
         </div>
-        <div class="store-section" ng-click="addOpportunity()">
+        <!--<div class="store-section" ng-click="addOpportunity()">
             添加其它外部机遇+
-        </div>
-        <div class="list" ng-repeat="threat  in threats  track by $index">
+        </div>-->
+        <div class="list">
             <div class="item row item-icon-right" style="border:none;">
                 <div class="col col-25 item-title">
                     外部威胁
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" ng-model="swot.threats[$index]">
+                    <input type="text" placeholder="请点击输入或选择备选" ng-model="swot.threats[0]">
                 </div>
-                <i class="icon ion-ios-arrow-right"></i>
+                <!--<i class="icon ion-ios-arrow-right"></i>-->
             </div>
         </div>
-        <div class="store-section" ng-click="addThreat()">
+        <!--<div class="store-section" ng-click="addThreat()">
             添加其它外部威胁+
-        </div>
-        <textarea placeholder="备注" ng-model="swot.remark"></textarea>
+        </div>-->
+        <textarea placeholder="备注" ng-model="swot.increase"></textarea>
         <div class="button-area">
             <button class="button" ng-click="save()">保存</button>
         </div>

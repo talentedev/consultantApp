@@ -1,23 +1,37 @@
 ﻿/*
- * the controller that manage announcement data
+ * 公告
+ * @author : kmr
+ * @modified : 2017/8/26
  */
-
 app.controller('news-announcementCtrl', function ($scope, $state, $ionicHistory, BASE_URL, $http) {
-
-    $scope.announcement_init = function () {
-        var url = BASE_URL + '/announcement';
-        $http.get(url).then(function (res) {           
+    $scope.$on('$ionicView.enter', function (event) {
+        var url = BASE_URL + '/posts/list';
+        $http.get(url).then(function (res) {
+            console.log('posts/list:response', res.data)           
             for (index in res.data) {
-                var parts = res.data[index].report_date.split('-');
-                res.data[index].report_date = new Date(parts[0], parts[1] - 1, parts[2]);
+                var date = new Date(res.data[index].dateover);
+                res.data[index].month = date.getMonth() + 1;
+                res.data[index].day = date.getDate();
             }
-            $scope.announcements = res.data;
+            $scope.posts = res.data;
         }, function (err) {
-            alert('Connection failed!');
+            alert('失败!');
+        });
+    });
+    // 点击确认收到
+    $scope.read = function (userId) {
+        var url = BASE_URL + '/posts/read';
+        var data = {
+            infocenter_id: userId
+        }
+        $http.post(url, data).then(function (res) {
+            location.reload();
+        }, function (err) {
+            alert('失败!');
         });
     };
-
+    // back
     $scope.go_back = function () {
         $ionicHistory.goBack();
-    }
+    };
 });

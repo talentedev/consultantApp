@@ -1,0 +1,32 @@
+﻿<ion-view ng-controller="audit-listCtrl">
+    <ion-nav-title>
+        驰加审计结果统计
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="filter()">
+            筛选
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="audit-list">
+        <div class="row header">
+            <div class="col">审计类型</div>
+            <div class="col">年份</div>
+            <div class="col">月份</div>
+            <div class="col">审计结果</div>            
+        </div>
+        <div style="border:1px #000;" ng-repeat="data in audits" ng-click="edit(data)">
+            <div class="row">
+                <div class="col">{{data.type}}</div>
+                <div class="col">{{data.year}}</div>
+                <div class="col">{{data.month}}</div>
+                <div class="col">{{data.auditresult}}</div>
+            </div>
+        </div>
+        
+    </ion-content>
+</ion-view>

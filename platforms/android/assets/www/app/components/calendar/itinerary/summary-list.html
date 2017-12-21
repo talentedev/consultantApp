@@ -1,0 +1,34 @@
+﻿<ion-view ng-controller="summary-listCtrl">
+    <ion-nav-title>
+        总结
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
+            导出
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="audit-list">
+        <div class="row header">
+            <div class="col">目的</div>
+            <div class="col">主题</div>
+            <div class="col">执行人</div>
+            <div class="col">时间</div>
+            <div class="col">效果</div>            
+        </div>
+        <div style="border:1px #000;" ng-repeat="data in summary" style="margin-top:0;border-top:1px solid #ddd;">
+            <div class="row">
+                <div class="col">{{data.meeting_target}}</div>
+                <div class="col">{{data.meeting_subject}}</div>
+                <div class="col">{{data.meeting_people}}</div>
+                <div class="col">{{data.meeting_time}}</div>
+                <div class="col">{{data.effect}}</div>                
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

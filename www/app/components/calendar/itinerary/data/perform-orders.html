@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="list()">
             统计
         </button>
     </ion-nav-buttons>
@@ -19,7 +19,7 @@
                     门店编号
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="{{store_id}}" />
+                    <input type="text" ng-model="shop_code" disabled>
                 </div>
             </div>
             <div class="item row" style="border:none;">
@@ -27,17 +27,17 @@
                     门店名称
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="{{store_name}}" />
+                    <input type="text" ng-model="shop_name" disabled>
                 </div>
             </div>
         </div>
-        <div class="list">
+        <div class="list" ng-repeat="block in orders track by $index">
             <div class="item row item-icon-right">
                 <div class="col col-25 item-title">
                     轮胎编号
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="6921317905014" ng-model="order.tire_id">
+                    <input type="text"  ng-model="order.brand_code[$index]">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -46,7 +46,7 @@
                     轮胎名称
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="米其林 Energy XM 2 韧悦" ng-model="order.tire_name">
+                    <input type="text" ng-model="order.brand_name[$index]">
                 </div>
                 <i class="icon fa fa-refresh" style="font-size:24px;"></i>
             </div>
@@ -55,7 +55,7 @@
                     数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="请点击输入" ng-model="order.amount">
+                    <input type="text" placeholder="请点击输入" ng-model="order.ordernum[$index]">
                 </div>
             </div>
             <div class="item row item-icon-right">
@@ -63,7 +63,7 @@
                     单价
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" ng-model="order.price">
+                    <input type="text" placeholder="请点击输入或选择备选" ng-model="order.orderprice[$index]">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -72,59 +72,15 @@
                     金额小计
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="请点击输入或自动计算" ng-model="order.sub_price">
+                    <input type="text" placeholder="请点击输入或自动计算" ng-model="order.order_total[$index]">
                 </div>
             </div>
         </div>
-        <div class="list">
-            <div class="item row item-icon-right">
-                <div class="col col-25 item-title">
-                    轮胎编号
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="6921317905014" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item row item-icon-right">
-                <div class="col col-25 item-title">
-                    轮胎名称
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="米其林 Energy XM 2 韧悦" />
-                </div>
-                <i class="icon fa fa-refresh" style="font-size:24px;"></i>
-            </div>
-            <div class="item row">
-                <div class="col col-25 item-title">
-                    数量
-                </div>
-                <div class="col">
-                    <input type="text" placeholder="请点击输入" />
-                </div>
-            </div>
-            <div class="item row item-icon-right">
-                <div class="col col-25 item-title">
-                    单价
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item row" style="border:none;">
-                <div class="col col-25 item-title">
-                    金额小计
-                </div>
-                <div class="col">
-                    <input type="text" placeholder="请点击输入或自动计算" />
-                </div>
-            </div>
-        </div>
-        <div class="store-section">
+        
+        <div class="store-section" ng-click="addOrder()">
             添加其它订单+
         </div>
-        <div class="list">
+        <!--<div class="list">
             <div class="item row item-icon-right" style="border:none;">
                 <div class="col col-25 item-title">
                     上报人
@@ -145,9 +101,9 @@
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <textarea placeholder="备注" ng-model="order.remark"></textarea>
-        <div class="row">
+        </div>-->
+        <textarea placeholder="备注" ng-model="comments"></textarea>
+        <!--<div class="row">
             <div class="col col-25">
                 <i class="icon fa fa-camera big" ng-click="go_camera()"></i>
             </div>
@@ -157,9 +113,9 @@
         </div>
         <div class="store-section mark">
             <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
-        </div>
+        </div>-->
         <div class="button-area">
-            <button class="button" ng-click="save(order)">保存</button>
+            <button class="button" ng-click="save(order, comments)">保存</button>
         </div>
     </ion-content>
 </ion-view>

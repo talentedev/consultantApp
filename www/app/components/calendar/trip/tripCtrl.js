@@ -1,13 +1,14 @@
 ﻿/*
- * 添加行程
+* 添加行程
+* @author : kmr
+* @modified : 2017/8/22
 */
 app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService, BASE_URL, $http) {
 
     $scope.$on('$ionicView.enter', function (event) {        
         init();
     })
-
-    // initialize current view
+    // initialize page
     var init = function () {        
         setPlanType();
         setStartTime();
@@ -16,8 +17,7 @@ app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService,
         setParticipator();
         setShop();
     }
-
-    // set plan type
+    // 选择行程类型
     var setPlanType = function () {
         var plan_type = TripService.getPlanType();
         if (plan_type == null) {
@@ -26,8 +26,7 @@ app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService,
             $scope.plan_type = plan_type;
         }
     }
-
-    // set start time
+    // 开始时间
     var setStartTime = function () {
         /*var today = new Date();
         today.setDate(today.getDate()); 
@@ -35,20 +34,18 @@ app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService,
         $scope.start_time = joinString.join('-');*/
     }
 
-    // set date to finish. the default value is tomorrow.
+    // 结束时间
     var setEndTime = function () {
         /*var today = new Date();
         today.setDate(today.getDate()); 
         var joinString = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
         $scope.end_time = joinString.join('-');*/
     }
-
-    // set duty
+    // 负责员工
     var setDuty = function () {
         $scope.duty = TripService.getDuty();
     }
-
-    // set participator
+    // 参与员工
     var setParticipator = function () {
         var participators = [];
         participators = TripService.getParticipators();
@@ -58,13 +55,11 @@ app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService,
         }
         $scope.participators = temp.join();
     }
-
-    // set a store
+    // 相关门店
     var setShop = function () {
         $scope.shop = TripService.getShop();
     }
-
-    // save current data to database.
+    // 保存
     $scope.save = function (time) {
         var today = new Date();
 
@@ -77,34 +72,34 @@ app.controller('tripCtrl', function ($scope, $state, $ionicHistory, TripService,
             //start_time: document.getElementById('start_time').value,
             //end_time: document.getElementById('end_time').value           
         }
-        console.log('plan/create', data);
+        console.log('plan/create:request: ', data);
         // validate
         if (typeof data.sid == 'undefined' || typeof data.plantype_id == 'undefined') {
-            alert('Please enter all items.');
+            alert('请输入所有项目!');
         } else {
             $http.post(url, data).then(function (res) {
-                console.log(res.data);
+                console.log('plan/create:response: ', res.data);
                 $ionicHistory.goBack();
             }); 
         }               
     }
-
+    // 取消
     $scope.go_back = function () {
         $ionicHistory.goBack();
     }
-
+    // 行程类型
     $scope.go_type = function () {
         $state.go('trip-type');
     }
-
+    // 负责员工
     $scope.go_select_duty = function () {
         $state.go('trip-duty');
     }
-
+    // 参与员工
     $scope.go_select_participator = function () {
         $state.go('trip-participator');
     }
-
+    // 相关门店
     $scope.go_store = function () {
         $state.go('trip-store');
     }

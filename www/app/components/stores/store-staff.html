@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="confirm()">
+        <button class="button button-clear" ng-click="addStaff()">
             添加
         </button>
     </ion-nav-buttons>
@@ -23,7 +23,7 @@
         </div>
         <div class="list">
             <div class="item item-thumbnail-left item-icon-right" ng-repeat="staff in staffs">
-                <img class="img-thumb" src="assets/img/imgplaceholder.png" style="width:50px; height:50px; border-radius:25px;" />
+                <img class="img-thumb" src="{{staff.head_url}}" style="width:50px; height:50px; border-radius:25px;" />
                 <i class="icon ion-chevron-right" ng-click="go_detail(staff.shopofstaff_id)"></i>
                 <p>                    
                     <div class="staff-name">{{staff.staff_name}}</div>

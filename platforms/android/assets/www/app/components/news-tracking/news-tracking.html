@@ -8,28 +8,29 @@
         </button>
     </ion-nav-buttons>
     <ion-content id="news-tracking">
-        <div class="list" ng-hide="{{hide}}">
+        <div class="list">
             <div class="item" ng-repeat="tracking in trackings" >
                 <div class="main">
                     <div class="row">
                         <div class="col-22">
-                            <div class="thumb"></div>
+                            <!--<div class="thumb"></div>-->
+                            <img src="{{tracking.shopface_url}}" alt="shop image" style="width:65px;height:65px;border-radius:50%;"/>
                         </div>
                         <div class="col">
-                            <div class="detail"><span class="list-title">{{tracking.store_id}}</span></div>
-                            <div class="detail">{{tracking.store_name}}</div>
+                            <div class="detail"><span class="list-title">{{tracking.shop_code}}</span></div>
+                            <div class="detail">{{tracking.shop_name}}</div>
                         </div>
                     </div>
                     <div class="list-description">
-                        <p>问题：{{tracking.problem}}</p>
+                        <p>问题：{{tracking.issue}}</p>
                         <p>行动目标：{{tracking.action_target}}</p>
-                        <p>内容：1、取下门店工位上方吊旗，不再悬挂；<span style="background-color: transparent;">2、增加门店驰加有道卡陈列宣传（机油货架、海报等）；</span></p>
+                        <p>内容：{{tracking.action_program}}</p>
                         <p>执行人：{{tracking.executor}}</p>
-                        <p>预计完成时间：{{tracking.set_time}}</p>
-                        <p>超时提醒：已超时1天</p>
+                        <p>预计完成时间：{{tracking.plan_complete_time}}</p>
+                        <p>超时提醒：已超时{{tracking.different}}天</p>
                     </div>
                 </div>
-                <div class="item-footer" ng-click="perform(tracking.itinerary_id)">点击确认收到</div>
+                <div class="item-footer" ng-click="perform(tracking.actionofplan_id)">点击确认收到</div>
             </div>         
         </div>
     </ion-content>

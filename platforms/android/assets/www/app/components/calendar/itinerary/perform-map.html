@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="">
             统计
         </button>
     </ion-nav-buttons>
@@ -17,16 +17,16 @@
         <div class="row">
             <div class="col col-50">
                 <i class="fa fa-calendar" style="font-size:18px;"></i>
-                <span style="font-size:12px; margin-left:10px;">星期{{day}}：{{today}} </span>
+                <span style="font-size:12px; margin-left:10px;">星期{{day}} ：{{today}} </span>
             </div>
             <div class="col col-50">
-                <!--<i class="fa fa-clock-o" style="font-size:18px;"></i>
-                <span style="font-size:12px; margin-left:10px;">当前时间：{{duration}}</span>-->
+                <i class="fa fa-clock-o" style="font-size:18px;"></i>
+                <span style="font-size:12px; margin-left:10px;">当前时间 ： {{hour}} : {{minute}}</span>
             </div>
         </div>
         <div class="row white-area">
             <div class="col col-75">
-                <P>{{store_name}}</P>
+                <P></P>
                 <P>{{address}}</P>
             </div>
             <div class="col col-25">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="button-area">
-            <button class="button" ng-click="go_back()"><i class="fa fa-map-marker" style="font-size:14px;display:inline-block;"></i><span>提交</span></button>
+            <button class="button" ng-click="go_save()"><i class="fa fa-map-marker" style="font-size:14px;display:inline-block;"></i><span>提交</span></button>
         </div>
     </ion-content>
 </ion-view>

@@ -10,6 +10,7 @@ app.controller('store-staffCtrl', function ($scope, $state, $http, $stateParams,
             sid: $stateParams.sid
         }
         $http.post(url, data).then(function (res) {
+            console.log('staff/list:response', res.data);
             $scope.staffs = res.data;
         });
     });
@@ -34,6 +35,13 @@ app.controller('store-staffCtrl', function ($scope, $state, $http, $stateParams,
         $state.go('store-manager', {
             sid: $stateParams.sid,
             shopofstaff_id: shopofstaff_id
+        });
+    }
+
+    // add new member of the store
+    $scope.addStaff = function () {
+        $state.go('store-addstaff', {
+            sid: $stateParams.sid
         });
     }
 });

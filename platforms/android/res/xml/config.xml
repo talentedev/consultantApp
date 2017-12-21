@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget defaultLocale="en-US" id="io.cordova.myapp74d0c8" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget defaultLocale="en-US" id="io.cordova.myapp74d0c8" version="2.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
@@ -67,4 +67,5 @@
     <preference name="BackupWebStorage" value="none" />
     <preference name="loadUrlTimeoutValue" value="700000" />
     <preference name="windows-target-version" value="8.1" />
+    <preference name="android-targetSdkVersion" value="19" />
 </widget>

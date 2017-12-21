@@ -42,11 +42,11 @@
         <div class="list">
             <div class="item item-icon-right" ng-repeat="item in visit" ng-click="go_perform(item)">
                 <i class="icon ion-chevron-right"></i>
-                {{item.start_time}} {{item.plan_type}} {{item.store_name}}
+                {{item.start_time}} {{item.plantype_name}} {{item.shop_name}}
             </div>            
-            <div class="item item-icon-right" ng-repeat="item in non_visit" ng-click="go_road()">
+            <div class="item item-icon-right" ng-repeat="item in non_visit" ng-click="go_road(item)">
                 <i class="icon ion-chevron-right"></i>
-                {{item.start_time}} {{item.plan_type}}
+                {{item.start_time}} {{item.plantype_name}}
             </div>
         </div>
         <div id="description">

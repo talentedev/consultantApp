@@ -1,14 +1,14 @@
 ﻿/*
  * 添加/修改门店
+ * @author : kmr
+ * @modified : 2017/8/29
  */
 app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $ionicHistory, $http, BASE_URL, $ionicPopover) {
-
     var save_setting = null;
     var areaId = null;
     var self = this;
 
     $scope.$on('$ionicView.enter', function (event) {
-
         /*************************************************/
         /* Input with dropdown for province and city     */
         /*************************************************/
@@ -21,10 +21,11 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
 
         var province_url = BASE_URL + '/province';
         $http.get(province_url).then(function (res) {
-            for (key in res.data) {
-                res.data[key].readableName = res.data[key].area_name;
-            }
-            self.defaultDropdownObjects = res.data;
+            //for (key in res.data) {
+            //    res.data[key].readableName = res.data[key].area_name;
+            //}
+            //self.defaultDropdownObjects = res.data;
+            $scope.province = res.data;
         });
         // Filter method is passed with attribute 'filter-list-method="method(userInput)"'.
         // Called on the onchange event from the input field. Should return a promise resolving with an array of items to show in the dropdown.
@@ -42,22 +43,20 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             filter.resolve(filteredArray);
             return filter.promise;
         };
-
         // Called when user selected an item from dropdown. Passed with attribute 'item-selected-method="method(item)"'.
         self.itemObjectSelected = function (item) {
             // get cities in the selected province
-            var cityUrl = BASE_URL + '/city';
-            var data = {
-                area_id: item.area_id
-            }
-            $http.post(cityUrl, data).then(function (res) {
-                for (key in res.data) {
-                    res.data[key].readableName = res.data[key].area_name;
-                }
-                self.cityDropdownObjects = res.data;
-            });
+            //var cityUrl = BASE_URL + '/city';
+            //var data = {
+            //    area_id: item.area_id
+            //}
+            //$http.post(cityUrl, data).then(function (res) {
+            //    for (key in res.data) {
+            //        res.data[key].readableName = res.data[key].area_name;
+            //    }
+            //    self.cityDropdownObjects = res.data;
+            //});
         };
-
         self.filterCityList = function () {
             var filter = $q.defer();
             var normalisedInput = userInput.toLowerCase();
@@ -70,27 +69,28 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
 
             filter.resolve(filteredArray);
             return filter.promise;
-        }
-
+        };
         self.citySelected = function (item) {
             areaId = item.area_id;
             console.log(areaId);
         };
 
+        
         /*************************************************/
         /*     Initialize  page                          */
         /*************************************************/
         $scope.store = {};
         $scope.business = {};
-
+        $scope.shopface_url = '';
+        $scope.selectedProvince = '';
+        $scope.selectedCity = '';
+        $scope.city = [];
         // initialize business services
         var business_url = BASE_URL + '/business';
         $http.get(business_url).then(function (res) {
             $scope.services = res.data;
         });
-
-        $scope.sid = null;    
-        
+        $scope.sid = null;        
         // initialize shop type
         $scope.shop_style = [
             {
@@ -107,7 +107,6 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             }
         ];
         $scope.store.shop_style = $scope.shop_style[0];
-
         // initialize shop state
         $scope.shop_state = [
             {
@@ -124,7 +123,6 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             }
         ];
         $scope.store.shop_state = $scope.shop_state[0];
-
         // initialize shop toilet
         $scope.toilet = [
             {
@@ -137,25 +135,21 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             }           
         ];
         $scope.store.toilet = $scope.toilet[0];
-
         // get shop data in detail
         var url = BASE_URL + '/store/get';
         var data = {
             sid: $stateParams.sid
         };
         $http.post(url, data).then(function (res) {
-            
-            var mergeObject = {};
-                       
+            console.log('store/get:response', res.data);
+            var mergeObject = {};                       
             for (key in res.data) {
                 mergeObject = angular.extend(mergeObject, res.data[key]);
-            }
-            
+            }            
             // set shop header.
             $scope.shop_code = mergeObject.shop_code;
             $scope.short_name = mergeObject.short_name;
             $scope.shop_name = mergeObject.shop_name;
-
             // change date format
             mergeObject.open_time = new Date(mergeObject.open_time);
             mergeObject.shopruntime = new Date(mergeObject.shopruntime);
@@ -166,17 +160,18 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             var services = res.data[3];
             for (key in services) {
                 $scope.business[services[key]] = true;
-            }
-                       
+            }                       
             // set option tags
             $scope.store.shop_style = $scope.shop_style[parseInt(mergeObject.shop_style)];
             $scope.store.shop_state = $scope.shop_state[mergeObject.shop_state];
-            $scope.store.toilet = $scope.toilet[parseInt(mergeObject.toilet)];                        
-        });      
-              
+            $scope.store.toilet = $scope.toilet[parseInt(mergeObject.toilet)];
+            $scope.selectedProvince = mergeObject.parent_name;
+            $scope.selectedCity = mergeObject.area_name;
+            $scope.shopface_url = mergeObject.shopface_url;
+            $scope.dataCity = mergeObject.area_name;
+        });                    
         // set flag
         $scope.sid = $stateParams.sid;
-
         // set flag whether adding or updating the data for a shop
         if ($scope.sid != null) {
             save_setting = 'update';
@@ -184,11 +179,11 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             save_setting = 'add';
         }       
     });
-
+    // 返回
     $scope.go_back = function () {
         $ionicHistory.goBack();
     };
-
+    // 保存
     $scope.go_save = function (store) {
         console.log('save');
         console.log(store);
@@ -198,9 +193,9 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
         data.toilet = store.toilet.value;
 
         data.business = $scope.business;
-        data.area_id = areaId;
-
-        //console.log(data);
+        data.area_name = $scope.dataCity;
+        data.shopface_url = $scope.shopface_url;
+        console.log('store/add(update):request', data);
         // Add new store data
         if (save_setting == 'add') {
             // Check if this store id exist already.
@@ -224,8 +219,7 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
                     }
                 });
             }                   
-        }
-        
+        }        
         // Update store data.
         if (save_setting == 'update') {
             // Check if this store id exist already.
@@ -264,13 +258,29 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             }                       
         }             
     };
-
+    // selected province
+    $scope.selProvince = function (selectedProvince) {        
+        $scope.selectedCity = '';
+        $scope.city = [];
+        console.log(selectedProvince);
+        var cityUrl = BASE_URL + '/city';
+        var data = {
+            area_name: selectedProvince
+        }
+        $http.post(cityUrl, data).then(function (res) {
+            $scope.city = res.data;
+        });
+    };
+    // selected city
+    $scope.selCity = function (selectedCity) {
+        $scope.dataCity = selectedCity;       
+    };
+    // go to staff page
     $scope.go_manager = function () {
         $state.go('store-staff', {
             sid: $scope.store.sid           
         });
     };
-
     // Camera
     $scope.camera = function () {
         var options = {
@@ -285,59 +295,52 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             //          popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, navigator.camera.PopoverArrowDirection.ARROW_ANY),
             saveToPhotoAlbum: false
         };
-
         navigator.camera.getPicture(function (result) {
-            var imgURI = "data:image/jpeg;base64," + result;
-            // generate image file name
-            var today = new Date();
-            var filename = today.getFullYear().toString() + today.getMonth().toString() + today.getDate().toString() + today.getHours().toString() + today.getMinutes().toString() + today.getSeconds().toString();
-            filename += '.jpeg';
+            var imgURI = "data:image/png;base64," + result;
+            // generate file name
+            var date = new Date();
+            var mm = date.getMonth() + 1;
+            var dd = date.getDate();
+            var hh = date.getHours();
+            var minute = date.getMinutes();
+            var ss = date.getSeconds();
 
-            var blob = new Blob([imgURI], { type: 'image/jpeg' });
-            var img_file = new File([blob], filename);
-            var url = 'http://storage.leirui.org/consultant/files/' + filename + '?sv=2016-05-31&ss=b&srt=o&sp=rc&se=2020-01-01T00:00:00Z&st=2017-01-01T00:00:00Z&spr=https,http&sig=e9IDvAHSXM5k0vuzy2u3Uy2tFfifNsdAF9%2FG4cPIL8A%3D';
-            /*alert(img_file.name);
-            var fileReader = new FileReader();
-            fileReader.readAsArrayBuffer(img_file);
-            fileReader.onload = function (e) {
-                Upload.http({
-                    method: "PUT",
-                    url: url,
-                    headers: {
-                        'x-ms-blob-type': 'BlockBlob',
-                        'x-ms-blob-content-type': img_file.type
-                    },
-                    data: e.target.result
-                }).then(function (response) {
-                    if (response.status > 0)
-                        alert(response.status + ': ' + response.data);
-                }, null, function (evt) {
-                    alert('error!');
-                });
-            }*/
-            $http({
-                method: 'PUT',
-                url: url,
-                data: img_file,
-                crossDomain: true,
-                headers: {
-                    'Content-Type': 'image/jpeg',
-                    'x-ms-blob-type': 'BlockBlob'
-                },
-                dataType: "image/jpeg"
-            }).then(function successCallback(response) {
-                console.log(response);
-                alert(filename);
-            }, function errorCallback(response) {
-                console.log(response);
-                alert('error');
+            var filename = [date.getFullYear(),
+                     (mm > 9 ? '' : '0') + mm,
+                     (dd > 9 ? '' : '0') + dd,
+                     (hh > 9 ? '' : '0') + hh,
+                     (minute > 9 ? '' : '0') + minute,
+                     (ss > 9 ? '' : '0') + ss
+            ].join('');
+            filename += '.png';
+            // convert base64 string to file object
+            var dataurl = imgURI;
+            var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            var file = new File([u8arr], filename, { type: mime });
+            var key = file.name;
+
+            //Create Ali cloud upload objects
+            var client = new OSS.Wrapper({
+                region: 'oss-cn-qingdao',
+                accessKeyId: 'LTAIdwD3ntEWRFpj',
+                accessKeySecret: 'OQZMRIffR2qwXXPlSTgA87wKOA3CHF',
+                bucket: 'consultant'
             });
+            // Upload files to server
+            client.multipartUpload('files/' + key, file, {
 
-            var image = document.getElementById('store_image');
-            var urlCreator = window.URL || window.webkitURL;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-            var imageUrl = urlCreator.createObjectURL("http://storage.leirui.org/consultant/files/2017521164947.jpeg");
-            image.src = imageUrl;
+            }).then(function (res) {
+                console.log('upload success: %j', res);
+                console.log(res.url);
+                $scope.shopface_url = res.url;
+                alert('成功上传!');
+            });
         }, function (err) {
+            alert('失败上传!');
         }, options);
-    }
+    };
 });

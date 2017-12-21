@@ -10,6 +10,7 @@ app.controller('trip-dutyCtrl', function ($scope, $state, $ionicHistory, BASE_UR
         // get list of duty members.
         var url = BASE_URL + '/parents';
         $http.get(url).then(function (res) {
+            console.log('/parents:response: ', res.data);
             $scope.members = res.data;
         });
     })

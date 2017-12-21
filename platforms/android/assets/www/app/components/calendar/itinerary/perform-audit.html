@@ -7,14 +7,19 @@
             返回
         </button>
     </ion-nav-buttons>
-    <ion-content id="perform-analysis" class="padding-without">
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="goList()">
+            统计
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="perform-analysis" class="padding-without">        
         <div class="list">
             <div class="item row item-icon-right" style="border:none;">
                 <div class="col col-25 item-title">
                     审计类型
                 </div>
                 <div class="col col-50">
-                    <select id="audit-select"><option>SOP</option><option>CSI</option><option>DMS</option></select>
+                    <select ng-model="audit.type" ng-options="option.name for option in auditType"></select>
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -25,7 +30,7 @@
                     审计年份
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="2016" />
+                    <input type="text" ng-model="audit.year" />
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -36,17 +41,17 @@
                     审计月份
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="1" />
+                    <input type="text" ng-model="audit.month" />
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
         </div>
-        <textarea placeholder="审计结果"></textarea>
-        <div class="store-section">
+        <textarea ng-model="audit.auditresult"></textarea>           
+        <div class="store-section" ng-click="addAudit()">
             继续添加其它驰加审计结果
         </div>
         <div class="button-area">
-            <button class="button" ng-click="go_back()">保存</button>
+            <button class="button" ng-click="save(audit)">保存</button>
         </div>
     </ion-content>
 </ion-view>

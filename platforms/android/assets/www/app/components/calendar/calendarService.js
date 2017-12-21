@@ -220,7 +220,7 @@ app.factory('Calendar', function () {
             sD = i - cld.firstWeek;
             if (sD > -1 && sD < cld.length) { //日期内
                 sObj.innerHTML = sD + 1;
-                if (cld[sD].isToday) { sObj.parentElement.style.backgroundColor = '#387ef5'; } //今日颜色
+                if (cld[sD].isToday) { sObj.parentElement.style.backgroundColor = '#387ef5'; sObj.parentElement.style.color = '#FFF'; } //今日颜色
                 else { sObj.parentElement.style.backgroundColor = ''; }
                 if (cld[sD].lDay == 1) { //显示农历月
                     lObj.innerHTML = '<b>' + (cld[sD].isLeap ? '闰' : '') + cld[sD].lMonth + '月' + (monthDays(cld[sD].lYear, cld[sD].lMonth) == 29 ? '小' : '大') + '</b>';

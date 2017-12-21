@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="">
             统计
         </button>
     </ion-nav-buttons>
@@ -19,7 +19,7 @@
                     门店编号
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="{{store_id}}" />
+                    <input type="text" ng-model="shop_code" disabled>
                 </div>
             </div>
             <div class="item row" style="border:none;">
@@ -27,17 +27,17 @@
                     门店名称
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="{{store_name}}" />
+                    <input type="text" ng-model="shop_name" disabled>
                 </div>
             </div>
         </div>
-        <div class="list">
+        <div class="list" ng-repeat="block in againsts track by $index">
             <div class="item row item-icon-right">
                 <div class="col col-25 item-title">
                     竞品品牌
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="普利斯通" ng-model="competition.name">
+                    <input type="text" placeholder="普利斯通" ng-model="competition.brand_name[$index]">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -46,33 +46,14 @@
                     备注
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="请点击输入"  ng-model="competition.ready">
+                    <input type="text" placeholder="请点击输入"  ng-model="competition.detail[$index]">
                 </div>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right">
-                <div class="col col-25 item-title">
-                    竞品品牌
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="普利斯通" />
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <div class="item row" style="border:none;">
-                <div class="col col-25 item-title">
-                    备注
-                </div>
-                <div class="col">
-                    <input type="text" placeholder="请点击输入" />
-                </div>
-            </div>
-        </div>
-        <div class="store-section">
+        </div>        
+        <div class="store-section" ng-click="addAgainst()">
             添加其它竞品+
         </div>
-        <div class="list">
+        <!--<div class="list">
             <div class="item row item-icon-right" style="border:none;">
                 <div class="col col-25 item-title">
                     上报人
@@ -93,9 +74,9 @@
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <textarea placeholder="备注" ng-model="competition.remark"></textarea>
-        <div class="row">
+        </div>-->
+        <textarea placeholder="备注" ng-model="comments"></textarea>
+        <!--<div class="row">
             <div class="col col-25">
                 <i class="icon fa fa-camera big" ng-click="go_camera()"></i>
             </div>
@@ -105,9 +86,9 @@
         </div>
         <div class="store-section mark">
             <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
-        </div>
+        </div>-->
         <div class="button-area">
-            <button class="button" ng-click="save(competition)">保存</button>
+            <button class="button" ng-click="save(competition, comments)">保存</button>
         </div>
     </ion-content>
 </ion-view>

@@ -8,7 +8,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="go_back()">
+        <button class="button button-clear" ng-click="list()">
             统计
         </button>
     </ion-nav-buttons>
@@ -19,7 +19,7 @@
                     门店编号
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="{{store_id}}" />
+                    <input type="text" ng-model="shop_code" disabled>
                 </div>
             </div>
             <div class="item row" style="border:none;">
@@ -27,17 +27,17 @@
                     门店名称
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="{{store_name}}" />
+                    <input type="text" ng-model="shop_name" disabled>
                 </div>
             </div>
         </div>
-        <div class="list">
+        <div class="list" ng-repeat="block in sales track by $index">
             <div class="item row item-icon-right">
                 <div class="col col-25 item-title">
                     轮胎编号
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="6921317905014" ng-model="sale.tire_id">
+                    <input type="text" ng-model="sale.brand_code[$index]">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -46,7 +46,7 @@
                     轮胎名称
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="米其林 Energy XM 2 韧悦"  ng-model="sale.tire_name">
+                    <input type="text" ng-model="sale.brand_name[$index]">
                 </div>
                 <i class="icon fa fa-refresh" style="font-size:24px;"></i>
             </div>
@@ -55,7 +55,7 @@
                     库存数量
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="请点击输入"  ng-model="sale.amount">
+                    <input type="text" placeholder="请点击输入"  ng-model="sale.salenum[$index]">
                 </div>
             </div>
             <div class="item row" style="border:none;">
@@ -63,11 +63,11 @@
                     销售金额
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="请点击输入"  ng-model="sale.price">
+                    <input type="text" placeholder="请点击输入"  ng-model="sale.saleprice[$index]">
                 </div>
             </div>
         </div>
-        <div class="store-section">
+        <div class="store-section" ng-click="addSale()">
             添加其它轮胎销量+
         </div>
         <div class="list">
@@ -76,12 +76,12 @@
                     总金额
                 </div>
                 <div class="col col-50">
-                    <input type="text" placeholder="自动计算或点击修改"  ng-model="sale.total_price">
+                    <input type="text" placeholder="自动计算或点击修改"  ng-model="total_amount">
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
         </div>
-        <div class="list">
+        <!--<div class="list">
             <div class="item row item-icon-right" style="border:none;">
                 <div class="col col-25 item-title">
                     上报人
@@ -102,9 +102,9 @@
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <textarea placeholder="备注"  ng-model="sale.remark"></textarea>
-        <div class="row">
+        </div>-->
+        <textarea placeholder="备注"  ng-model="comments"></textarea>
+        <!--<div class="row">
             <div class="col col-25">
                 <i class="icon fa fa-camera big" ng-click="go_camera()"></i>
             </div>
@@ -114,9 +114,9 @@
         </div>
         <div class="store-section mark">
             <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
-        </div>
+        </div>-->
         <div class="button-area">
-            <button class="button" ng-click="save(sale)">保存</button>
+            <button class="button" ng-click="save(sale, comments, total_amount)">保存</button>
         </div>
     </ion-content>
 </ion-view>

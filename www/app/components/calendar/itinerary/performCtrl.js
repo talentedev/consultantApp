@@ -1,25 +1,39 @@
 ﻿/*
  * 执行巡店类行程
+ * @author : kmr
+ * @modified : 201/8/23
  */
 app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHistory, BASE_URL, $http) {
-
+    // page init
     $scope.visit = {};
     var received_flag = false;
+    var update_flag = false;
 
     $scope.$on('$ionicView.enter', function (event) {
         var url = BASE_URL + '/visit/get';
         var data = {
             plan_id: $stateParams.plan_id
         };
+        console.log('visit/get:request', data);
         $http.post(url, data).then(function (res) {
+            console.log('visit/get:response', res.data);
             $scope.visit = res.data;
-            received_flag = true
+            received_flag = true;
+            update_flag = false;
+            $scope.visit_id = res.data.visit_id;
+        }, function (err) {
+            console.log('visit is not exist!');
+            update_flag = true;
         });
     })
 
     // submit form data.
-    $scope.submit = function () {        
-        var url = BASE_URL + '/visit/create';
+    $scope.submit = function () {
+        if(update_flag == false) {
+            var url = BASE_URL + '/visit/update';
+        } else {
+            var url = BASE_URL + '/visit/create';
+        }
         var data = $scope.visit;        
         data.plan_id = $stateParams.plan_id;
         console.log('visit/creare:request', data);
@@ -31,12 +45,16 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
     $scope.go_back = function () {
         $ionicHistory.goBack();
     }
-
-    $scope.go_field = function () {
-        $state.go('perform-field', {
-            store_id: $stateParams.store_id,
-            store_name: $stateParams.store_name,
-        });
+    // 到店签到 / 离店签退
+    $scope.go_field = function (type) {
+        if (received_flag == true) {
+            $state.go('perform-arrive', {
+                sid: $stateParams.sid,
+                shop_name: $stateParams.shop_name,
+                visit_id: $scope.visit_id,
+                type: type
+            });
+        }
     }
 
     $scope.go_analysis = function () {
@@ -61,11 +79,18 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
             shop_code: $stateParams.shop_code
         });
     }
-
+    // 评估记录
+    $scope.goEvaluation = function () {
+        $state.go('evaluation', {
+            sid: $stateParams.sid,
+        });
+    }
+    // 行动计划及草案制定
     $scope.go_develop = function () {
         if(received_flag == true) {
             $state.go('perform-develop', {
-                visit_id: $scope.visit.visit_id
+                sid: $stateParams.sid,
+                visit_id: $scope.visit_id
             });
         }        
     }
@@ -75,50 +100,75 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
             store_id: $stateParams.store_id
         });*/
     }
-
+    // 驰加审计结果
     $scope.go_audit = function () {
-        $state.go('perform-audit');
+        if (received_flag == true) {
+            $state.go('perform-audit', {
+                sid: $stateParams.sid,
+                type: 'add',
+                data: null
+            });
+        }       
     }
-
+    // 拍照上传
     $scope.go_upload = function () {
-        $state.go('perform-upload');
+        if (received_flag == true) {
+            $state.go('perform-upload', {
+                sid: $stateParams.sid,
+                shop_code: $stateParams.shop_code,
+                shop_name: $stateParams.shop_name,
+                visit_id: $scope.visit_id
+            });
+        }        
     }
-
+    // 观察
     $scope.go_trip = function () {
         $state.go('perform-trip');
     }
-
+    // 库存上报
     $scope.go_inventory = function () {
-        $state.go('perform-inventory', {
-            shop_code: $stateParams.shop_code,
-            shop_name: $stateParams.shop_name
-        });
+        if (received_flag == true) {
+            $state.go('perform-inventory', {
+                shop_code: $stateParams.shop_code,
+                shop_name: $stateParams.shop_name,
+                visit_id: $scope.visit_id
+            });
+        }        
     }
-
+    // 销量上报
     $scope.go_sales = function () {
-        $state.go('perform-sales', {
-            store_id: $stateParams.store_id,
-            store_name: $stateParams.store_name
-        });
+        if (received_flag == true) {
+            $state.go('perform-sales', {
+                shop_code: $stateParams.shop_code,
+                shop_name: $stateParams.shop_name,
+                visit_id: $scope.visit_id
+            });
+        }       
     }
-
+    // 订单上报
     $scope.go_orders = function () {
-        $state.go('perform-orders', {
-            store_id: $stateParams.store_id,
-            store_name: $stateParams.store_name,
-        });
+        if (received_flag == true) {
+            $state.go('perform-orders', {
+                shop_code: $stateParams.shop_code,
+                shop_name: $stateParams.shop_name,
+                visit_id: $scope.visit_id
+            });
+        }       
     }
-
+    // 竞品上报
     $scope.go_competing = function () {
-        $state.go('perform-competing', {
-            store_id: $stateParams.store_id,
-            store_name: $stateParams.store_name            
-        });
+        if (received_flag == true) {
+            $state.go('perform-competing', {
+                shop_code: $stateParams.shop_code,
+                shop_name: $stateParams.shop_name,
+                visit_id: $scope.visit_id
+            });
+        }        
     }
-
+    // 行动计划回顾
     $scope.go_action = function () {
         $state.go('perform-action', {
-            itinerary_id: $stateParams.itinerary_id
+            visit_id: $scope.visit_id
         });
     }
 
@@ -131,6 +181,21 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
     $scope.go_training = function () {
         $state.go('perform-training');
     }
+    // 添加总结项
+    $scope.addSummaryItem = function () {
+        $state.go('add-summary-item', {
+            sid: $stateParams.sid,
+            visit_id: $scope.visit_id
+        });
+    }
+    // 跟踪提醒
+    $scope.track = function () {
+        if (received_flag == true) {
+            $state.go('news-tracking', {
+                visit_id: $scope.visit_id
+            });
+        }
+    };
 
     $scope.go_customer = function () {
         $state.go('news-customer');

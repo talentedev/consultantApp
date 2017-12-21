@@ -14,7 +14,7 @@
                     门店编号
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="168158" />
+                    <input type="text" ng-model="shop_code" disabled>
                 </div>
             </div>
             <div class="item row" style="border:none;">
@@ -22,130 +22,26 @@
                     门店名称
                 </div>
                 <div class="col">
-                    <input type="text" placeholder="驰加(上海)汽车用品贸易有限公司" />
+                    <input type="text" ng-model="shop_name" disabled>
                 </div>
             </div>
         </div>
-        <div class="list">
+        <div class="list" ng-repeat="item in items">
             <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
+                <div class="col col-20 item-title">
                     <div>照片类型</div>
                     <div>记录时间</div>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="店招、灯箱" style="height: 25px; font-size:12px;"/>
-                    <input type="text" placeholder="2016-04-25 15:30" style="height: 25px; font-size:12px;"/>
+                <div class="col col-55">
+                    <input type="text" style="height: 25px; font-size:12px;" ng-model="item.itemname" disabled>
+                    <input type="text" style="height: 25px; font-size:12px;" ng-model="item.photodate" disabled>
                 </div>
-                <i class="icon fa fa-camera" ng-click="go_camera()"></i>
+                <i class="icon fa fa-camera" ng-click="go_camera(item.sopofimage_id)"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    <div>照片类型</div>
-                    <div>记录时间</div>
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="店招、灯箱" style="height: 25px; font-size:12px;" />
-                    <input type="text" placeholder="2016-04-25 15:30" style="height: 25px; font-size:12px;" />
-                </div>
-                <i class="icon fa fa-camera" ng-click="go_camera()"></i>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    <div>照片类型</div>
-                    <div>记录时间</div>
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="店招、灯箱" style="height: 25px; font-size:12px;" />
-                    <input type="text" placeholder="2016-04-25 15:30" style="height: 25px; font-size:12px;" />
-                </div>
-                <i class="icon fa fa-camera" ng-click="go_camera()"></i>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    <div>照片类型</div>
-                    <div>记录时间</div>
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="店招、灯箱" style="height: 25px; font-size:12px;" />
-                    <input type="text" placeholder="2016-04-25 15:30" style="height: 25px; font-size:12px;" />
-                </div>
-                <i class="icon fa fa-camera" ng-click="go_camera()"></i>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    <div>照片类型</div>
-                    <div>记录时间</div>
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="店招、灯箱" style="height: 25px; font-size:12px;" />
-                    <input type="text" placeholder="2016-04-25 15:30" style="height: 25px; font-size:12px;" />
-                </div>
-                <i class="icon fa fa-camera" ng-click="go_camera()"></i>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    <div>照片类型</div>
-                    <div>记录时间</div>
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="店招、灯箱" style="height: 25px; font-size:12px;" />
-                    <input type="text" placeholder="2016-04-25 15:30" style="height: 25px; font-size:12px;" />
-                </div>
-                <i class="icon fa fa-camera" ng-click="go_camera()"></i>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    <div>照片类型</div>
-                    <div>记录时间</div>
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="店招、灯箱" style="height: 25px; font-size:12px;" />
-                    <input type="text" placeholder="2016-04-25 15:30" style="height: 25px; font-size:12px;" />
-                </div>
-                <i class="icon fa fa-camera" ng-click="go_camera()"></i>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    <div>照片类型</div>
-                    <div>记录时间</div>
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="店招、灯箱" style="height: 25px; font-size:12px;" />
-                    <input type="text" placeholder="2016-04-25 15:30" style="height: 25px; font-size:12px;" />
-                </div>
-                <i class="icon fa fa-camera" ng-click="go_camera()"></i>
-            </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    <div>照片类型</div>
-                    <div>记录时间</div>
-                </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="店招、灯箱" style="height: 25px; font-size:12px;" />
-                    <input type="text" placeholder="2016-04-25 15:30" style="height: 25px; font-size:12px;" />
-                </div>
-                <i class="icon fa fa-camera" ng-click="go_camera()"></i>
-            </div>
-        </div>
-        <div class="store-section mark">
+        </div>        
+        <!--<div class="store-section mark" ng-click="goMap()">
             <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
-        </div>
+        </div>-->
         <div class="button-area">
             <button class="button" ng-click="go_back()">保存</button>
         </div>

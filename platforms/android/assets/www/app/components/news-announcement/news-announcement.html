@@ -1,4 +1,4 @@
-﻿<ion-view ng-controller="news-announcementCtrl" ng-init="announcement_init()">
+﻿<ion-view ng-controller="news-announcementCtrl">
     <ion-nav-title>
         公告
     </ion-nav-title>
@@ -9,17 +9,18 @@
     </ion-nav-buttons>
     <ion-content id="news-announcement">
         <div class="list">
-            <div class="item" ng-repeat="data in announcements">
+            <div class="item" ng-repeat="post in posts">
                 <div class="row">
                     <div class="col-22">
-                        <div class="thumb">志礼</div>
+                        <div class="thumb">{{post.real_name}}</div>
                     </div>
                     <div class="col">
-                        <div class="detail"><span class="list-title">{{data.reporter_name}}</span><span class="list-date">{{data.report_date.getMonth()+1}}月{{data.report_date.getDate()}}日</span></div>
-                        <p class="list-description">{{data.report_content}}</p>
+                        <div class="detail"><span class="list-title">{{post.real_name}}</span><span class="list-date">{{post.month}}月{{post.day}}日</span></div>
+                        <p class="list-description">{{post.content}}</p>
                     </div>
                 </div>
-                <div class="item-footer">点击确认收到</div>
+                <div class="item-footer" ng-show="{{post.read_state==0}}" ng-click="read(post.infocenter_id)">点击确认收到</div>
+                <div class="item-footer" ng-hide="{{post.read_state==0}}">已确认收到</div>
             </div>                                               
         </div>
     </ion-content>
