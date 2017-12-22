@@ -26,7 +26,7 @@
                 <img class="img-thumb" src="{{employee.head_url}}" style="width:45px; height:40px" />
                 <p><span class="list-title">{{employee.staff_name}} {{employee.gender}}</span></p>
                 <p class="list-description">{{employee.position}} {{employee.learn_identity}}</p>
-                <i class="icon fa fa-check-square-o" style="font-size:25px;" id="employee{{$index}}" ng-click="employee_check($index, $event, employee)"></i>
+                <i class="icon fa fa-square-o" style="font-size:25px;color:green;" id="employee{{$index}}" ng-click="employee_check($index, $event, employee)"></i>
             </div>            
         </div>
     </ion-content>

@@ -30,7 +30,13 @@
                     审计年份
                 </div>
                 <div class="col col-50">
-                    <input type="text" ng-model="audit.year" />
+                    <select ng-model="audit.year">
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017" selected>2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                    </select>
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
@@ -41,15 +47,26 @@
                     审计月份
                 </div>
                 <div class="col col-50">
-                    <input type="text" ng-model="audit.month" />
+                    <select ng-model="audit.month">
+                        <option value="1" selected>1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+
                 </div>
                 <i class="icon ion-ios-arrow-right"></i>
             </div>
         </div>
-        <textarea ng-model="audit.auditresult"></textarea>           
-        <div class="store-section" ng-click="addAudit()">
-            继续添加其它驰加审计结果
-        </div>
+        <textarea ng-model="audit.auditresult"></textarea>       
         <div class="button-area">
             <button class="button" ng-click="save(audit)">保存</button>
         </div>

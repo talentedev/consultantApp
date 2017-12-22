@@ -54,4 +54,15 @@ app.controller('roadCtrl', function ($scope, $state, $stateParams, $http, BASE_U
     $scope.go_back = function () {
         $ionicHistory.goBack();
     };
+    // Done
+    $scope.done = function () {
+        var url = BASE_URL + '/plan/done';
+        var data = {
+            plan_id: $stateParams.plan_id
+        };
+        console.log('plan/done:request', data);
+        $http.post(url, data).then(function (res) {
+            console.log('plan/done:response', res.data);
+        });
+    };
 });

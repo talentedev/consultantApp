@@ -1,5 +1,7 @@
 ﻿/*
  * 添加/查看/修改行动计划
+ * @author : kmr
+ * @modified : 2017/9/5
  */
 app.controller('perform-actionCtrl', function ($scope, $state, $stateParams, $ionicHistory, $http, BASE_URL, TripService) {
     $scope.action = {};
@@ -14,7 +16,7 @@ app.controller('perform-actionCtrl', function ($scope, $state, $stateParams, $io
     $scope.index = '';
 
     $scope.$on('$ionicView.enter', function (event) {
-        $scope.actions = [1];
+        //$scope.actions = [1];
         var url = BASE_URL + '/action/get';
         var data = {
             visit_id: $stateParams.visit_id
@@ -23,8 +25,8 @@ app.controller('perform-actionCtrl', function ($scope, $state, $stateParams, $io
         $http.post(url, data).then(function (res) {
             console.log('action/get:response', res.data);
             //for (var i = 0; i < res.data.length; i++) {
-                //$scope.actions.push(1);
-                //$scope.action[i] = res.data[i];
+            //$scope.actions.push(1);
+            //$scope.action[i] = res.data[i];
             //}
         });
         var staffs = TripService.getParticipators();
@@ -35,7 +37,7 @@ app.controller('perform-actionCtrl', function ($scope, $state, $stateParams, $io
                 $scope.action.executor[$scope.index] += ', ';
             }
         }
-    })
+    });
     // 保存
     $scope.save = function (action) {
         var data = action.issue;
@@ -60,28 +62,28 @@ app.controller('perform-actionCtrl', function ($scope, $state, $stateParams, $io
             console.log('action/add:response', res.data);
             $ionicHistory.goBack();
         });
-    }
+    };
     // 添加其它行动计划
     $scope.addAction = function () {
         var actions = $scope.actions;
         actions.push(1);
         $scope.actions = actions;
-    }
-
+    };
+    // 执行人
     $scope.go_executor = function (index) {
         $scope.index = index;
         $state.go('action-executor', {
             sid: $stateParams.sid
         });
-    }
-
+    };
+    // 返回
     $scope.go_back = function () {
         $ionicHistory.goBack();
-    }
-
+    };
+    // 统计
     $scope.list = function () {
         $state.go('action-list', {
             visit_id: $stateParams.visit_id
         });
-    }
+    };
 });

@@ -17,19 +17,19 @@
             <div class="item item-input-inset">
                 <label class="item-input-wrapper" id="search-input">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input id="search-input" type="text" placeholder="搜索" ng-model="query" ng-change="search(query)">
+                    <input id="search-input" type="text" placeholder="搜索" ng-model="query">
                 </label>
             </div>
         </div>
         <div class="list">
-            <div class="item row item-icon-right" ng-repeat="store in stores">
+            <div class="item row item-icon-right" ng-repeat="store in stores | filter:query">
                 <div class="col col-20 item-title">
                     {{store.shop_code}}
                 </div>
                 <div class="col col-50 item-title" style="color:#aaa; overflow:hidden; text-overflow: ellipsis;">
                     {{store.shop_name}}
                 </div>
-                <i class="icon fa fa-check-square-o" style="font-size:20px;" id="store{{$index}}" ng-click="store_check($index)"></i>
+                <i class="icon fa fa-square-o" style="font-size:20px;color:green;" ng-click="store_check($event, store)"></i>
             </div>                                   
         </div>    
     </ion-content>

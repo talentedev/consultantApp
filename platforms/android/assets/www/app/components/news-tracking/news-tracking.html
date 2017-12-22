@@ -30,7 +30,8 @@
                         <p>超时提醒：已超时{{tracking.different}}天</p>
                     </div>
                 </div>
-                <div class="item-footer" ng-click="perform(tracking.actionofplan_id)">点击确认收到</div>
+                <div class="item-footer" ng-show="{{tracking.iscomplete == 0}}" ng-click="perform(tracking.actionofplan_id)">点击确认完成</div>
+                <div class="item-footer" ng-show="{{tracking.iscomplete == 1}}">已确认完成</div>
             </div>         
         </div>
     </ion-content>

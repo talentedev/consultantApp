@@ -19,13 +19,12 @@
                     {{item.sop_method1}}
                 </div>
                 <div class="col col-25">
-                    <!--<i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star" style="font-size:20px;"></i><i class="fa fa-star-o" style="font-size:20px;"></i>-->
-                    <select ng-model="score" ng-options="option.name for option in scores"></select>
+                    <select ng-model="score[$index]" ng-options="option.name for option in scores"></select>
                 </div>
             </div>
         </div>
         <div class="button-area">
-            <button class="button" ng-click="go_back()">保存</button>
+            <button class="button" ng-click="save(score)">保存</button>
         </div>   
     </ion-content>
 </ion-view>

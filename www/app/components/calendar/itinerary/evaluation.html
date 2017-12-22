@@ -11,8 +11,7 @@
         <button class="button button-clear" ng-click="">
             筛选
         </button>
-    </ion-nav-buttons>
-    
+    </ion-nav-buttons>    
     <ion-content id="evaluation" style="font-size:95%;">
         <div class="row header">
             <div class="col-25">评估项</div>
@@ -30,8 +29,8 @@
             <div class="col">12月</div>
         </div>
         <div class="row" ng-repeat="data in datas" style="margin-top:0;border-top:1px solid #ddd;">
-            <div class="col-25">{{data.sop_method1}}</div>
-            <div class="col"></div>
+            <div class="col-25">{{data.sop_detail}}</div>
+            <div class="col">{{data.score}}</div>
             <div class="col"></div>
             <div class="col"></div>
             <div class="col"></div>

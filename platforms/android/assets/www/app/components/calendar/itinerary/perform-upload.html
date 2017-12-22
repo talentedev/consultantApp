@@ -36,12 +36,9 @@
                     <input type="text" style="height: 25px; font-size:12px;" ng-model="item.itemname" disabled>
                     <input type="text" style="height: 25px; font-size:12px;" ng-model="item.photodate" disabled>
                 </div>
-                <i class="icon fa fa-camera" ng-click="go_camera(item.sopofimage_id)"></i>
+                <i class="icon fa fa-camera" id="upload{{item.sopofimage_id}}" ng-click="go_camera(item.sopofimage_id)"></i>
             </div>
-        </div>        
-        <!--<div class="store-section mark" ng-click="goMap()">
-            <i class="fa fa-map-marker" style="font-size:18px; color:#999; padding-right:10px;"></i>所在位置
-        </div>-->
+        </div>         
         <div class="button-area">
             <button class="button" ng-click="go_back()">保存</button>
         </div>

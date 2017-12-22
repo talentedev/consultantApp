@@ -12,18 +12,25 @@ app.controller('authCtrl', function ($scope, $state, $http, BASE_URL, $ionicLoad
     $scope.$on('$ionicView.enter', function (event) {
         // 自动登录
         if (localStorage.getItem('remember') == 'true') {
+            // connecting spinner
+            $ionicLoading.show({
+                template: '<ion-spinner icon="android"></ion-spinner><br>连接中...'
+            });
             var url = BASE_URL + '/auth/login';
             var data = {
                 u_name: localStorage.getItem("username"),
                 password: localStorage.getItem("password")                
             };            
             $http.post(url, data).then(function (res) {               
-                if (res.data.success == true) {                   
+                if (res.data.success == true) {
+                    $ionicLoading.hide();
                     $state.go('tab.date');
                 } else {
+                    $ionicLoading.hide();
                     alert('用户名或密码错误');
                 }
             }, function (err) {
+                $ionicLoading.hide();
                 alert('连接失败. 再试一次!');
             });
         }    

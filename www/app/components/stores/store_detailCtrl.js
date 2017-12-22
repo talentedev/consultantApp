@@ -1,81 +1,19 @@
 ﻿/*
  * 添加/修改门店
  * @author : kmr
- * @modified : 2017/8/29
+ * @modified : 2017/9/5
  */
 app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $ionicHistory, $http, BASE_URL, $ionicPopover) {
     var save_setting = null;
     var areaId = null;
     var self = this;
+    var key = null, file = null;
 
     $scope.$on('$ionicView.enter', function (event) {
-        /*************************************************/
-        /* Input with dropdown for province and city     */
-        /*************************************************/
-        self.countryObject = null; // Holds the selected in demoFormObjects, set with attribute 'selected-item'
-
-        // Use objects in the dropdown list if more data than just a string is needed.
-        // Every object needs to have a property 'readableName', this is what will be displayed in the dropdown.
-        self.defaultDropdownObjects = [];
-        self.cityDropdownObjects = [];
-
         var province_url = BASE_URL + '/province';
-        $http.get(province_url).then(function (res) {
-            //for (key in res.data) {
-            //    res.data[key].readableName = res.data[key].area_name;
-            //}
-            //self.defaultDropdownObjects = res.data;
+        $http.get(province_url).then(function (res) {            
             $scope.province = res.data;
-        });
-        // Filter method is passed with attribute 'filter-list-method="method(userInput)"'.
-        // Called on the onchange event from the input field. Should return a promise resolving with an array of items to show in the dropdown.
-        // If no filter method is passed to the the directive, the default dropdown will show constantly.
-        self.filterObjectList = function (userInput) {
-            var filter = $q.defer();
-            var normalisedInput = userInput.toLowerCase();
-
-            var filteredArray = self.defaultDropdownObjects.filter(function (country) {
-                var matchCountryName = country.readableName.toLowerCase().indexOf(normalisedInput) === 0;
-                //var matchCountryCode = country.code.toString().indexOf(normalisedInput) === 0;
-                return matchCountryName;// || matchCountryCode;
-            });
-
-            filter.resolve(filteredArray);
-            return filter.promise;
-        };
-        // Called when user selected an item from dropdown. Passed with attribute 'item-selected-method="method(item)"'.
-        self.itemObjectSelected = function (item) {
-            // get cities in the selected province
-            //var cityUrl = BASE_URL + '/city';
-            //var data = {
-            //    area_id: item.area_id
-            //}
-            //$http.post(cityUrl, data).then(function (res) {
-            //    for (key in res.data) {
-            //        res.data[key].readableName = res.data[key].area_name;
-            //    }
-            //    self.cityDropdownObjects = res.data;
-            //});
-        };
-        self.filterCityList = function () {
-            var filter = $q.defer();
-            var normalisedInput = userInput.toLowerCase();
-
-            var filteredArray = self.cityDropdownObjects.filter(function (city) {
-                var matchCountryName = city.readableName.toLowerCase().indexOf(normalisedInput) === 0;
-                //var matchCountryCode = country.code.toString().indexOf(normalisedInput) === 0;
-                return matchCountryName;// || matchCountryCode;
-            });
-
-            filter.resolve(filteredArray);
-            return filter.promise;
-        };
-        self.citySelected = function (item) {
-            areaId = item.area_id;
-            console.log(areaId);
-        };
-
-        
+        });      
         /*************************************************/
         /*     Initialize  page                          */
         /*************************************************/
@@ -166,7 +104,18 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             $scope.store.shop_state = $scope.shop_state[mergeObject.shop_state];
             $scope.store.toilet = $scope.toilet[parseInt(mergeObject.toilet)];
             $scope.selectedProvince = mergeObject.parent_name;
-            $scope.selectedCity = mergeObject.area_name;
+
+            var cityUrl = BASE_URL + '/city';
+            var data = {
+                area_name: mergeObject.parent_name
+            }
+            console.log('city:request:', data);
+            $http.post(cityUrl, data).then(function (res) {
+                console.log('city:response:', res.data);
+                $scope.city = res.data;
+                $scope.selectedCity = mergeObject.area_name;
+            });
+            
             $scope.shopface_url = mergeObject.shopface_url;
             $scope.dataCity = mergeObject.area_name;
         });                    
@@ -185,78 +134,162 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
     };
     // 保存
     $scope.go_save = function (store) {
-        console.log('save');
-        console.log(store);
-        var data = store;
-        data.shop_style = store.shop_style.value;
-        data.shop_state = store.shop_state.value;
-        data.toilet = store.toilet.value;
+        if (file != null) {
+            //Create Ali cloud upload objects
+            var client = new OSS.Wrapper({
+                region: 'oss-cn-qingdao',
+                accessKeyId: 'LTAIdwD3ntEWRFpj',
+                accessKeySecret: 'OQZMRIffR2qwXXPlSTgA87wKOA3CHF',
+                bucket: 'consultant'
+            });
+            // Upload files to server
+            client.multipartUpload('files/' + key, file, {
 
-        data.business = $scope.business;
-        data.area_name = $scope.dataCity;
-        data.shopface_url = $scope.shopface_url;
-        console.log('store/add(update):request', data);
-        // Add new store data
-        if (save_setting == 'add') {
-            // Check if this store id exist already.
-            var url = BASE_URL + '/store/check';
-            var check_data = {
-                shop_code: data.shop_code
-            }
-            if (data.shop_code == null || data.shop_code == '') {
-                alert('Please enter store id.');
-            } else {
-                $http.post(url, check_data).then(function (res) {
-                    console.log('add');
-                    if (res.data.exist == true) {
-                        alert('This shop code exist already!');
+            }).then(function (res) {
+                console.log('upload success: %j', res);
+                console.log(res.url);
+                var data = store;
+                data.shop_style = store.shop_style.value;
+                data.shop_state = store.shop_state.value;
+                data.toilet = store.toilet.value;
+
+                data.business = $scope.business;
+                data.area_name = $scope.dataCity;
+                data.shopface_url = res.url;
+                console.log('store/add(update):request', data);
+                // Add new store data
+                if (save_setting == 'add') {
+                    // Check if this store id exist already.
+                    var url = BASE_URL + '/store/check';
+                    var check_data = {
+                        shop_code: data.shop_code
+                    }
+                    if (data.shop_code == null || data.shop_code == '') {
+                        alert('Please enter store id.');
                     } else {
-                        var url = BASE_URL + '/store/create';                       
-                        $http.post(url, data).then(function (res) {
-                            alert('成功!');
-                            $state.go('tab.store');
+                        $http.post(url, check_data).then(function (res) {
+                            console.log('add');
+                            if (res.data.exist == true) {
+                                alert('This shop code exist already!');
+                            } else {
+                                var url = BASE_URL + '/store/create';
+                                $http.post(url, data).then(function (res) {
+                                    alert('成功!');
+                                    $state.go('tab.store');
+                                });
+                            }
                         });
                     }
-                });
-            }                   
-        }        
-        // Update store data.
-        if (save_setting == 'update') {
-            // Check if this store id exist already.
-            var url = BASE_URL + '/store/check';
-            var check_data = {
-                shop_code: data.shop_code
-            }
-            if (data.shop_code == null || data.shop_code == '') {
-                alert('Please enter shop_code.');
-            } else {
-                $http.post(url, check_data).then(function (res) {
-                    console.log('update');
-                    if (res.data.exist == true) {
-                        if (data.shop_code != $stateParams.shop_code) {
+                }
+                // Update store data.
+                if (save_setting == 'update') {
+                    // Check if this store id exist already.
+                    var url = BASE_URL + '/store/check';
+                    var check_data = {
+                        shop_code: data.shop_code
+                    }
+                    if (data.shop_code == null || data.shop_code == '') {
+                        alert('Please enter shop_code.');
+                    } else {
+                        $http.post(url, check_data).then(function (res) {
+                            console.log('update');
+                            if (res.data.exist == true) {
+                                if (data.shop_code != $stateParams.shop_code) {
+                                    alert('This shop code exist already!');
+                                } else {
+                                    data.new_shop_code = data.shop_code;
+                                    data.shop_code = $stateParams.shop_code;
+
+                                    var url = BASE_URL + '/store/update';
+                                    $http.post(url, data).then(function (res) {
+                                        alert('成功!');
+                                        $state.go('tab.store');
+                                    });
+                                }
+                            } else {
+                                var url = BASE_URL + '/store/update';
+                                data.new_st_id = data.shop_code;
+                                data.shop_code = $stateParams.shop_code;
+                                $http.post(url, data).then(function (res) {
+                                    alert('成功!');
+                                    $state.go('tab.store');
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        } else {           
+            var data = store;
+            data.shop_style = store.shop_style.value;
+            data.shop_state = store.shop_state.value;
+            data.toilet = store.toilet.value;
+
+            data.business = $scope.business;
+            data.area_name = $scope.dataCity;
+            console.log('store/add(update):request', data);
+            // Add new store data
+            if (save_setting == 'add') {
+                // Check if this store id exist already.
+                var url = BASE_URL + '/store/check';
+                var check_data = {
+                    shop_code: data.shop_code
+                }
+                if (data.shop_code == null || data.shop_code == '') {
+                    alert('Please enter store id.');
+                } else {
+                    $http.post(url, check_data).then(function (res) {
+                        console.log('add');
+                        if (res.data.exist == true) {
                             alert('This shop code exist already!');
                         } else {
-                            data.new_shop_code = data.shop_code;
-                            data.shop_code = $stateParams.shop_code;
-
-                            var url = BASE_URL + '/store/update';
+                            var url = BASE_URL + '/store/create';
                             $http.post(url, data).then(function (res) {
                                 alert('成功!');
                                 $state.go('tab.store');
                             });
                         }
-                    } else {
-                        var url = BASE_URL + '/store/update';
-                        data.new_st_id = data.shop_code;
-                        data.shop_code = $stateParams.shop_code;                        
-                        $http.post(url, data).then(function (res) {
-                            alert('成功!');
-                            $state.go('tab.store');
-                        });
-                    }
-                });
-            }                       
-        }             
+                    });
+                }
+            }
+            // Update store data.
+            if (save_setting == 'update') {
+                // Check if this store id exist already.
+                var url = BASE_URL + '/store/check';
+                var check_data = {
+                    shop_code: data.shop_code
+                }
+                if (data.shop_code == null || data.shop_code == '') {
+                    alert('Please enter shop_code.');
+                } else {
+                    $http.post(url, check_data).then(function (res) {
+                        console.log('update');
+                        if (res.data.exist == true) {
+                            if (data.shop_code != $stateParams.shop_code) {
+                                alert('This shop code exist already!');
+                            } else {
+                                data.new_shop_code = data.shop_code;
+                                data.shop_code = $stateParams.shop_code;
+
+                                var url = BASE_URL + '/store/update';
+                                $http.post(url, data).then(function (res) {
+                                    alert('成功!');
+                                    $state.go('tab.store');
+                                });
+                            }
+                        } else {
+                            var url = BASE_URL + '/store/update';
+                            data.new_st_id = data.shop_code;
+                            data.shop_code = $stateParams.shop_code;
+                            $http.post(url, data).then(function (res) {
+                                alert('成功!');
+                                $state.go('tab.store');
+                            });
+                        }
+                    });
+                }
+            }
+        }
     };
     // selected province
     $scope.selProvince = function (selectedProvince) {        
@@ -267,12 +300,15 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
         var data = {
             area_name: selectedProvince
         }
+        console.log('city:request:', data);
         $http.post(cityUrl, data).then(function (res) {
+            console.log('city:response:', res.data);
             $scope.city = res.data;
         });
     };
     // selected city
     $scope.selCity = function (selectedCity) {
+        console.log('selected City:', selectedCity);
         $scope.dataCity = selectedCity;       
     };
     // go to staff page
@@ -297,6 +333,7 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
         };
         navigator.camera.getPicture(function (result) {
             var imgURI = "data:image/png;base64," + result;
+            document.getElementById('store_image').src = imgURI;
             // generate file name
             var date = new Date();
             var mm = date.getMonth() + 1;
@@ -320,25 +357,8 @@ app.controller('store-detailCtrl', function ($scope, $q, $state, $stateParams, $
             while (n--) {
                 u8arr[n] = bstr.charCodeAt(n);
             }
-            var file = new File([u8arr], filename, { type: mime });
-            var key = file.name;
-
-            //Create Ali cloud upload objects
-            var client = new OSS.Wrapper({
-                region: 'oss-cn-qingdao',
-                accessKeyId: 'LTAIdwD3ntEWRFpj',
-                accessKeySecret: 'OQZMRIffR2qwXXPlSTgA87wKOA3CHF',
-                bucket: 'consultant'
-            });
-            // Upload files to server
-            client.multipartUpload('files/' + key, file, {
-
-            }).then(function (res) {
-                console.log('upload success: %j', res);
-                console.log(res.url);
-                $scope.shopface_url = res.url;
-                alert('成功上传!');
-            });
+            file = new File([u8arr], filename, { type: mime });
+            key = file.name;            
         }, function (err) {
             alert('失败上传!');
         }, options);

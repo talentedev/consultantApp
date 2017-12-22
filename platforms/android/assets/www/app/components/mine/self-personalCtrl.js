@@ -1,5 +1,7 @@
 ﻿/*
  * 个人信息
+ * @author : kmr
+ * @midified : 2017/9/6
  */
 app.controller('self-personalCtrl', function ($scope, $state, $http, $ionicHistory, BASE_URL, $ionicLoading) {
     $scope.headimgurl = '';
@@ -58,6 +60,7 @@ app.controller('self-personalCtrl', function ($scope, $state, $http, $ionicHisto
         console.log('user/update:request', data);
         var url = BASE_URL + '/user/update';
         $http.post(url, data).then(function (res) {
+            alert('保存!');
             $state.go('tab.self');
         });
     };

@@ -1,7 +1,7 @@
 ﻿/*
  * 拍照上传
  * @author : kmr
- * @modified : 2017/8/22
+ * @modified : 2017/9/5
  */
 app.controller('perform-uploadCtrl', function ($scope, $state, $stateParams, $http, $ionicHistory, BASE_URL) {
     // page init
@@ -10,7 +10,7 @@ app.controller('perform-uploadCtrl', function ($scope, $state, $stateParams, $ht
     $scope.$on('$ionicView.enter', function (event) {
         $scope.shop_code = $stateParams.shop_code;
         $scope.shop_name = $stateParams.shop_name;
-        var url = BASE_URL + '/imgitem/list';       
+        var url = BASE_URL + '/imgitem/list';
         $http.get(url).then(function (res) {
             console.log('imgitem/list:response:', res.data);
             $scope.items = res.data;
@@ -21,7 +21,7 @@ app.controller('perform-uploadCtrl', function ($scope, $state, $stateParams, $ht
             console.log('sopimg/list:request:', data);
             $http.post(imgUrl, data).then(function (res) {
                 console.log('sopimg/list:response:', res.data);
-                if (res.data.length > 0) {                  
+                if (res.data.length > 0) {
                     for (key in res.data) {
                         $scope.items[key].photodate = res.data[key].photodate;
                         $scope.items[key].sopofimage_id = res.data[key].sopofimage_id;
@@ -33,11 +33,10 @@ app.controller('perform-uploadCtrl', function ($scope, $state, $stateParams, $ht
                     $http.post(url, data).then(function (res) { console.log('sopimg/add:response:', res.data); });
                 }
             });
-        });        
+        });
     });
-       
-    $scope.go_camera = function (id) {       
-
+    // camera
+    $scope.go_camera = function (id) {        
         var options = {
             quality: 15,
             targetWidth: 800,
@@ -50,9 +49,8 @@ app.controller('perform-uploadCtrl', function ($scope, $state, $stateParams, $ht
             //          popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, navigator.camera.PopoverArrowDirection.ARROW_ANY),
             saveToPhotoAlbum: false
         };
-
         navigator.camera.getPicture(function (result) {
-            var imgURI = "data:image/png;base64," + result;
+            var imgURI = "data:image/png;base64," + result;            
             // generate file name
             var date = new Date();
             var mm = date.getMonth() + 1;
@@ -78,7 +76,7 @@ app.controller('perform-uploadCtrl', function ($scope, $state, $stateParams, $ht
             }
             var file = new File([u8arr], filename, { type: mime });
             var key = file.name;
-
+            
             //Create Ali cloud upload objects
             var client = new OSS.Wrapper({
                 region: 'oss-cn-qingdao',
@@ -101,20 +99,16 @@ app.controller('perform-uploadCtrl', function ($scope, $state, $stateParams, $ht
                 $http.post(url, data).then(function (res) {
                     console.log('sopimg/update:response', res.data);
                     alert('成功上传!');
-                    location.reload();
-                });                
+                    document.getElementById("upload" + id).style.color = "#0F0";
+                    //location.reload();
+                });
             });
         }, function (err) {
             alert('失败上传!');
         }, options);
-    }
-
-    $scope.goMap = function () {
-        
-    }
+    };
     // 返回
     $scope.go_back = function () {
         $ionicHistory.goBack();
-    }
-
-})
+    };
+});

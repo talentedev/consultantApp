@@ -1,4 +1,4 @@
-﻿<ion-view ng-controller="store-detailCtrl as dropdownCtrl">
+﻿<ion-view ng-controller="store-detailCtrl">
     <ion-nav-title>
         添加/修改门店
     </ion-nav-title>
@@ -100,41 +100,28 @@
                 <div class="col-40 item-title">
                     省份
                 </div>
-                <div class="col">
-                    <!--<input-dropdown 
-                      input-placeholder=""
-                      input-name="country-object"
-                      allow-custom-input="true"
-                      input-required="true"
-                      selected-item="dropdownCtrl.countryObject"
-                      default-dropdown-items="dropdownCtrl.defaultDropdownObjects"
-                      filter-list-method="dropdownCtrl.filterObjectList(userInput)"
-                      item-selected-method="dropdownCtrl.itemObjectSelected(item)">
-                    </input-dropdown>-->
-                    <input list="provinces" ng-model="selectedProvince" ng-change="selProvince(selectedProvince)">
+                <div class="col">                    
+                    <!--<input list="provinces" ng-model="selectedProvince" ng-change="selProvince(selectedProvince)">
                     <datalist id="provinces">
                         <option ng-repeat="item in province">{{item.area_name}}</option>                       
-                    </datalist>
+                    </datalist>-->
+                    <select ng-model="selectedProvince" ng-change="selProvince(selectedProvince)">
+                        <option ng-repeat="item in province" value="{{item.area_name}}">{{item.area_name}}</option>
+                    </select>
                 </div>
             </div>              
             <div class="item row">
                 <div class="col-40 item-title">
                     城市
                 </div>
-                <div class="col">
-                    <!--<input-dropdown input-placeholder=""
-                                    input-name=""
-                                    allow-custom-input="true"
-                                    input-required="true"
-                                    selected-item=""
-                                    default-dropdown-items="dropdownCtrl.cityDropdownObjects"
-                                    filter-list-method="dropdownCtrl.filterCityList(userInput)"
-                                    item-selected-method="dropdownCtrl.citySelected(item)">
-                    </input-dropdown>-->
-                    <input list="cities" ng-model="selectedCity" ng-change="selCity(selectedCity)">
+                <div class="col">                    
+                    <!--<input list="cities" ng-model="selectedCity" ng-change="selCity(selectedCity)">
                     <datalist id="cities">
                         <option ng-repeat="item in city" value="{{item.area_name}}">
-                    </datalist>
+                    </datalist>-->
+                    <select ng-model="selectedCity" ng-change="selCity(selectedCity)">
+                        <option ng-repeat="item in city" value="{{item.area_name}}">{{item.area_name}}</option>
+                    </select>
                 </div>
             </div>
             <div class="item row">
@@ -417,317 +404,7 @@
                         </div>
                     </label>
                 </div>
-            </div>
-            <!--<div class="item row">
-                <div class="col-60 item-title">
-                    机油
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.engine_oil">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    制动
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.brake">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    电瓶
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.battery">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    火花塞
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.sparkplug">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    灯泡
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.lightbulb">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    滤清器
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.filter">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    洗车卡
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.carcleancard">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    手工洗车
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.manualcarclean">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    内饰清洁
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.service_decoration">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    自动洗车
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.autoclean">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    打蜡
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.waxing">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    抛光
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.polishing">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    贴膜
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.protectionfilm">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    座椅套
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.seatcover">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    补胎
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.tire">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    四轮定位
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.wheelalign">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    气门嘴
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.valve">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    动平衡
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.ballence">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    保险
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.insurance">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    玻璃
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.glass">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    发动机
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.motor">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    雨刮
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.wiper">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="item row">
-                <div class="col-60 item-title">
-                    其他
-                </div>
-                <div class="col">
-                    <label class="toggle">
-                        <input type="checkbox" checked ng-model="business.other">
-                        <div class="track">
-                            <div class="handle"></div>
-                        </div>
-                    </label>
-                </div>
-            </div>-->
-        </div>
-        <script id="templates/selprovince.html" type="text/ng-template">
-            <ion-popover-view>
-                <ion-content>
-                    <div class="list">
-                        <a class="item" ng-repeat="item in provinces">
-                            {{item.area_name}}
-                        </a>                        
-                    </div>
-                </ion-content>
-            </ion-popover-view>
-        </script>
+            </div>            
+        </div>        
 </ion-content>
 </ion-view>

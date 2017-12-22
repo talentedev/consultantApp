@@ -4,8 +4,8 @@
     <ReferenceCachePath>C:\Users\Admin\AppData\Local\Temp\blihq0xs_CTPApp_refcache</ReferenceCachePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Android'">
-    <DebuggerFlavor>RippleNexus</DebuggerFlavor>
-    <AndroidEmulatorID>AndroidDevice;Device</AndroidEmulatorID>
+    <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>
+    <AndroidEmulatorID>AndroidEmulator;Google Android Emulator</AndroidEmulatorID>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Android'">
     <DebuggerFlavor>AndroidEmulator</DebuggerFlavor>

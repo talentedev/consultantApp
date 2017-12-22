@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="io.cordova.myapp74d0c8" version="2.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" defaultLocale="en-US">
+<widget id="io.cordova.myapp74d0c8" version="2.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" defaultLocale="en-US">
   <name>ConsultantTools</name>
   <description>An Ionic Framework and Cordova project for Visual Studio</description>
   <author email="vscordovatools@microsoft.com" href="http://taco.visualstudio.com">Visual Studio JS Mobile Tooling</author>
@@ -88,5 +88,4 @@
   </plugin>
   <plugin name="cordova-plugin-screen-orientation" version="2.0.0" />
   <plugin name="es6-promise-plugin" version="3.0.2" />
-  <preference name="android-targetSdkVersion" value="19" />
 </widget>

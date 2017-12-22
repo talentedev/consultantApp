@@ -6,25 +6,12 @@
         <button class="button button-clear" ng-click="go_back()">
             返回
         </button>
-    </ion-nav-buttons>
-    <!--<ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="">
-            编辑
-        </button>
-    </ion-nav-buttons>-->
-    <ion-content id="store-manager">
-        <!--<div id="search-bar" class="full">
-            <div class="item item-input-inset">
-                <label class="item-input-wrapper" id="search-input">
-                    <i class="icon ion-search placeholder-icon"></i>
-                    <input id="search-input" type="text" placeholder="搜索" ng-model="query" ng-change="search()">
-                </label>
-            </div>
-        </div>-->
+    </ion-nav-buttons>    
+    <ion-content id="store-manager">        
         <div class="list">
             <div class="item row">
                 <div class="col-30">
-                    <img src="{{staff.head_url}}" />
+                    <img id="staff-head" src="{{staff.head_url}}" ng-click="camera()">
                 </div>
                 <div class="col-70 padding-area">
                     <span style="color:black;">{{staff_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{{identity}}</span>
@@ -97,16 +84,19 @@
                 <div class="col-30">
                     人员状态
                 </div>
+                <div class="col">
+                    在职
+                </div>
                 <div class="col col-25">
                     <label class="toggle">
-                        <input type="checkbox" ng-checked="staff.employ_state == 1" ng-model="staff.employ_state">
+                        <input type="checkbox"  ng-model="staff.employ_state">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
                     </label>
                 </div>
                 <div class="col">
-                    在职
+                    离职
                 </div>
             </div>
             <div class="item row">

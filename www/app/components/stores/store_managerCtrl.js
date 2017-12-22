@@ -1,7 +1,11 @@
 ﻿/*
  * 查看店面人员信息
+ * @author : kmr
+ * @midified : 2017/9/6
  */
 app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ionicHistory, BASE_URL, $http) {
+    $scope.staff = {};
+    var file, key;
 
     $scope.$on('$ionicView.enter', function (event) {
         $scope.staff = {};
@@ -88,7 +92,9 @@ app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ion
             //$scope.staff.learn_identity = $scope.learn_identity[parseInt(response.learn_identity)];
             $scope.staff.position = $scope.position[response.position];
             $scope.staff.entry_date = new Date(response.entry_date);
-
+            if (response.employ_state == 0) {
+                $scope.staff.employ_state = true;
+            } else $scope.staff.employ_state = false;
             // set learn identity
             for (key in $scope.learn_identity) {
                 if($scope.learn_identity[key].name == response.learn_identity) 
@@ -96,25 +102,109 @@ app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ion
             }
         });
     });
-
+    // 保存
     $scope.save = function () {
-        var url = BASE_URL + '/staff/update';
-        var data = {
-            sid: $stateParams.sid,
-            shopofstaff_id: $stateParams.shopofstaff_id
+        if (file != null) {
+            //Create Ali cloud upload objects
+            var client = new OSS.Wrapper({
+                region: 'oss-cn-qingdao',
+                accessKeyId: 'LTAIdwD3ntEWRFpj',
+                accessKeySecret: 'OQZMRIffR2qwXXPlSTgA87wKOA3CHF',
+                bucket: 'consultant'
+            });
+            // Upload files to server
+            client.multipartUpload('files/' + key, file, {
+
+            }).then(function (res) {
+                console.log('upload success: %j', res);
+                console.log(res.url);
+                var url = BASE_URL + '/staff/update';
+                var data = {
+                    sid: $stateParams.sid,
+                    shopofstaff_id: $stateParams.shopofstaff_id
+                }
+                data = $scope.staff;
+                data.position = $scope.staff.position.value;
+                data.learn_identity = $scope.staff.learn_identity.name;
+                data.sex = $scope.staff.sex.value;
+                data.head_url = res.url;
+                if (data.employ_state == true) {
+                    data.employ_state = 0;
+                } else data.employ_state = 1;
+                console.log('staff/update:request: ', data);
+                $http.post(url, data).then(function (res) {
+                    alert('保存!');
+                    $ionicHistory.goBack();
+                });
+            });
+        } else {
+            var url = BASE_URL + '/staff/update';
+            var data = {
+                sid: $stateParams.sid,
+                shopofstaff_id: $stateParams.shopofstaff_id
+            }
+            data = $scope.staff;
+            data.position = $scope.staff.position.value;
+            data.learn_identity = $scope.staff.learn_identity.name;
+            data.sex = $scope.staff.sex.value;
+            if (data.employ_state == true) {
+                data.employ_state = 0;
+            } else data.employ_state = 1;
+            console.log('staff/update:request: ', data);
+            $http.post(url, data).then(function (res) {
+                alert('保存!');
+                $ionicHistory.goBack();
+            });
         }
-        data = $scope.staff;
-        data.position = $scope.staff.position.value;
-        data.learn_identity = $scope.staff.learn_identity.name;
-        data.sex = $scope.staff.sex.value;
-        console.log('staff/update:request: ', data);
-        $http.post(url, data).then(function (res) {
-            $ionicHistory.goBack();
-        });
+    };
+    // Camera
+    $scope.camera = function () {
+        var options = {
+            quality: 15,
+            targetWidth: 800,
+            targetHeight: 600,
+            correctOrientation: true,
+            sourceType: 1,
+            destinationType: navigator.camera.DestinationType.DATA_URL,
+            allowEdit: true,
+            encodingType: navigator.camera.EncodingType.JPEG,
+            //          popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, navigator.camera.PopoverArrowDirection.ARROW_ANY),
+            saveToPhotoAlbum: false
+        };
+        navigator.camera.getPicture(function (result) {
+            var imgURI = "data:image/png;base64," + result;
+            document.getElementById('staff-head').src = imgURI;
+            // generate file name
+            var date = new Date();
+            var mm = date.getMonth() + 1;
+            var dd = date.getDate();
+            var hh = date.getHours();
+            var minute = date.getMinutes();
+            var ss = date.getSeconds();
 
-    }
-
+            var filename = [date.getFullYear(),
+                     (mm > 9 ? '' : '0') + mm,
+                     (dd > 9 ? '' : '0') + dd,
+                     (hh > 9 ? '' : '0') + hh,
+                     (minute > 9 ? '' : '0') + minute,
+                     (ss > 9 ? '' : '0') + ss
+            ].join('');
+            filename += '.png';
+            // convert base64 string to file object
+            var dataurl = imgURI;
+            var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            file = new File([u8arr], filename, { type: mime });
+            key = file.name;            
+        }, function (err) {
+            alert('失败上传!');
+        }, options);
+    };
+    // 返回
     $scope.go_back = function () {
         $ionicHistory.goBack();
-    }
+    };
 });

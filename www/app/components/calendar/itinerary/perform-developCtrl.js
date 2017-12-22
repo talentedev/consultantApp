@@ -15,7 +15,7 @@ app.controller('perform-developCtrl', function ($scope, $state, $stateParams, $i
     $scope.index = '';
 
     $scope.$on('$ionicView.enter', function (event) {
-        $scope.actions = [1];
+        //$scope.actions = [1];
         var url = BASE_URL + '/action/get';
         var data = {
             visit_id: $stateParams.visit_id

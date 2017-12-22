@@ -1,0 +1,30 @@
+﻿<ion-view ng-controller="com-listCtrl">
+    <ion-nav-title>
+        沟通统计
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="">
+            导出
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="audit-list">
+        <div class="row header">
+            <div class="col">人员</div>
+            <div class="col">内容</div>
+            <div class="col">结果</div>            
+        </div>
+        <div style="border:1px #000;" ng-repeat="data in coms" style="margin-top:0;border-top:1px solid #ddd;">
+            <div class="row">
+                <div class="col">{{data.people}}</div>
+                <div class="col">{{data.content}}</div>
+                <div class="col">{{data.result}}</div>                
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

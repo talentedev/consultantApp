@@ -212,7 +212,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/components/calendar/itinerary/evaluation.html',
         controller: 'evaluationCtrl',
         params: {
-            sid: null
+            sid: null,
+            visit_id: null
         }
     })
     // 驰加审计结果
@@ -253,11 +254,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/components/calendar/itinerary/perform-camera.html',
         controller: 'perform-cameraCtrl'
     })
-    // 添加行程
+    // 观察
     .state('perform-trip', {
         url: '/perform-trip',
         templateUrl: 'app/components/calendar/itinerary/perform-trip.html',
-        controller: 'perform-tripCtrl'
+        controller: 'perform-tripCtrl',
+        params: {
+            visit_id: null
+        }
     })
     // 库存上报
     .state('perform-inventory', {
@@ -339,6 +343,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/components/calendar/itinerary/perform-action.html',
         controller: 'perform-actionCtrl',
         params: {
+            sid: null,
             visit_id: null
         }
     })
@@ -351,13 +356,23 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             visit_id: null
         }
     })
-    // 添加沟通
+    // 沟通
     .state('perform-communication', {
         url: '/perform-communication',
         templateUrl: 'app/components/calendar/itinerary/perform-communication.html',
         controller: 'perform-communicationCtrl',
         params: {
-            sid: null
+            sid: null,
+            visit_id: null
+        }
+    })
+    // 沟通统计
+    .state('com-list', {
+        url: '/com-list',
+        templateUrl: 'app/components/calendar/itinerary/com-list.html',
+        controller: 'com-listCtrl',
+        params: {
+            visit_id: null
         }
     })
     // 添加总结项

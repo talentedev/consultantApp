@@ -1,58 +1,34 @@
 ﻿/*
  * 选择门店
+ * @author : kmr
+ * @modified : 2017/9/4
 */
 app.controller('trip-storeCtrl', function ($scope, $state, $ionicHistory, BASE_URL, $http, TripService) {
+    var store = {};
 
     $scope.$on('$ionicView.enter', function (event) {
-        var url = BASE_URL + '/store/list';        
+        var url = BASE_URL + '/store/list';
         $http.get(url).then(function (res) {
             $scope.stores = res.data;
         });
-    })
-
-    // search a store by name
-    $scope.search = function (query) {
-        $scope.stores = [];
-        var url = BASE_URL + '/store/search';
-        var data = {
-            store_name: query
+    });
+    // check a shop
+    $scope.store_check = function ($event, data) {
+        var elementList = document.querySelectorAll('#trip-store .list i');
+        for (i = 0; i < elementList.length; i++) {
+            var ele = elementList[i];
+            ele.className = "icon fa fa-square-o";
         }
-        $http.post(url, data).then(function (res) {
-            console.log(res.data);
-            $scope.stores = res.data;
-        });
-    }
-
-    var store = {};
-    var checked = [];
-
-    // event when press check icon in store list
-    $scope.store_check = function (i) {
-        if (typeof checked[i] == 'undefined') checked[i] = false;
-        var id = 'store' + i.toString();
-        if (checked[i] == false) {
-            document.getElementById(id).style.color = '#48b52d';
-            store = $scope.stores[i];
-            for (key in checked) {
-                if (key != i) {
-                    document.getElementById('store' + key.toString()).style.color = '#444';
-                    checked[key] = false;
-                }
-            }
-            checked[i] = true;
-        } else {
-            document.getElementById(id).style.color = '#444';
-            checked[i] = false;
-        }
-    }
-
-    // return current data to previous view.
+        $event.currentTarget.className = "icon fa fa-check-square-o";
+        store = data;
+    };
+    // 保存
     $scope.save = function () {
         TripService.setShop(store);
-        $ionicHistory.goBack();   
-    }
-
+        $ionicHistory.goBack();
+    };
+    // 取消
     $scope.go_back = function () {
         $ionicHistory.goBack();
-    }
+    };
 });

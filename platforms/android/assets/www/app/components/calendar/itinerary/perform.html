@@ -15,10 +15,10 @@
     <ion-content id="perform">
         <div class="button-area row">
             <div class="col col-50">
-                <button class="button"  ng-click="go_field('arrive')"><i class="fa fa-arrow-right" style="font-size:14px;display:inline-block;"></i>到店签到</button>
+                <button class="button"  ng-click="go_field('arrive')"><i class="fa fa-arrow-right" style="font-size:14px;display:inline-block;"></i>{{arrive_flag}}</button>
             </div>
             <div class="col col-50">
-                <button class="button" style="float:right;" ng-click="go_field('leave')"><i class="fa fa-arrow-right" style="font-size:14px;display:inline-block;"></i>离店签退</button>
+                <button class="button" style="float:right;" ng-click="go_field('leave')"><i class="fa fa-arrow-right" style="font-size:14px;display:inline-block;"></i>{{leave_flag}}</button>
             </div>
         </div>
         <div class="row text-area">
@@ -58,14 +58,7 @@
                 <p class="list-title"><span>单店基本信息</span></p>
                 <p class="list-description"><span>基本信息、店面描述、2公里范围内店面数量等</span></p>
                 <i class="icon ion-ios-arrow-right"></i>
-            </div>
-            <!--
-            <div class="item item-icon-left item-icon-right" ng-click="go_bireport()">
-                <i class="icon fa fa-star star" style="background-color:#00cd47;"></i>
-                <p class="list-title"><span>BI Report</span></p>
-                <p class="list-description"><span>销量综合指标、营业额综合指标、毛利综合指标</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div> -->
+            </div>           
             <div class="item item-icon-left item-icon-right" ng-click="goEvaluation()">
                 <i class="icon fa fa-star star" style="background-color:#00aaff;"></i>
                 <p class="list-title"><span>评估记录</span></p>
@@ -134,13 +127,7 @@
         <div class="store-section">
             回顾
         </div>
-        <div class="list">
-            <!--<div class="item item-icon-left item-icon-right" ng-click="">
-                <i class="icon fa fa-star star" style="background-color:#00aaff;"></i>
-                <p class="list-title"><span>BI Report</span></p>
-                <p class="list-description"><span>销量综合指标、营业额综合指标、毛利综合指标</span></p>
-                <i class="icon ion-ios-arrow-right"></i>
-            </div>-->
+        <div class="list">           
             <div class="item item-icon-left item-icon-right" ng-click="goEvaluation()">
                 <i class="icon fa fa-star star" style="background-color:#00cd47;"></i>
                 <p class="list-title"><span>评估记录</span></p>
@@ -219,7 +206,6 @@
             <button id="plan_done" class="button button-block button-balanced" ng-click="done()">Done</button>
             <div class="list-footer">点击Done按钮后此次行程内容不可被更改；</div>
             <div class="list-footer">未点击Done按钮的拜访报告将被视为无效记录！</div>
-        </div>
-        
+        </div>        
     </ion-content>
 </ion-view>
