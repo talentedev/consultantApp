@@ -4,17 +4,31 @@
  * @modified : 2017/9/4
  */
 app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $http, BASE_URL, ItineraryService, TripService) {
-    var prevDate;
+    var prevDate = null;
+    var todayObj = null;
 
     $scope.$on('$ionicView.enter', function (event) {
+        var today = new Date();
         if (TripService.getDate() != null) {
             calendar_init(TripService.getDate());
-        } else {
-            var today = new Date();
+        } else {            
             calendar_init(today);
         }
         TripService.setDate(null);
-        prevDate.style.color = '#000';
+        //console.log('scope month', $scope.month);
+        //console.log('real month', today.getMonth());
+        if(prevDate != null) {
+            prevDate.style.color = '#000';
+        }        
+
+        var sObj = document.getElementById('SD0');
+        var day = Calendar.getday(0, 0, $scope.month, $scope.year) + 1;
+        var dd = today.getDate();
+        var id_today = 'GD' + (dd - day);
+        console.log('today date', id_today);
+        todayObj = document.getElementById(id_today);
+        //today_Obj.style.backgroundColor = '#FFF';
+        //today_Obj.style.color = '#000';
     });
     // back to today in calendar
     $scope.today = function () {
@@ -37,21 +51,23 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
     // event when press any date on calendar
     $scope.pressDate = function (i, j) {
         var sObj = document.getElementById('SD' + (i * 7 + j).toString());
-        var day = Calendar.getday(i, j, $scope.month, $scope.year) + 2;
+        var day = Calendar.getday(i, j, $scope.month, $scope.year) + 1;
 
         Calendar.changeCal($scope.year, $scope.month);
 
         var today = new Date()
         var dd = today.getDate();
-        var id_today = 'GD' + dd.toString();
+        var id_today = 'GD' + (dd + (i * 7 + j - day));
+        //console.log('today date', id_today);
         var today_Obj = document.getElementById(id_today);
         today_Obj.style.backgroundColor = '#FFF';
-
+        today_Obj.style.color = '#000';
+        
         onDate(day, sObj);
     };
     // the event when press a date in calendar
     var onDate = function (day, sObj) {
-        if (typeof prevDate != 'undefined') {
+        if (prevDate != null) {
             prevDate.style.color = '#000';
         }
         var dateDiv = sObj.parentElement;
@@ -95,7 +111,13 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
         } else {
             $scope.month = $scope.month - 1;
         }
-        Calendar.changeCal($scope.year, $scope.month)
+        Calendar.changeCal($scope.year, $scope.month);
+        if(prevDate != null) 
+            prevDate.style.color = '#000';
+        console.log('**********8', todayObj);
+        if (prevDate != null)
+        todayObj.style.backgroundColor = '#FFF';
+        todayObj.style.color = '#000';
     };
     // next button in calendar
     $scope.next_calendar = function () {
@@ -105,7 +127,11 @@ app.controller('dateCtrl', function ($scope, $state, $ionicHistory, Calendar, $h
         } else {
             $scope.month = $scope.month + 1;
         }
-        Calendar.changeCal($scope.year, $scope.month)
+        Calendar.changeCal($scope.year, $scope.month);
+        if (prevDate != null)
+            prevDate.style.color = '#000';
+        todayObj.style.backgroundColor = '#FFF';
+        todayObj.style.color = '#000';
     };
     // go back            
     $scope.go_back = function () {

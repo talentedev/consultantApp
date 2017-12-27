@@ -1,7 +1,10 @@
 ﻿/*
  * 路途
+ * @author : kmr
+ * @modified : 2017/9/9
  */
 app.controller('roadCtrl', function ($scope, $state, $stateParams, $http, BASE_URL, $ionicHistory) {
+    $scope.isdone = 0;
 
     $scope.$on('$ionicView.enter', function (event) {
         var url = BASE_URL + '/plan/get';
@@ -34,6 +37,7 @@ app.controller('roadCtrl', function ($scope, $state, $stateParams, $http, BASE_U
             var end_time = new Date(str2);            
             $scope.start_time = start_time;
             $scope.end_time = end_time;
+            $scope.isdone = res.data.isdone;
         });
     });
     // 提交
@@ -63,6 +67,8 @@ app.controller('roadCtrl', function ($scope, $state, $stateParams, $http, BASE_U
         console.log('plan/done:request', data);
         $http.post(url, data).then(function (res) {
             console.log('plan/done:response', res.data);
+            alert('行程已Done成功');
+            $scope.isdone = 1;
         });
     };
 });

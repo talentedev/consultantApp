@@ -92,7 +92,7 @@ app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ion
             //$scope.staff.learn_identity = $scope.learn_identity[parseInt(response.learn_identity)];
             $scope.staff.position = $scope.position[response.position];
             $scope.staff.entry_date = new Date(response.entry_date);
-            if (response.employ_state == 0) {
+            if (response.employ_state == 1) {
                 $scope.staff.employ_state = true;
             } else $scope.staff.employ_state = false;
             // set learn identity
@@ -129,8 +129,8 @@ app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ion
                 data.sex = $scope.staff.sex.value;
                 data.head_url = res.url;
                 if (data.employ_state == true) {
-                    data.employ_state = 0;
-                } else data.employ_state = 1;
+                    data.employ_state = 1;
+                } else data.employ_state = 0;
                 console.log('staff/update:request: ', data);
                 $http.post(url, data).then(function (res) {
                     alert('保存!');
@@ -148,8 +148,8 @@ app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ion
             data.learn_identity = $scope.staff.learn_identity.name;
             data.sex = $scope.staff.sex.value;
             if (data.employ_state == true) {
-                data.employ_state = 0;
-            } else data.employ_state = 1;
+                data.employ_state = 1;
+            } else data.employ_state = 0;
             console.log('staff/update:request: ', data);
             $http.post(url, data).then(function (res) {
                 alert('保存!');

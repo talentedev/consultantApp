@@ -375,6 +375,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             visit_id: null
         }
     })
+    // 培训辅导
+    .state('perform-training', {
+        url: '/perform-training',
+        templateUrl: 'app/components/calendar/itinerary/train.html',
+        controller: 'trainCtrl',
+        params: {
+            sid: null,
+            visit_id: null
+        }
+    })
+    // 培训辅导统计
+    .state('train-list', {
+        url: '/train-list',
+        templateUrl: 'app/components/calendar/itinerary/train-list.html',
+        controller: 'train-listCtrl',
+        params: {
+            visit_id: null
+        }
+    })
     // 添加总结项
     .state('add-summary-item', {
         url: '/add-summary-item',

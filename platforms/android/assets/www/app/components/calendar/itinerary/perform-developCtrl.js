@@ -1,8 +1,9 @@
 ﻿/*
  * 添加行动计划及草案制定
+ * @author : kmr
+ * @midified : 2017/9/9
  */
 app.controller('perform-developCtrl', function ($scope, $state, $stateParams, $ionicHistory, BASE_URL, $http, TripService) {
-
     $scope.action = {};
     $scope.action.issue = [];
     $scope.action.action_target = [];
@@ -31,9 +32,11 @@ app.controller('perform-developCtrl', function ($scope, $state, $stateParams, $i
         var staffs = TripService.getParticipators();
         if (staffs.length > 0) {
             $scope.action.executor[$scope.index] = '';
-            for (key in staffs) {
+            for (key in staffs) {                
+                if (key != 0) {
+                    $scope.action.executor[$scope.index] += ', ';
+                }
                 $scope.action.executor[$scope.index] += staffs[key].staff_name;
-                $scope.action.executor[$scope.index] += ', ';
             }
         }        
     })
@@ -59,6 +62,7 @@ app.controller('perform-developCtrl', function ($scope, $state, $stateParams, $i
         console.log('action/add:request', arr);
         $http.post(url, arr).then(function (res) {
             console.log('action/add:response', res.data);
+            alert('保存了!');
             $ionicHistory.goBack();
         });
     }
@@ -68,15 +72,21 @@ app.controller('perform-developCtrl', function ($scope, $state, $stateParams, $i
         actions.push(1);
         $scope.actions = actions;
     }
-
+    // 执行人
     $scope.go_executor = function (index) {
         $scope.index = index;
         $state.go('action-executor', {
             sid: $stateParams.sid
         });
     }
-
+    // 返回
     $scope.go_back = function () {
         $ionicHistory.goBack();
-    }
+    };
+    // 统计
+    $scope.list = function () {
+        $state.go('action-list', {
+            visit_id: $stateParams.visit_id
+        });
+    };
 });

@@ -61,5 +61,5 @@ app.controller('add-summary-itemCtrl', function ($scope, $state, $stateParams, $
         $state.go('summary-list', {
             visit_id: $stateParams.visit_id
         });
-    }
+    };
 });

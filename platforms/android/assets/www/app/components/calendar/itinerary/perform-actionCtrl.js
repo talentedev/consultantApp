@@ -32,9 +32,11 @@ app.controller('perform-actionCtrl', function ($scope, $state, $stateParams, $io
         var staffs = TripService.getParticipators();
         if (staffs.length > 0) {
             $scope.action.executor[$scope.index] = '';
-            for (key in staffs) {
-                $scope.action.executor[$scope.index] += staffs[key].staff_name;
-                $scope.action.executor[$scope.index] += ', ';
+            for (key in staffs) {               
+                if (key != 0) {
+                    $scope.action.executor[$scope.index] += ', ';
+                }
+                $scope.action.executor[$scope.index] += staffs[key].staff_name;                
             }
         }
     });
@@ -60,6 +62,7 @@ app.controller('perform-actionCtrl', function ($scope, $state, $stateParams, $io
         console.log('action/add:request', arr);
         $http.post(url, arr).then(function (res) {
             console.log('action/add:response', res.data);
+            alert('保存了!');
             $ionicHistory.goBack();
         });
     };

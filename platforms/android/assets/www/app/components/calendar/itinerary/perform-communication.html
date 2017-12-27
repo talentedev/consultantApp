@@ -13,51 +13,57 @@
         </button>
     </ion-nav-buttons>
     <ion-content id="perform-analysis" class="padding-without">
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;" ng-click="go_people()">
-                <div class="col col-25 item-title">
-                    沟通人员
+        <div ng-repeat="key in coms track by $index" style="margin-bottom:10px;">
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;" ng-click="go_people($index)">
+                    <div class="col col-25 item-title">
+                        沟通人员
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" ng-model="commn.people[$index]" disabled>
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" ng-model="commn.people" disabled>
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    沟通时间
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        沟通时间
+                    </div>
+                    <div class="col col-50">
+                        <input type="datetime-local" ng-model="commn.communication_time[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="datetime-local" ng-model="commn.communication_time">
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    沟通内容
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        沟通内容
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入或选择备选" ng-model="commn.content[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" ng-model="commn.content">
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
-        </div>
-        <div class="list">
-            <div class="item row item-icon-right" style="border:none;">
-                <div class="col col-25 item-title">
-                    沟通结果
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        沟通结果
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入或选择备选" ng-model="commn.result[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
                 </div>
-                <div class="col col-50">
-                    <input type="text" placeholder="请点击输入或选择备选" ng-model="commn.result">
-                </div>
-                <i class="icon ion-ios-arrow-right"></i>
             </div>
+            <textarea placeholder="备注" ng-model="commn.comments[$index]"></textarea><br />
         </div>
-        <textarea placeholder="备注" ng-model="commn.comments"></textarea><br />
+        <div class="store-section" ng-click="addCom()">
+            添加其它沟通++
+        </div>
+
         <div class="button-area">
             <button class="button" ng-click="save(commn)">保存</button>
         </div>

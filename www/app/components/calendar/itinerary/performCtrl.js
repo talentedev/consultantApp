@@ -1,7 +1,7 @@
 ﻿/*
  * 执行巡店类行程
  * @author : kmr
- * @modified : 2017/9/5
+ * @modified : 2017/9/9
  */
 app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHistory, BASE_URL, $http) {
     // page init
@@ -215,7 +215,12 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
     };
     // 培训辅导
     $scope.go_training = function () {
-        $state.go('perform-training');
+        if (received_flag == true) {
+            $state.go('perform-training', {
+                sid: $stateParams.sid,
+                visit_id: $scope.visit_id
+            });
+        }
     };
     // 添加总结项
     $scope.addSummaryItem = function () {
@@ -240,7 +245,9 @@ app.controller('performCtrl', function ($scope, $state, $stateParams, $ionicHist
         };
         console.log('plan/done:request', data);
         $http.post(url, data).then(function (res) {
-            console.log('plan/done:response', res.data);
+            console.log('plan/done:response', res.data);            
+            alert('行程已Done成功');
+            $scope.visit.isdone = 1;
         });
     };
 });

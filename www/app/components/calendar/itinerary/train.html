@@ -1,0 +1,71 @@
+﻿<ion-view ng-controller="trainCtrl">
+    <ion-nav-title>
+        添加培训辅导
+    </ion-nav-title>
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="go_back()">
+            返回
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="list()">
+            统计
+        </button>
+    </ion-nav-buttons>
+    <ion-content id="perform-analysis" class="padding-without">
+        <div ng-repeat="key in coms track by $index" style="margin-bottom:10px;">
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;" ng-click="go_people($index)">
+                    <div class="col col-25 item-title">
+                        被辅导人
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" ng-model="commn.people[$index]" disabled>
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        辅导时间
+                    </div>
+                    <div class="col col-50">
+                        <input type="date" ng-model="commn.train_date[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        辅导内容
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入或选择备选" ng-model="commn.content[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </div>
+            <div class="list">
+                <div class="item row item-icon-right" style="border:none;">
+                    <div class="col col-25 item-title">
+                        辅导效果
+                    </div>
+                    <div class="col col-50">
+                        <input type="text" placeholder="请点击输入或选择备选" ng-model="commn.result[$index]">
+                    </div>
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>
+            </div>
+            <textarea placeholder="备注" ng-model="commn.comments[$index]"></textarea><br />
+        </div>
+        <div class="store-section" ng-click="addCom()">
+            添加其它培训辅导++
+        </div>
+
+        <div class="button-area">
+            <button class="button" ng-click="save(commn)">保存</button>
+        </div>
+    </ion-content>
+</ion-view>

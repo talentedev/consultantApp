@@ -203,7 +203,8 @@
             </div>
         </div>
         <div class="list">
-            <button id="plan_done" class="button button-block button-balanced" ng-click="done()">Done</button>
+            <button id="plan_done" class="button button-block button-balanced" ng-click="done()" ng-show="visit.isdone == 0">Done</button>
+            <button class="button button-block button-balanced" disabled ng-show="visit.isdone == 1">Done</button>
             <div class="list-footer">点击Done按钮后此次行程内容不可被更改；</div>
             <div class="list-footer">未点击Done按钮的拜访报告将被视为无效记录！</div>
         </div>        
