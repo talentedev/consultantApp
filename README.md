@@ -1,4 +1,4 @@
-# Ionic Blank Template
+# Consultant App with laravel backend
 
 An application using Apache Cordova, Ionic Framework, and Typescript. Currently supporting iOS, Android and Windows 10.
 
