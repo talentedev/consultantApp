@@ -1,7 +1,7 @@
 ﻿/*
  * 查看店面人员信息
  * @author : kmr
- * @midified : 2017/9/6
+ * @midified : 2017/9/12
  */
 app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ionicHistory, BASE_URL, $http) {
     $scope.staff = {};
@@ -94,7 +94,11 @@ app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ion
             $scope.staff.entry_date = new Date(response.entry_date);
             if (response.employ_state == 1) {
                 $scope.staff.employ_state = true;
-            } else $scope.staff.employ_state = false;
+                $scope.employeeState = '在职'; 
+            } else {
+                $scope.staff.employ_state = false;
+                $scope.employeeState = '离职';
+            }
             // set learn identity
             for (key in $scope.learn_identity) {
                 if($scope.learn_identity[key].name == response.learn_identity) 
@@ -202,6 +206,14 @@ app.controller('store-managerCtrl', function ($scope, $state, $stateParams, $ion
         }, function (err) {
             alert('失败上传!');
         }, options);
+    };
+    // 人员状态
+    $scope.changeEmpState = function (state) {
+        if (state == true) {
+            $scope.employeeState = '在职';               
+        } else {
+            $scope.employeeState = '离职';
+        }
     };
     // 返回
     $scope.go_back = function () {

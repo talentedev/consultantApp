@@ -40,7 +40,7 @@ app.controller('evaluationCtrl', function ($scope, $state, $stateParams, $ionicH
                     for (index in loop) {
                         //console.log(index);
                         if (index.indexOf('sop') == 0 && key.indexOf('sopofresult_id') != 0) {
-                            var objectKey = 'score' + (parseInt(key) + 1);
+                            var objectKey = 'score' + (parseInt(key));
                             //console.log(typeof loop[index]  'number');
                             if (typeof loop[index] == 'number') {
                                 

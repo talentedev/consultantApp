@@ -100,14 +100,14 @@
                 </div>
                 <div class="col col-25">
                     <label class="toggle">
-                        <input type="checkbox" checked ng-model="staff.employ_state">
+                        <input type="checkbox" checked ng-model="staff.employ_state" ng-change="changeEmpState(staff.employ_state)">
                         <div class="track">
                             <div class="handle"></div>
                         </div>
                     </label>
                 </div>
                 <div class="col">
-                    在职
+                    {{employeeState}}
                 </div>
             </div>
             <div class="item row">

@@ -1,11 +1,12 @@
 ﻿/*
  * 查看店面人员信息 (添加)
  * @author : kmr
- * @midified : 2017/9/9
+ * @midified : 2017/9/12
  */
 app.controller('store-addstaffCtrl', function ($scope, $state, $stateParams, $ionicHistory, BASE_URL, $http) {
     $scope.staff = {};
     var file, key;
+    $scope.employeeState = '离职';
 
     $scope.$on('$ionicView.enter', function (event) {
         $scope.staff = {};
@@ -175,6 +176,14 @@ app.controller('store-addstaffCtrl', function ($scope, $state, $stateParams, $io
         }, function (err) {
             alert('失败上传!');
         }, options);
+    };
+    // 人员状态
+    $scope.changeEmpState = function (state) {
+        if (state == true) {
+            $scope.employeeState = '在职';
+        } else {
+            $scope.employeeState = '离职';
+        }
     };
     // 返回
     $scope.go_back = function () {
